@@ -1,6 +1,6 @@
 ---
 name: gsd:list-phase-assumptions
-description: Surface Claude's assumptions about a phase approach before planning
+description: 在规划前展示 Claude 对阶段方案的假设
 argument-hint: "[phase]"
 allowed-tools:
   - Read
@@ -10,10 +10,10 @@ allowed-tools:
 ---
 
 <objective>
-Analyze a phase and present Claude's assumptions about technical approach, implementation order, scope boundaries, risk areas, and dependencies.
+分析某个阶段，并展示 Claude 对技术路线、实现顺序、范围边界、风险区域与依赖关系的假设。
 
-Purpose: Help users see what Claude thinks BEFORE planning begins - enabling course correction early when assumptions are wrong.
-Output: Conversational output only (no file creation) - ends with "What do you think?" prompt
+目的：让用户在正式规划前看到 Claude 的预设判断，从而在假设错误时尽早校正方向。
+输出：仅对话式输出（不创建文件），并以“你怎么看？”作为结尾提示。
 </objective>
 
 <execution_context>
@@ -21,9 +21,9 @@ Output: Conversational output only (no file creation) - ends with "What do you t
 </execution_context>
 
 <context>
-Phase number: $ARGUMENTS (required)
+阶段编号：`$ARGUMENTS`（必填）
 
-Project state and roadmap are loaded in-workflow using targeted reads.
+项目状态与路线图会在工作流内部通过定向读取加载。
 </context>
 
 <process>
@@ -34,7 +34,9 @@ Project state and roadmap are loaded in-workflow using targeted reads.
    - Surface assumptions about: technical approach, implementation order, scope, risks, dependencies
    - Present assumptions clearly
    - Prompt "What do you think?"
-4. Gather feedback and offer next steps
+4. 收集反馈并给出下一步建议
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>
 
 <success_criteria>

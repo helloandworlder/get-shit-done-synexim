@@ -1,10 +1,14 @@
-# Verification Report Template
+# 验证报告模板
 
-Template for `.planning/phases/XX-name/{phase_num}-VERIFICATION.md` — phase goal verification results.
+`.planning/phases/XX-name/{phase_num}-VERIFICATION.md` 模板 — 阶段目标验证结果。
+
+- 报告标题、状态结论、差距说明、人工验证提示默认使用中文。
+- 若是 `micro` 或简单补丁阶段，可简化描述；若是 `large` 阶段，必须明确跨模块验证结果与后续修复建议。
+- 若发现缺口，结尾建议同时给出中文进度卡或简短进展摘要，便于继续接力。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 ---
@@ -159,33 +163,33 @@ None — all verifiable items checked programmatically.
 
 ---
 
-## Guidelines
+## 指南
 
-**Status values:**
-- `passed` — All must-haves verified, no blockers
-- `gaps_found` — One or more critical gaps found
-- `human_needed` — Automated checks pass but human verification required
+**状态值：**
+- `passed` — 所有必备功能均经过验证，无任何阻碍
+- `gaps_found` — 发现一个或多个关键差距
+- `human_needed` — 自动检查通过，但需要人工验证
 
-**Evidence types:**
-- For EXISTS: "File at path, exports X"
-- For SUBSTANTIVE: "N lines, has patterns X, Y, Z"
-- For WIRED: "Line N: code that connects A to B"
-- For FAILED: "Missing because X" or "Stub because Y"
+**证据类型：**
+- 对于 EXISTS：“文件位于路径，导出 X”
+- 对于实质性内容：“N 行，具有模式 X、Y、Z”
+- 对于连线：“N 行：连接 A 到 B 的代码”
+- 对于失败：“由于 X 丢失”或“由于 Y 存根”
 
-**Severity levels:**
-- 🛑 Blocker: Prevents goal achievement, must fix
-- ⚠️ Warning: Indicates incomplete but doesn't block
-- ℹ️ Info: Notable but not problematic
+**严重级别：**
+- 🛑 阻碍者：阻碍目标实现，必须修复
+- ⚠️警告：表示不完整但不阻塞
+- ℹ️信息：值得注意但没有问题
 
-**Fix plan generation:**
-- Only generate if gaps_found
-- Group related fixes into single plans
-- Keep to 2-3 tasks per plan
-- Include verification task in each plan
+**修复计划生成：**
+-仅在gaps_found时生成
+- 将相关修复分组到单个计划中
+- 每个计划保持 2-3 个任务
+- 在每个计划中包含验证任务
 
 ---
 
-## Example
+## 示例
 
 ```markdown
 ---

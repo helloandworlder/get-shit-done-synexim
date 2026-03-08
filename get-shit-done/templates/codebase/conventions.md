@@ -1,12 +1,12 @@
-# Coding Conventions Template
+# 编码约定模板
 
-Template for `.planning/codebase/CONVENTIONS.md` - captures coding style and patterns.
+`.planning/codebase/CONVENTIONS.md` 模板 - 捕获编码风格和模式。
 
-**Purpose:** Document how code is written in this codebase. Prescriptive guide for Claude to match existing style.
+**目的：** 记录如何在此代码库中编写代码。 Claude 匹配现有风格的规范性指南。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Coding Conventions
@@ -268,40 +268,40 @@ Template for `.planning/codebase/CONVENTIONS.md` - captures coding style and pat
 </good_examples>
 
 <guidelines>
-**What belongs in CONVENTIONS.md:**
-- Naming patterns observed in the codebase
-- Formatting rules (Prettier config, linting rules)
-- Import organization patterns
-- Error handling strategy
-- Logging approach
-- Comment conventions
-- Function and module design patterns
+**CONVENTIONS.md 属于什么：**
+- 在代码库中观察到的命名模式
+- 格式化规则（Prettier 配置、linting 规则）
+- 导入组织模式
+- 错误处理策略
+- 记录方法
+- 评论约定
+- 功能和模块设计模式
 
-**What does NOT belong here:**
-- Architecture decisions (that's ARCHITECTURE.md)
-- Technology choices (that's STACK.md)
-- Test patterns (that's TESTING.md)
-- File organization (that's STRUCTURE.md)
+**什么不属于这里：**
+- 架构决策（即 ARCHITECTURE.md）
+- 技术选择（即STACK.md）
+- 测试模式（即TESTING.md）
+- 文件组织（即STRUCTURE.md）
 
-**When filling this template:**
-- Check .prettierrc, .eslintrc, or similar config files
-- Examine 5-10 representative source files for patterns
-- Look for consistency: if 80%+ follows a pattern, document it
-- Be prescriptive: "Use X" not "Sometimes Y is used"
-- Note deviations: "Legacy code uses Y, new code should use X"
-- Keep under ~150 lines total
+**填写此模板时：**
+- 检查 .prettierrc、.eslintrc 或类似的配置文件
+- 检查 5-10 个有代表性的源文件中的模式
+- 寻找一致性：如果 80% 以上遵循某种模式，请将其记录下来
+- 具有规定性：“使用 X”而不是“有时使用 Y”
+- 注意偏差：“旧代码使用 Y，新代码应使用 X”
+- 总共保持在约 150 行以内
 
-**Useful for phase planning when:**
-- Writing new code (match existing style)
-- Adding features (follow naming patterns)
-- Refactoring (apply consistent conventions)
-- Code review (check against documented patterns)
-- Onboarding (understand style expectations)
+**在以下情况下对于阶段规划很有用：**
+- 编写新代码（匹配现有风格）
+- 添加功能（遵循命名模式）
+- 重构（应用一致的约定）
+- 代码审查（对照记录的模式进行检查）
+- 入职（了解风格期望）
 
-**Analysis approach:**
-- Scan src/ directory for file naming patterns
-- Check package.json scripts for lint/format commands
-- Read 5-10 files to identify function naming, error handling
-- Look for config files (.prettierrc, eslint.config.js)
-- Note patterns in imports, comments, function signatures
+**分析方法：**
+- 扫描 src/ 目录中的文件命名模式
+- 检查 package.json 脚本中的 lint/format 命令
+- Read 5-10个文件识别函数命名、错误处理
+- 查找配置文件（.prettierrc、eslint.config.js）
+- 注意导入、注释、函数签名中的模式
 </guidelines>

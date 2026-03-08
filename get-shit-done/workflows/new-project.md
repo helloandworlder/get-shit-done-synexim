@@ -157,13 +157,15 @@ AskUserQuestion([
     question: "Which AI models for planning agents?",
     multiSelect: false,
     options: [
-      { label: "Balanced (Recommended)", description: "Sonnet for most agents — good quality/cost ratio" },
-      { label: "Quality", description: "Opus for research/roadmap — higher cost, deeper analysis" },
-      { label: "Budget", description: "Haiku where possible — fastest, lowest cost" }
+      { label: "Quality (Recommended)", description: "OpenAI GPT-5.4 xhigh for roadmap/phase planning, GPT-5.4 high for execution" },
+      { label: "Balanced", description: "OpenAI GPT-5.4 high for planning and execution" },
+      { label: "Budget", description: "Still use GPT-5.4 high, but reduce auxiliary research/checking where possible" }
     ]
   }
 ])
 ```
+
+**Hard rule:** `GPT-5.4` must NOT perform front-end design during project initialization. If the project includes front-end scope, initialization must only gather requirements, check prototype coverage, and block implementation until a complete MVP prototype exists.
 
 Create `.planning/config.json` with mode set to "yolo":
 
@@ -457,13 +459,15 @@ questions: [
     question: "Which AI models for planning agents?",
     multiSelect: false,
     options: [
-      { label: "Balanced (Recommended)", description: "Sonnet for most agents — good quality/cost ratio" },
-      { label: "Quality", description: "Opus for research/roadmap — higher cost, deeper analysis" },
-      { label: "Budget", description: "Haiku where possible — fastest, lowest cost" }
+      { label: "Quality (Recommended)", description: "OpenAI GPT-5.4 xhigh for roadmap/phase planning, GPT-5.4 high for execution" },
+      { label: "Balanced", description: "OpenAI GPT-5.4 high for planning and execution" },
+      { label: "Budget", description: "Still use GPT-5.4 high, but reduce auxiliary research/checking where possible" }
     ]
   }
 ]
 ```
+
+**If the project includes front-end scope:** ask whether the user already has a Gemini AI Studio MVP prototype that fully covers level-1 features. If not, stop the front-end planning path and request the prototype first.
 
 Create `.planning/config.json` with all settings:
 
@@ -726,14 +730,14 @@ Commit after writing.
 Display research complete banner and key findings:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► RESEARCH COMPLETE ✓
+ GSD ► 研究完成 ✓
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-## Key Findings
+## 关键发现
 
-**Stack:** [from SUMMARY.md]
-**Table Stakes:** [from SUMMARY.md]
-**Watch Out For:** [from SUMMARY.md]
+**技术栈：** [from SUMMARY.md]
+**基础必备：** [from SUMMARY.md]
+**注意事项：** [from SUMMARY.md]
 
 Files: `.planning/research/`
 ```
@@ -745,7 +749,7 @@ Files: `.planning/research/`
 Display stage banner:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► DEFINING REQUIREMENTS
+ GSD ► 正在定义需求
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -794,7 +798,7 @@ Here are the features for [domain]:
 
 **If no research:** Gather requirements through conversation instead.
 
-Ask: "What are the main things users need to be able to do?"
+提问：“用户最核心需要完成哪些事情？”
 
 For each capability mentioned:
 - Ask clarifying questions to make it specific
@@ -806,7 +810,7 @@ For each capability mentioned:
 For each category, use AskUserQuestion:
 
 - header: "[Category]" (max 12 chars)
-- question: "Which [category] features are in v1?"
+- question: "[category] 中哪些功能要进入 v1？"
 - multiSelect: true
 - options:
   - "[Feature 1]" — [brief description]
@@ -822,8 +826,8 @@ Track responses:
 **Identify gaps:**
 
 Use AskUserQuestion:
-- header: "Additions"
-- question: "Any requirements research missed? (Features specific to your vision)"
+- header: "补充项"
+- question: "研究是否漏掉了什么需求？（与你愿景强相关的功能）"
 - options:
   - "No, research covered it" — Proceed
   - "Yes, let me add some" — Capture additions
@@ -859,7 +863,7 @@ Reject vague requirements. Push for specificity:
 Show every requirement (not counts) for user confirmation:
 
 ```
-## v1 Requirements
+## v1 需求
 
 ### Authentication
 - [ ] **AUTH-01**: User can create account with email/password
@@ -874,7 +878,7 @@ Show every requirement (not counts) for user confirmation:
 
 ---
 
-Does this capture what you're building? (yes / adjust)
+这是否准确表达了你要构建的内容？（yes / adjust）
 ```
 
 If "adjust": Return to scoping.
@@ -890,10 +894,10 @@ node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: define v1 req
 Display stage banner:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► CREATING ROADMAP
+ GSD ► 正在创建路线图
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Spawning roadmapper...
+◆ 正在启动 roadmapper...
 ```
 
 Spawn gsd-roadmapper agent with path references:
@@ -939,7 +943,7 @@ Read the created ROADMAP.md and present it nicely inline:
 ```
 ---
 
-## Proposed Roadmap
+## 建议路线图
 
 **[N] phases** | **[X] requirements mapped** | All v1 requirements covered ✓
 
@@ -978,7 +982,7 @@ Success criteria:
 
 Use AskUserQuestion:
 - header: "Roadmap"
-- question: "Does this roadmap structure work for you?"
+- question: "这份路线图结构是否符合你的预期？"
 - options:
   - "Approve" — Commit and continue
   - "Adjust phases" — Tell me what to change
@@ -1021,7 +1025,7 @@ Present completion summary:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PROJECT INITIALIZED ✓
+ GSD ► 项目初始化完成 ✓
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 **[Project Name]**
@@ -1034,14 +1038,14 @@ Present completion summary:
 | Requirements   | `.planning/REQUIREMENTS.md` |
 | Roadmap        | `.planning/ROADMAP.md`      |
 
-**[N] phases** | **[X] requirements** | Ready to build ✓
+**[N] phases** | **[X] requirements** | 已准备好开始构建 ✓
 ```
 
 **If auto mode:**
 
 ```
 ╔══════════════════════════════════════════╗
-║  AUTO-ADVANCING → DISCUSS PHASE 1        ║
+║  自动推进 → 讨论第 1 阶段        ║
 ╚══════════════════════════════════════════╝
 ```
 
@@ -1052,7 +1056,7 @@ Exit skill and invoke SlashCommand("/gsd:discuss-phase 1 --auto")
 ```
 ───────────────────────────────────────────────────────────────
 
-## ▶ Next Up
+## ▶ 下一步
 
 **Phase 1: [Phase Name]** — [Goal from ROADMAP.md]
 
@@ -1068,6 +1072,8 @@ Exit skill and invoke SlashCommand("/gsd:discuss-phase 1 --auto")
 ───────────────────────────────────────────────────────────────
 ```
 
+
+在完成文档产出或实现步骤后，输出一个中文进度卡式总结，简要说明产物、状态、风险和下一步。
 </process>
 
 <output>

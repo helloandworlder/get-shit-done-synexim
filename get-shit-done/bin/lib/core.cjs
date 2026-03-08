@@ -16,18 +16,18 @@ function toPosixPath(p) {
 // ─── Model Profile Table ─────────────────────────────────────────────────────
 
 const MODEL_PROFILES = {
-  'gsd-planner':              { quality: 'opus', balanced: 'opus',   budget: 'sonnet' },
-  'gsd-roadmapper':           { quality: 'opus', balanced: 'sonnet', budget: 'sonnet' },
-  'gsd-executor':             { quality: 'opus', balanced: 'sonnet', budget: 'sonnet' },
-  'gsd-phase-researcher':     { quality: 'opus', balanced: 'sonnet', budget: 'haiku' },
-  'gsd-project-researcher':   { quality: 'opus', balanced: 'sonnet', budget: 'haiku' },
-  'gsd-research-synthesizer': { quality: 'sonnet', balanced: 'sonnet', budget: 'haiku' },
-  'gsd-debugger':             { quality: 'opus', balanced: 'sonnet', budget: 'sonnet' },
-  'gsd-codebase-mapper':      { quality: 'sonnet', balanced: 'haiku', budget: 'haiku' },
-  'gsd-verifier':             { quality: 'sonnet', balanced: 'sonnet', budget: 'haiku' },
-  'gsd-plan-checker':         { quality: 'sonnet', balanced: 'sonnet', budget: 'haiku' },
-  'gsd-integration-checker':  { quality: 'sonnet', balanced: 'sonnet', budget: 'haiku' },
-  'gsd-nyquist-auditor':      { quality: 'sonnet', balanced: 'sonnet', budget: 'haiku' },
+  'gsd-planner':              { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-roadmapper':           { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-executor':             { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-phase-researcher':     { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-project-researcher':   { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-research-synthesizer': { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-debugger':             { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-codebase-mapper':      { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-verifier':             { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-plan-checker':         { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-integration-checker':  { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
+  'gsd-nyquist-auditor':      { quality: 'openai/gpt-5.4', balanced: 'openai/gpt-5.4', budget: 'openai/gpt-5.4' },
 };
 
 // ─── Output helpers ───────────────────────────────────────────────────────────
@@ -392,8 +392,8 @@ function resolveModelInternal(cwd, agentType) {
   // Fall back to profile lookup
   const profile = config.model_profile || 'balanced';
   const agentModels = MODEL_PROFILES[agentType];
-  if (!agentModels) return 'sonnet';
-  const resolved = agentModels[profile] || agentModels['balanced'] || 'sonnet';
+  if (!agentModels) return 'openai/gpt-5.4';
+  const resolved = agentModels[profile] || agentModels['balanced'] || 'openai/gpt-5.4';
   return resolved === 'opus' ? 'inherit' : resolved;
 }
 

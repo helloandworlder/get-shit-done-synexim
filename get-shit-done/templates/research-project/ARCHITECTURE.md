@@ -1,6 +1,6 @@
-# Architecture Research Template
+# 架构研究模板
 
-Template for `.planning/research/ARCHITECTURE.md` — system structure patterns for the project domain.
+`.planning/research/ARCHITECTURE.md` 模板 — 项目域的系统结构模式。
 
 <template>
 
@@ -16,25 +16,25 @@ Template for `.planning/research/ARCHITECTURE.md` — system structure patterns 
 ### System Overview
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                        [Layer Name]                          │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
-│  │ [Comp]  │  │ [Comp]  │  │ [Comp]  │  │ [Comp]  │        │
-│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘        │
-│       │            │            │            │              │
-├───────┴────────────┴────────────┴────────────┴──────────────┤
-│                        [Layer Name]                          │
-├─────────────────────────────────────────────────────────────┤
-│  ┌─────────────────────────────────────────────────────┐    │
-│  │                    [Component]                       │    │
-│  └─────────────────────────────────────────────────────┘    │
-├─────────────────────────────────────────────────────────────┤
-│                        [Layer Name]                          │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐                   │
-│  │ [Store]  │  │ [Store]  │  │ [Store]  │                   │
-│  └──────────┘  └──────────┘  └──────────┘                   │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│ [Layer Name] │
+├──────────────────────────────────────────────────────────────┤
+│ ┌──────────┐ ┌────────┐ ┌──────────┐ ┌──────────┐ │
+│ │ [Comp] │ │ [Comp] │ │ [Comp] │ │ [Comp] │ │
+│ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ │
+│ │ │ │ │ │
+├────────┴────────────┴────────────┴────────────┴──────────────┤
+│ [Layer Name] │
+├──────────────────────────────────────────────────────────────┤
+│ ┌────────────────────────────────────────────────────┐ │
+│ │ [Component] │ │
+│ └────────────────────────────────────────────────────┘ │
+├──────────────────────────────────────────────────────────────┤
+│ [Layer Name] │
+│ ┌──────────┐ ┌──────────┐ ┌──────────┐ │
+│ │ [Store] │ │ [Store] │ │ [Store] │ │
+│ └──────────┘ └──────────┘ └──────────┘ │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ### Component Responsibilities
@@ -48,15 +48,15 @@ Template for `.planning/research/ARCHITECTURE.md` — system structure patterns 
 ## Recommended Project Structure
 
 ```
-src/
-├── [folder]/           # [purpose]
-│   ├── [subfolder]/    # [purpose]
-│   └── [file].ts       # [purpose]
-├── [folder]/           # [purpose]
-│   ├── [subfolder]/    # [purpose]
-│   └── [file].ts       # [purpose]
-├── [folder]/           # [purpose]
-└── [folder]/           # [purpose]
+源代码/
+├── [folder]/#[purpose]
+│ ├── [subfolder]/ # [purpose]
+│ └── index.ts # [purpose]
+├── [folder]/#[purpose]
+│ ├── [subfolder]/ # [purpose]
+│ └── types.ts # [purpose]
+├── [folder]/#[purpose]
+└── [folder]/#[purpose]
 ```
 
 ### Structure Rationale
@@ -73,7 +73,7 @@ src/
 **Trade-offs:** [pros and cons]
 
 **Example:**
-```typescript
+```打字稿
 // [Brief code example showing the pattern]
 ```
 
@@ -84,7 +84,7 @@ src/
 **Trade-offs:** [pros and cons]
 
 **Example:**
-```typescript
+```打字稿
 // [Brief code example showing the pattern]
 ```
 
@@ -102,7 +102,7 @@ src/
 [User Action]
     ↓
 [Component] → [Handler] → [Service] → [Data Store]
-    ↓              ↓           ↓            ↓
+    ↓ ↓ ↓ ↓
 [Response] ← [Transform] ← [Query] ← [Database]
 ```
 
@@ -110,7 +110,7 @@ src/
 
 ```
 [State Store]
-    ↓ (subscribe)
+    ↓（订阅）
 [Components] ←→ [Actions] → [Reducers/Mutations] → [State Store]
 ```
 
@@ -176,29 +176,29 @@ src/
 
 <guidelines>
 
-**System Overview:**
-- Use ASCII box-drawing diagrams for clarity (├── └── │ ─ for structure visualization only)
-- Show major components and their relationships
-- Don't over-detail — this is conceptual, not implementation
+**系统概述：**
+- 为了清晰起见，使用 ASCII 框图（├── └── │ ─ 仅用于结构可视化）
+- 显示主要组件及其关系
+- 不要过于详细——这是概念性的，而不是实现性的
 
-**Project Structure:**
-- Be specific about folder organization
-- Explain the rationale for grouping
-- Match conventions of the chosen stack
+**项目结构：**
+- 具体说明文件夹组织
+- 解释分组的理由
+- 匹配所选堆栈的约定
 
-**Patterns:**
-- Include code examples where helpful
-- Explain trade-offs honestly
-- Note when patterns are overkill for small projects
+**图案：**
+- 包括有用的代码示例
+- 诚实地解释权衡
+- 注意模式对于小型项目的杀伤力
 
-**Scaling Considerations:**
-- Be realistic — most projects don't need to scale to millions
-- Focus on "what breaks first" not theoretical limits
-- Avoid premature optimization recommendations
+**缩放考虑因素：**
+- 现实一点——大多数项目不需要规模达到数百万
+- 关注“首先突破的是什么”而不是理论限制
+- 避免过早的优化建议
 
-**Anti-Patterns:**
-- Specific to this domain
-- Include what to do instead
-- Helps prevent common mistakes during implementation
+**反模式：**
+- 特定于该域
+- 包括要做什么
+- 有助于防止实施过程中的常见错误
 
 </guidelines>

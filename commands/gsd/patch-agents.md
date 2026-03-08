@@ -1,6 +1,6 @@
 ---
 name: gsd:patch-agents
-description: Inject or refresh the GSD Synexim block in AGENTS.md
+description: 注入或刷新 `AGENTS.md` 中的 GSD Synexim 托管区块
 allowed-tools:
   - Read
   - Write
@@ -8,9 +8,9 @@ allowed-tools:
   - Glob
 ---
 <objective>
-Patch the current project's `AGENTS.md` so future agents proactively use GSD Synexim.
+修补当前项目的 `AGENTS.md`，让后续代理主动使用 GSD Synexim。
 
-Preserve existing project instructions outside the managed block.
+保留托管区块之外现有的项目指令。
 </objective>
 
 <execution_context>
@@ -19,5 +19,7 @@ Preserve existing project instructions outside the managed block.
 </execution_context>
 
 <process>
-Execute the patch-agents workflow from @~/.claude/get-shit-done/workflows/patch-agents.md end-to-end.
+端到端执行 `@~/.claude/get-shit-done/workflows/patch-agents.md` 中的 `patch-agents` 工作流。
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>

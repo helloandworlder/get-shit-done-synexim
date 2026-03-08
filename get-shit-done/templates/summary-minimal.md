@@ -17,25 +17,37 @@ duration: Xmin
 completed: YYYY-MM-DD
 ---
 
-# Phase [X]: [Name] Summary (Minimal)
+# [X] 阶段：[Name] 摘要（最小）
 
-**[Substantive one-liner describing outcome]**
+**[用一句中文说明本次交付了什么，避免空泛表述]**
 
-## Performance
-- **Duration:** [time]
-- **Tasks:** [count]
-- **Files modified:** [count]
+## 性能
+- **持续时间：** [time]
+- **任务：** [count]
+- **修改文件：** [count]
 
-## Accomplishments
-- [Most important outcome]
-- [Second key accomplishment]
+## 成就
+- [最重要的成果]
+- [第二项关键成果]
 
-## Task Commits
-1. **Task 1: [task name]** - `hash`
-2. **Task 2: [task name]** - `hash`
+## 任务提交
+1. **任务1：[task name]** - `hash`
+2. **任务2：[task name]** - `hash`
 
-## Files Created/Modified
-- `path/to/file.ts` - What it does
+## 创建/修改的文件
+- `path/to/file.ts` - 它的作用
 
-## Next Phase Readiness
-[Ready for next phase]
+## 进度卡
+```text
+┌─ 本次更新 ───────────────────────────────┐
+│ 文档: {phase}-{plan}-SUMMARY.md          │
+│ 模块: ...                                │
+│ 做了什么: ...                            │
+│ 为什么: ...                              │
+│ 下一步: ...                              │
+│ 进度: ...                                │
+└─────────────────────────────────────────┘
+```
+
+## 下一阶段准备情况
+[已为下一阶段准备好的内容]

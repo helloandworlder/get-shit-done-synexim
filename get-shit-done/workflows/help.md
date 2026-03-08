@@ -1,36 +1,36 @@
 <purpose>
-Display the complete GSD command reference. Output ONLY the reference content. Do NOT add project-specific analysis, git status, next-step suggestions, or any commentary beyond the reference.
+显示完整的 GSD 命令参考。只输出参考内容本身；不要添加项目分析、git 状态、下一步建议或任何额外评论。
 </purpose>
 
 <reference>
-# GSD Command Reference
+# GSD 命令参考
 
-**GSD** (Get Shit Done) creates hierarchical project plans optimized for solo agentic development with Claude Code.
+**GSD**（Get Shit Done）会创建适合使用 Claude Code 进行单人代理式开发的分层项目计划。
 
-## Quick Start
+## 快速开始
 
 1. `/gsd:new-project` - Initialize project (includes research, requirements, roadmap)
 2. `/gsd:plan-phase 1` - Create detailed plan for first phase
 3. `/gsd:execute-phase 1` - Execute the phase
 
-## Staying Updated
+## 保持更新
 
-GSD evolves fast. Update periodically:
+GSD 演进很快，建议定期更新：
 
 ```bash
 npx get-shit-done-synexim@latest
 ```
 
-## Core Workflow
+## 核心工作流
 
 ```
 /gsd:new-project → /gsd:plan-phase → /gsd:execute-phase → repeat
 ```
 
-### Project Initialization
+### 项目初始化
 
 **`/gsd:init`**
-Bootstrap GSD Synexim into the current repository.
+将 GSD Synexim 引导接入当前仓库。
 
 - Creates `.planning/config.json` if missing
 - Creates or patches `AGENTS.md` with Chinese-first Synexim rules
@@ -40,15 +40,15 @@ Bootstrap GSD Synexim into the current repository.
 Usage: `/gsd:init`
 
 **`/gsd:new-project`**
-Initialize new project through unified flow.
+通过统一流程初始化新项目。
 
-One command takes you from idea to ready-for-planning:
+一条命令即可让你从想法进入可规划状态：
 - Deep questioning to understand what you're building
 - Optional domain research (spawns 4 parallel researcher agents)
 - Requirements definition with v1/v2/out-of-scope scoping
 - Roadmap creation with phase breakdown and success criteria
 
-Creates all `.planning/` artifacts:
+会创建全部 `.planning/` 产物：
 - `PROJECT.md` — vision and requirements
 - `config.json` — workflow mode (interactive/yolo)
 - `research/` — domain research (if selected)
@@ -59,7 +59,7 @@ Creates all `.planning/` artifacts:
 Usage: `/gsd:new-project`
 
 **`/gsd:map-codebase`**
-Map an existing codebase for brownfield projects.
+为存量项目映射现有代码库。
 
 - Analyzes codebase with parallel Explore agents
 - Creates `.planning/codebase/` with 7 focused documents
@@ -68,10 +68,10 @@ Map an existing codebase for brownfield projects.
 
 Usage: `/gsd:map-codebase`
 
-### Phase Planning
+### 阶段规划
 
 **`/gsd:discuss-phase <number>`**
-Help articulate your vision for a phase before planning.
+在规划前帮助你明确某个阶段的愿景。
 
 - Captures how you imagine this phase working
 - Creates CONTEXT.md with your vision, essentials, and boundaries
@@ -80,7 +80,7 @@ Help articulate your vision for a phase before planning.
 Usage: `/gsd:discuss-phase 2`
 
 **`/gsd:research-phase <number>`**
-Comprehensive ecosystem research for niche/complex domains.
+为小众/复杂领域执行全面生态研究。
 
 - Discovers standard stack, architecture patterns, pitfalls
 - Creates RESEARCH.md with "how experts build this" knowledge
@@ -90,7 +90,7 @@ Comprehensive ecosystem research for niche/complex domains.
 Usage: `/gsd:research-phase 3`
 
 **`/gsd:list-phase-assumptions <number>`**
-See what Claude is planning to do before it starts.
+在 Claude 开始前查看它准备怎么做。
 
 - Shows Claude's intended approach for a phase
 - Lets you course-correct if Claude misunderstood your vision
@@ -99,7 +99,7 @@ See what Claude is planning to do before it starts.
 Usage: `/gsd:list-phase-assumptions 3`
 
 **`/gsd:plan-phase <number>`**
-Create detailed execution plan for a specific phase.
+为特定阶段创建详细执行计划。
 
 - Generates `.planning/phases/XX-phase-name/XX-YY-PLAN.md`
 - Breaks phase into concrete, actionable tasks
@@ -111,10 +111,10 @@ Result: Creates `.planning/phases/01-foundation/01-01-PLAN.md`
 
 **PRD Express Path:** Pass `--prd path/to/requirements.md` to skip discuss-phase entirely. Your PRD becomes locked decisions in CONTEXT.md. Useful when you already have clear acceptance criteria.
 
-### Execution
+### 执行
 
 **`/gsd:execute-phase <phase-number>`**
-Execute all plans in a phase.
+执行某个阶段中的全部计划。
 
 - Groups plans by wave (from frontmatter), executes waves sequentially
 - Plans within each wave run in parallel via Task tool
@@ -123,10 +123,10 @@ Execute all plans in a phase.
 
 Usage: `/gsd:execute-phase 5`
 
-### Quick Mode
+### 快速模式
 
 **`/gsd:quick`**
-Execute small, ad-hoc tasks with GSD guarantees but skip optional agents.
+执行小型临时任务，同时保留 GSD 保障并跳过可选代理。
 
 Quick mode uses the same system with a shorter path:
 - Spawns planner + executor (skips researcher, checker, verifier)
@@ -138,10 +138,10 @@ Use when you know exactly what to do and the task is small enough to not need re
 Usage: `/gsd:quick`
 Result: Creates `.planning/quick/NNN-slug/PLAN.md`, `.planning/quick/NNN-slug/SUMMARY.md`
 
-### Roadmap Management
+### 路线图管理
 
 **`/gsd:add-phase <description>`**
-Add new phase to end of current milestone.
+在当前里程碑末尾新增阶段。
 
 - Appends to ROADMAP.md
 - Uses next sequential number
@@ -150,7 +150,7 @@ Add new phase to end of current milestone.
 Usage: `/gsd:add-phase "Add admin dashboard"`
 
 **`/gsd:insert-phase <after> <description>`**
-Insert urgent work as decimal phase between existing phases.
+在现有阶段之间插入紧急的小数阶段。
 
 - Creates intermediate phase (e.g., 7.1 between 7 and 8)
 - Useful for discovered work that must happen mid-milestone
@@ -160,7 +160,7 @@ Usage: `/gsd:insert-phase 7 "Fix critical auth bug"`
 Result: Creates Phase 7.1
 
 **`/gsd:remove-phase <number>`**
-Remove a future phase and renumber subsequent phases.
+移除未来阶段，并对后续阶段重新编号。
 
 - Deletes phase directory and all references
 - Renumbers all subsequent phases to close the gap
@@ -170,10 +170,10 @@ Remove a future phase and renumber subsequent phases.
 Usage: `/gsd:remove-phase 17`
 Result: Phase 17 deleted, phases 18-20 become 17-19
 
-### Milestone Management
+### 里程碑管理
 
 **`/gsd:new-milestone <name>`**
-Start a new milestone through unified flow.
+通过统一流程启动新的里程碑。
 
 - Deep questioning to understand what you're building next
 - Optional domain research (spawns 4 parallel researcher agents)
@@ -185,7 +185,7 @@ Mirrors `/gsd:new-project` flow for brownfield projects (existing PROJECT.md).
 Usage: `/gsd:new-milestone "v2.0 Features"`
 
 **`/gsd:complete-milestone <version>`**
-Archive completed milestone and prepare for next version.
+归档已完成里程碑，并为下一个版本做准备。
 
 - Creates MILESTONES.md entry with stats
 - Archives full details to milestones/ directory
@@ -194,10 +194,10 @@ Archive completed milestone and prepare for next version.
 
 Usage: `/gsd:complete-milestone 1.0.0`
 
-### Progress Tracking
+### 进度跟踪
 
 **`/gsd:progress`**
-Check project status and intelligently route to next action.
+检查项目状态，并智能路由到下一步动作。
 
 - Shows visual progress bar and completion percentage
 - Summarizes recent work from SUMMARY files
@@ -208,10 +208,10 @@ Check project status and intelligently route to next action.
 
 Usage: `/gsd:progress`
 
-### Session Management
+### 会话管理
 
 **`/gsd:resume-work`**
-Resume work from previous session with full context restoration.
+恢复上一次会话的工作，并完整还原上下文。
 
 - Reads STATE.md for project context
 - Shows current position and recent progress
@@ -220,7 +220,7 @@ Resume work from previous session with full context restoration.
 Usage: `/gsd:resume-work`
 
 **`/gsd:pause-work`**
-Create context handoff when pausing work mid-phase.
+在阶段中途暂停时创建上下文交接。
 
 - Creates .continue-here file with current state
 - Updates STATE.md session continuity section
@@ -228,10 +228,10 @@ Create context handoff when pausing work mid-phase.
 
 Usage: `/gsd:pause-work`
 
-### Debugging
+### 调试
 
 **`/gsd:debug [issue description]`**
-Systematic debugging with persistent state across context resets.
+通过持久状态进行系统化调试，支持跨上下文重置继续。
 
 - Gathers symptoms through adaptive questioning
 - Creates `.planning/debug/[slug].md` to track investigation
@@ -242,10 +242,10 @@ Systematic debugging with persistent state across context resets.
 Usage: `/gsd:debug "login button doesn't work"`
 Usage: `/gsd:debug` (resume active session)
 
-### Todo Management
+### Todo 管理
 
 **`/gsd:add-todo [description]`**
-Capture idea or task as todo from current conversation.
+从当前对话中捕获想法或任务并记录为 todo。
 
 - Extracts context from conversation (or uses provided description)
 - Creates structured todo file in `.planning/todos/pending/`
@@ -257,7 +257,7 @@ Usage: `/gsd:add-todo` (infers from conversation)
 Usage: `/gsd:add-todo Add auth token refresh`
 
 **`/gsd:check-todos [area]`**
-List pending todos and select one to work on.
+列出待处理 todo，并选择其中一项开始处理。
 
 - Lists all pending todos with title, area, age
 - Optional area filter (e.g., `/gsd:check-todos api`)
@@ -268,10 +268,10 @@ List pending todos and select one to work on.
 Usage: `/gsd:check-todos`
 Usage: `/gsd:check-todos api`
 
-### User Acceptance Testing
+### 用户验收测试
 
 **`/gsd:verify-work [phase]`**
-Validate built features through conversational UAT.
+通过对话式 UAT 验证已构建功能。
 
 - Extracts testable deliverables from SUMMARY.md files
 - Presents tests one at a time (yes/no responses)
@@ -280,10 +280,10 @@ Validate built features through conversational UAT.
 
 Usage: `/gsd:verify-work 3`
 
-### Milestone Auditing
+### 里程碑审计
 
 **`/gsd:audit-milestone [version]`**
-Audit milestone completion against original intent.
+根据原始目标审计里程碑完成情况。
 
 - Reads all phase VERIFICATION.md files
 - Checks requirements coverage
@@ -293,7 +293,7 @@ Audit milestone completion against original intent.
 Usage: `/gsd:audit-milestone`
 
 **`/gsd:plan-milestone-gaps`**
-Create phases to close gaps identified by audit.
+为审计发现的缺口创建修复阶段。
 
 - Reads MILESTONE-AUDIT.md and groups gaps into phases
 - Prioritizes by requirement priority (must/should/nice)
@@ -302,30 +302,32 @@ Create phases to close gaps identified by audit.
 
 Usage: `/gsd:plan-milestone-gaps`
 
-### Configuration
+### 配置
 
 **`/gsd:settings`**
-Configure workflow toggles and model profile interactively.
+以交互方式配置工作流开关与模型档位。
 
 - Toggle researcher, plan checker, verifier agents
-- Select model profile (quality/balanced/budget)
+- Select model profile (quality/balanced/budget) with GPT-5.4 effort policy
 - Updates `.planning/config.json`
 
 Usage: `/gsd:settings`
 
 **`/gsd:set-profile <profile>`**
-Quick switch model profile for GSD agents.
+快速切换 GSD 代理的模型档位。
 
-- `quality` — Opus everywhere except verification
-- `balanced` — Opus for planning, Sonnet for execution (default)
-- `budget` — Sonnet for writing, Haiku for research/verification
+- `quality` — OpenAI GPT-5.4 with `xhigh` for roadmap/phase planning, `high` for execution
+- `balanced` — OpenAI GPT-5.4 with `high` for planning and execution (default)
+- `budget` — OpenAI GPT-5.4 with `high`, but fewer auxiliary checks/research
+
+**前端规则：** 项目初始化阶段不得使用 GPT-5.4 直接做前端设计；若要做前端实现，必须先确认 Gemini AI Studio MVP 原型已完整覆盖当前里程碑与一级功能。
 
 Usage: `/gsd:set-profile budget`
 
-### Utility Commands
+### 实用命令
 
 **`/gsd:cleanup`**
-Archive accumulated phase directories from completed milestones.
+归档已完成里程碑累计下来的阶段目录。
 
 - Identifies phases from completed milestones still in `.planning/phases/`
 - Shows dry-run summary before moving anything
@@ -335,10 +337,10 @@ Archive accumulated phase directories from completed milestones.
 Usage: `/gsd:cleanup`
 
 **`/gsd:help`**
-Show this command reference.
+显示这份命令参考。
 
 **`/gsd:patch-agents`**
-Inject or refresh the GSD Synexim managed block in `AGENTS.md`.
+注入或刷新 `AGENTS.md` 中的 GSD Synexim 托管区块。
 
 - Preserves user-authored project rules outside the managed block
 - Reapplies Chinese-first, adaptive-scale, and front-end prototype requirements
@@ -347,7 +349,7 @@ Inject or refresh the GSD Synexim managed block in `AGENTS.md`.
 Usage: `/gsd:patch-agents`
 
 **`/gsd:update`**
-Update GSD to latest version with changelog preview.
+将 GSD 更新到最新版本，并预览更新日志。
 
 - Shows installed vs latest version comparison
 - Displays changelog entries for versions you've missed
@@ -358,14 +360,14 @@ Update GSD to latest version with changelog preview.
 Usage: `/gsd:update`
 
 **`/gsd:join-discord`**
-Join the GSD Discord community.
+加入 GSD Discord 社区。
 
 - Get help, share what you're building, stay updated
 - Connect with other GSD users
 
 Usage: `/gsd:join-discord`
 
-## Files & Structure
+## 文件与结构
 
 ```
 .planning/
@@ -402,25 +404,25 @@ Usage: `/gsd:join-discord`
         └── 02-01-SUMMARY.md
 ```
 
-## Workflow Modes
+## 工作流模式
 
-Set during `/gsd:new-project`:
+在 `/gsd:new-project` 期间设置：
 
-**Interactive Mode**
+**交互模式**
 
 - Confirms each major decision
 - Pauses at checkpoints for approval
 - More guidance throughout
 
-**YOLO Mode**
+**YOLO 模式**
 
 - Auto-approves most decisions
 - Executes plans without confirmation
 - Only stops for critical checkpoints
 
-Change anytime by editing `.planning/config.json`
+随时可通过编辑 `.planning/config.json` 修改
 
-## Planning Configuration
+## 规划配置
 
 Configure how planning artifacts are managed in `.planning/config.json`:
 
@@ -447,9 +449,9 @@ Example config:
 }
 ```
 
-## Common Workflows
+## 常见工作流
 
-**Starting a new project:**
+**启动新项目：**
 
 ```
 /gsd:new-project        # Unified flow: questioning → research → requirements → roadmap
@@ -459,13 +461,13 @@ Example config:
 /gsd:execute-phase 1    # Execute all plans in phase
 ```
 
-**Resuming work after a break:**
+**中断后恢复工作：**
 
 ```
 /gsd:progress  # See where you left off and continue
 ```
 
-**Adding urgent mid-milestone work:**
+**在里程碑中途插入紧急工作：**
 
 ```
 /gsd:insert-phase 5 "Critical security fix"
@@ -473,7 +475,7 @@ Example config:
 /gsd:execute-phase 5.1
 ```
 
-**Completing a milestone:**
+**完成一个里程碑：**
 
 ```
 /gsd:complete-milestone 1.0.0
@@ -481,7 +483,7 @@ Example config:
 /gsd:new-milestone  # Start next milestone (questioning → research → requirements → roadmap)
 ```
 
-**Capturing ideas during work:**
+**在工作中记录想法：**
 
 ```
 /gsd:add-todo                    # Capture from conversation context
@@ -490,7 +492,7 @@ Example config:
 /gsd:check-todos api             # Filter by area
 ```
 
-**Debugging an issue:**
+**调试问题：**
 
 ```
 /gsd:debug "form submission fails silently"  # Start debug session
@@ -499,10 +501,10 @@ Example config:
 /gsd:debug                                    # Resume from where you left off
 ```
 
-## Getting Help
+## 获取帮助
 
-- Read `.planning/PROJECT.md` for project vision
-- Read `.planning/STATE.md` for current context
-- Check `.planning/ROADMAP.md` for phase status
-- Run `/gsd:progress` to check where you're up to
+- 阅读 `.planning/PROJECT.md` 了解项目愿景
+- 阅读 `.planning/STATE.md` 了解当前上下文
+- 查看 `.planning/ROADMAP.md` 了解阶段状态
+- 运行 `/gsd:progress` 查看当前推进到哪里
 </reference>

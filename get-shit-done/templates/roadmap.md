@@ -1,8 +1,8 @@
-# Roadmap Template
+# 路线图模板
 
-Template for `.planning/ROADMAP.md`.
+`.planning/ROADMAP.md` 的模板。
 
-## Initial Roadmap (v1.0 Greenfield)
+## 初始路线图（v1.0 Greenfield）
 
 ```markdown
 # Roadmap: [Project Name]
@@ -104,38 +104,41 @@ Phases execute in numeric order: 2 → 2.1 → 2.2 → 3 → 3.1 → 4
 ```
 
 <guidelines>
-**Initial planning (v1.0):**
-- Phase count depends on granularity setting (coarse: 3-5, standard: 5-8, fine: 8-12)
-- Each phase delivers something coherent
-- Phases can have 1+ plans (split if >3 tasks or multiple subsystems)
-- Plans use naming: {phase}-{plan}-PLAN.md (e.g., 01-02-PLAN.md)
-- No time estimates (this isn't enterprise PM)
-- Progress table updated by execute workflow
-- Plan count can be "TBD" initially, refined during planning
+**初步规划（v1.0）：**
+- 相位数取决于粒度设置（粗略：3-5，standard：5-8，精细：8-12）
+- 每个阶段都必须交付一个或多个“完整可用”的基础功能，而不是单纯的技术分层成果
+- 阶段可以有 1+ 个计划（如果超过 3 个任务或多个子系统则拆分）
+- 计划统一命名：`{phase}-{plan}-PLAN.md`（例如 `01-02-PLAN.md`）
+- 没有时间估计（这不是企业 PM）
+- 通过执行工作流程更新进度表
+- 计划计数最初可以是“待定”，在计划过程中进行细化
+- 对后台/管理系统类项目，禁止把数据库、ORM、API、前端拆成独立阶段；正确做法是每个阶段都覆盖前后端与数据层，至少让一个模块真正可用
+- 如果阶段涉及前端，实现前必须先确认 Gemini AI Studio MVP 原型已与需求和当前里程碑对齐
 
-**Success criteria:**
-- 2-5 observable behaviors per phase (from user's perspective)
-- Cross-checked against requirements during roadmap creation
-- Flow downstream to `must_haves` in plan-phase
-- Verified by verify-phase after execution
-- Format: "User can [action]" or "[Thing] works/exists"
+**成功标准：**
+- 每个阶段 2-5 个可观察的行为（从用户的角度）
+- 在创建路线图期间根据要求进行交叉检查
+- 计划阶段向下游流动至 `must_haves`
+- 执行后通过verify-phase进行验证
+- 格式：“用户可以 [action]”或“[Thing] 有效/存在”
+- 阶段完成后，用户应能实际启动项目并测试这些行为，而不只是看到底层代码已存在
 
-**After milestones ship:**
-- Collapse completed milestones in `<details>` tags
-- Add new milestone sections for upcoming work
-- Keep continuous phase numbering (never restart at 01)
+**里程碑发布后：**
+- 折叠 `<details>` 标签中已完成的里程碑
+- 为即将开展的工作添加新的里程碑部分
+- 保持连续的阶段编号（永远不要从01重新开始）
 </guidelines>
 
 <status_values>
-- `Not started` - Haven't begun
-- `In progress` - Currently working
-- `Complete` - Done (add completion date)
-- `Deferred` - Pushed to later (with reason)
+- `Not started` - 还没有开始
+- `In progress` - 目前正在工作
+- `Complete` - 完成（添加完成日期）
+- `Deferred` - 推到稍后（有原因）
 </status_values>
 
-## Milestone-Grouped Roadmap (After v1.0 Ships)
+## 里程碑分组路线图（v1.0 发布后）
 
-After completing first milestone, reorganize with milestone groupings:
+完成第一个里程碑后，重新组织里程碑分组：
 
 ```markdown
 # Roadmap: [Project Name]
@@ -194,9 +197,9 @@ Plans:
 | 5. Security | v1.1 | 0/2 | Not started | - |
 ```
 
-**Notes:**
-- Milestone emoji: ✅ shipped, 🚧 in progress, 📋 planned
-- Completed milestones collapsed in `<details>` for readability
-- Current/future milestones expanded
-- Continuous phase numbering (01-99)
-- Progress table includes milestone column
+**注释：**
+- 里程碑表情符号：✅ 已发货、🚧 正在进行、📋 计划中
+- 已完成的里程碑在 `<details>` 中折叠以提高可读性
+- 扩大当前/未来的里程碑
+- 连续相编号（01-99）
+- 进度表包括里程碑列

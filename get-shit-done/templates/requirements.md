@@ -1,6 +1,6 @@
-# Requirements Template
+# 需求模板
 
-Template for `.planning/REQUIREMENTS.md` — checkable requirements that define "done."
+`.planning/REQUIREMENTS.md` 模板 — 定义“完成”的可检查要求。
 
 <template>
 
@@ -76,56 +76,58 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 <guidelines>
 
-**Requirement Format:**
-- ID: `[CATEGORY]-[NUMBER]` (AUTH-01, CONTENT-02, SOCIAL-03)
-- Description: User-centric, testable, atomic
-- Checkbox: Only for v1 requirements (v2 are not yet actionable)
+**需求格式：**
+- ID：`[CATEGORY]-[NUMBER]`（AUTH-01、内容-02、社交-03）
+- 描述：以用户为中心、可测试、原子
+- 复选框：仅适用于 v1 要求（v2 尚不可操作）
 
-**Categories:**
-- Derive from research FEATURES.md categories
-- Keep consistent with domain conventions
-- Typical: Authentication, Content, Social, Notifications, Moderation, Payments, Admin
+**类别：**
+- 源自研究 FEATURES.md 类别
+- 与领域约定保持一致
+- 典型：身份验证、内容、社交、通知、审核、付款、管理
 
-**v1 vs v2:**
-- v1: Committed scope, will be in roadmap phases
-- v2: Acknowledged but deferred, not in current roadmap
-- Moving v2 → v1 requires roadmap update
+**v1 与 v2：**
+- v1：承诺范围，将处于路线图阶段
+- v2：已确认但已推迟，不在当前路线图中
+- 移动 v2 → v1 需要更新路线图
 
-**Out of Scope:**
-- Explicit exclusions with reasoning
-- Prevents "why didn't you include X?" later
-- Anti-features from research belong here with warnings
+**超出范围：**
+- 带有推理的明确排除
+- 防止“你为什么不包括 X？”后来
+- 研究中的反特征属于此处并带有警告
 
-**Traceability:**
-- Empty initially, populated during roadmap creation
-- Each requirement maps to exactly one phase
-- Unmapped requirements = roadmap gap
+**可追溯性：**
+- 最初为空，在路线图创建期间填充
+- 每个需求恰好对应一个阶段
+- 未映射的需求=路线图差距
 
-**Status Values:**
-- Pending: Not started
-- In Progress: Phase is active
-- Complete: Requirement verified
-- Blocked: Waiting on external factor
+**状态值：**
+- 待定：未开始
+- 进行中：阶段已激活
+- 完成：要求已验证
+- 被阻止：等待外部因素
 
 </guidelines>
 
 <evolution>
 
-**After each phase completes:**
-1. Mark covered requirements as Complete
-2. Update traceability status
-3. Note any requirements that changed scope
+**每个阶段完成后：**
+1. 将涵盖的需求标记为“完成”
+2.更新溯源状态
+3. 注意任何改变范围的要求
+4. 停下来启动项目，让用户验证本阶段新增功能，并记录用户反馈
 
-**After roadmap updates:**
-1. Verify all v1 requirements still mapped
-2. Add new requirements if scope expanded
-3. Move requirements to v2/out of scope if descoped
+**路线图更新后：**
+1. 验证所有 v1 要求是否仍然映射
+2. 如果范围扩大则添加新要求
+3. 如果范围已解除，则将需求移至 v2/超出范围
 
-**Requirement completion criteria:**
-- Requirement is "Complete" when:
-  - Feature is implemented
-  - Feature is verified (tests pass, manual check done)
-  - Feature is committed
+**要求完成标准：**
+- 在以下情况下，要求为“完整”：
+  - 功能已实施
+  - 功能已验证（测试通过，手动检查完成）
+  - 功能已承诺
+  - 用户已经收到明确的测试路径、登录方式与反馈入口
 
 </evolution>
 

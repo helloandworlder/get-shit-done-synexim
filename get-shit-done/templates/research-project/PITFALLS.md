@@ -1,6 +1,6 @@
-# Pitfalls Research Template
+# 陷阱研究模板
 
-Template for `.planning/research/PITFALLS.md` — common mistakes to avoid in the project domain.
+`.planning/research/PITFALLS.md` 模板 — 项目领域中要避免的常见错误。
 
 <template>
 
@@ -167,34 +167,34 @@ How roadmap phases should address these pitfalls.
 
 <guidelines>
 
-**Critical Pitfalls:**
-- Focus on domain-specific issues, not generic mistakes
-- Include warning signs — early detection prevents disasters
-- Link to specific phases — makes pitfalls actionable
+**关键陷阱：**
+- 关注特定领域的问题，而不是一般性错误
+- 包括警告信号——及早发现可以预防灾难
+- 链接到特定阶段——使陷阱变得可操作
 
-**Technical Debt:**
-- Be realistic — some shortcuts are acceptable
-- Note when shortcuts are "never acceptable" vs. "only in MVP"
-- Include the long-term cost to inform tradeoff decisions
+**技术债务：**
+- 现实一些——一些捷径是可以接受的
+- 请注意快捷方式“永远不可接受”与“仅在 MVP 中”的情况
+- 包括长期成本以告知权衡决策
 
-**Performance Traps:**
-- Include scale thresholds ("breaks at 10k users")
-- Focus on what's relevant for this project's expected scale
-- Don't over-engineer for hypothetical scale
+**性能陷阱：**
+- 包括规模阈值（“突破 10,000 个用户”）
+- 关注与该项目预期规模相关的内容
+- 不要针对假设规模进行过度设计
 
-**Security Mistakes:**
-- Beyond OWASP basics — domain-specific issues
-- Example: Community platforms have different security concerns than e-commerce
-- Include risk level to prioritize
+**安全错误：**
+- 超越 OWASP 基础知识 — 特定领域的问题
+- 示例：社区平台的安全性 concerns 与电子商务不同
+- 包括优先考虑的风险级别
 
-**"Looks Done But Isn't":**
-- Checklist format for verification during execution
-- Common in demos vs. production
-- Prevents "it works on my machine" issues
+**“看起来完成但实际上没有”：**
+- 执行期间验证的清单格式
+- 演示与生产中常见
+- 防止“它可以在我的机器上运行”问题
 
-**Pitfall-to-Phase Mapping:**
-- Critical for roadmap creation
-- Each pitfall should map to a phase that prevents it
-- Informs phase ordering and success criteria
+**陷阱到阶段映射：**
+- 对于路线图创建至关重要
+- 每个陷阱都应该映射到一个可以防止它发生的阶段
+- 告知阶段顺序和成功标准
 
 </guidelines>

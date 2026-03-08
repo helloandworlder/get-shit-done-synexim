@@ -1,12 +1,12 @@
-# Technology Stack Template
+# 技术栈模板
 
-Template for `.planning/codebase/STACK.md` - captures the technology foundation.
+`.planning/codebase/STACK.md` 模板 - 掌握技术基础。
 
-**Purpose:** Document what technologies run this codebase. Focused on "what executes when you run the code."
+**目的：** 记录运行此代码库的技术。重点关注“运行代码时执行的内容”。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Technology Stack
@@ -157,30 +157,30 @@ Template for `.planning/codebase/STACK.md` - captures the technology foundation.
 </good_examples>
 
 <guidelines>
-**What belongs in STACK.md:**
-- Languages and versions
-- Runtime requirements (Node, Bun, Deno, browser)
-- Package manager and lockfile
-- Framework choices
-- Critical dependencies (limit to 5-10 most important)
-- Build tooling
-- Platform/deployment requirements
+**STACK.md 属于什么：**
+- 语言和版本
+- 运行时要求（Node、Bun、Deno、浏览器）
+- 包管理器和锁定文件
+- 框架选择
+- 关键依赖项（限制为 5-10 个最重要的依赖项）
+- 构建工具
+- 平台/部署要求
 
-**What does NOT belong here:**
-- File structure (that's STRUCTURE.md)
-- Architectural patterns (that's ARCHITECTURE.md)
-- Every dependency in package.json (only critical ones)
-- Implementation details (defer to code)
+**什么不属于这里：**
+- 文件结构（即STRUCTURE.md）
+- 架构模式（即ARCHITECTURE.md）
+- package.json 中的每个依赖项（仅关键依赖项）
+- 实现细节（参考代码）
 
-**When filling this template:**
-- Check package.json for dependencies
-- Note runtime version from .nvmrc or package.json engines
-- Include only dependencies that affect understanding (not every utility)
-- Specify versions only when version matters (breaking changes, compatibility)
+**填写此模板时：**
+- 检查 package.json 的依赖关系
+- 注意 .nvmrc 或 package.json 引擎的运行时版本
+- 仅包含影响理解的依赖项（不是每个实用程序）
+- 仅在版本重要时指定版本（重大更改、兼容性）
 
-**Useful for phase planning when:**
-- Adding new dependencies (check compatibility)
-- Upgrading frameworks (know what's in use)
-- Choosing implementation approach (must work with existing stack)
-- Understanding build requirements
+**在以下情况下对于阶段规划很有用：**
+- 添加新的依赖项（检查兼容性）
+- 升级框架（知道正在使用什么）
+- 选择实施方法（必须与现有堆栈一起使用）
+- 了解构建要求
 </guidelines>

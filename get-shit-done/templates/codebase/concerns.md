@@ -1,12 +1,12 @@
-# Codebase Concerns Template
+# 代码库问题模板
 
-Template for `.planning/codebase/CONCERNS.md` - captures known issues and areas requiring care.
+`.planning/codebase/CONCERNS.md` 模板 - 捕获已知问题和需要注意的区域。
 
-**Purpose:** Surface actionable warnings about the codebase. Focused on "what to watch out for when making changes."
+**目的：** 关于代码库的可操作警告。重点是“做出改变时要注意什么”。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Codebase Concerns
@@ -262,49 +262,49 @@ Template for `.planning/codebase/CONCERNS.md` - captures known issues and areas 
 </good_examples>
 
 <guidelines>
-**What belongs in CONCERNS.md:**
-- Tech debt with clear impact and fix approach
-- Known bugs with reproduction steps
-- Security gaps and mitigation recommendations
-- Performance bottlenecks with measurements
-- Fragile code that breaks easily
-- Scaling limits with numbers
-- Dependencies that need attention
-- Missing features that block workflows
-- Test coverage gaps
+**CONCERNS.md 属于什么：**
+- 具有明显影响和修复方法的技术债务
+- 已知错误及重现步骤
+- 安全漏洞和缓解建议
+- 测量的性能瓶颈
+- 脆弱的代码很容易被破坏
+- 用数字缩放限制
+- 需要注意的依赖关系
+- 缺少阻碍工作流程的功能
+- 测试覆盖率差距
 
-**What does NOT belong here:**
-- Opinions without evidence ("code is messy")
-- Complaints without solutions ("auth sucks")
-- Future feature ideas (that's for product planning)
-- Normal TODOs (those live in code comments)
-- Architectural decisions that are working fine
-- Minor code style issues
+**什么不属于这里：**
+- 没有证据的意见（“代码很乱”）
+- 没有解决方案的投诉（“auth 很糟糕”）
+- 未来的功能想法（用于产品规划）
+- 普通 TODO（位于代码注释中）
+- 运行良好的架构决策
+- 代码风格的小问题
 
-**When filling this template:**
-- **Always include file paths** - Concerns without locations are not actionable. Use backticks: `src/file.ts`
-- Be specific with measurements ("500ms p95" not "slow")
-- Include reproduction steps for bugs
-- Suggest fix approaches, not just problems
-- Focus on actionable items
-- Prioritize by risk/impact
-- Update as issues get resolved
-- Add new concerns as discovered
+**填写此模板时：**
+- **始终包含文件路径** - 没有位置的问题是不可操作的。使用反引号：`src/file.ts`
+- 测量具体（“500ms p95”而不是“慢”）
+- 包括错误的重现步骤
+- 建议修复方法，而不仅仅是问题
+- 专注于可操作的项目
+- 按风险/影响确定优先级
+- 问题解决后更新
+- 添加新发现的 concerns
 
-**Tone guidelines:**
-- Professional, not emotional ("N+1 query pattern" not "terrible queries")
-- Solution-oriented ("Fix: add index" not "needs fixing")
-- Risk-focused ("Could expose user data" not "security is bad")
-- Factual ("3.5s load time" not "really slow")
+**语气指南：**
+- 专业，不情绪化（“N+1 查询模式”而不是“糟糕的查询”）
+- 面向解决方案（“修复：添加索引”而不是“需要修复”）
+- 以风险为中心（“可能暴露用户数据”而不是“安全性不好”）
+- 事实（“3.5s 加载时间”不是“真的很慢”）
 
-**Useful for phase planning when:**
-- Deciding what to work on next
-- Estimating risk of changes
-- Understanding where to be careful
-- Prioritizing improvements
-- Onboarding new Claude contexts
-- Planning refactoring work
+**在以下情况下对于阶段规划很有用：**
+- 决定下一步做什么
+- 估计变更风险
+- 了解哪里要小心
+- 优先改进
+- 加入新的 Claude 上下文
+- 规划重构工作
 
-**How this gets populated:**
-Explore agents detect these during codebase mapping. Manual additions welcome for human-discovered issues. This is living documentation, not a complaint list.
+**如何填充：**
+探索代理在代码库映射期间检测这些。对于人类发现的问题，欢迎手动添加。这是活的文件，而不是投诉清单。
 </guidelines>

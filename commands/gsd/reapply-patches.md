@@ -1,17 +1,17 @@
 ---
-description: Reapply local modifications after a GSD update
+description: 在 GSD 更新后重新应用本地修改
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, AskUserQuestion
 ---
 
 <purpose>
-After a GSD update wipes and reinstalls files, this command merges user's previously saved local modifications back into the new version. Uses intelligent comparison to handle cases where the upstream file also changed.
+当 GSD 更新清空并重装文件后，此命令会把用户之前保存的本地修改重新合并回新版本。它会使用智能比对处理上游文件同时发生变化的情况。
 </purpose>
 
 <process>
 
-## Step 1: Detect backed-up patches
+## 步骤 1：检测已备份的补丁
 
-Check for local patches directory:
+检查本地补丁目录：
 
 ```bash
 # Global install — detect runtime config directory
@@ -39,21 +39,21 @@ Read `backup-meta.json` from the patches directory.
 
 **If no patches found:**
 ```
-No local patches found. Nothing to reapply.
+未发现本地补丁，无需重新应用。
 
-Local patches are automatically saved when you run /gsd:update
+当你在修改过 GSD 工作流、命令或代理文件后运行 `/gsd:update` 时，本地补丁会被自动保存。
 after modifying any GSD workflow, command, or agent files.
 ```
 Exit.
 
-## Step 2: Show patch summary
+## 步骤 2：显示补丁摘要
 
 ```
-## Local Patches to Reapply
+## 待重新应用的本地补丁
 
-**Backed up from:** v{from_version}
-**Current version:** {read VERSION file}
-**Files modified:** {count}
+**备份来源版本：** v{from_version}
+**当前版本：** {read VERSION file}
+**修改文件数：** {count}
 
 | # | File | Status |
 |---|------|--------|
@@ -61,7 +61,7 @@ Exit.
 | 2 | {file_path} | Pending |
 ```
 
-## Step 3: Merge each file
+## 步骤 3：合并每个文件
 
 For each file in `backup-meta.json`:
 
@@ -84,7 +84,7 @@ For each file in `backup-meta.json`:
    - `Skipped` — modification already in upstream
    - `Conflict` — user chose resolution
 
-## Step 4: Update manifest
+## 步骤 4：更新清单
 
 After reapplying, regenerate the file manifest so future updates correctly detect these as user modifications:
 
@@ -93,16 +93,16 @@ After reapplying, regenerate the file manifest so future updates correctly detec
 # For now, just note which files were modified
 ```
 
-## Step 5: Cleanup option
+## 步骤 5：清理选项
 
 Ask user:
 - "Keep patch backups for reference?" → preserve `gsd-local-patches/`
 - "Clean up patch backups?" → remove `gsd-local-patches/` directory
 
-## Step 6: Report
+## 步骤 6：结果报告
 
 ```
-## Patches Reapplied
+## 补丁已重新应用
 
 | # | File | Status |
 |---|------|--------|
@@ -113,6 +113,8 @@ Ask user:
 {count} file(s) updated. Your local modifications are active again.
 ```
 
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>
 
 <success_criteria>

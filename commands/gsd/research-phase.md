@@ -1,6 +1,6 @@
 ---
 name: gsd:research-phase
-description: Research how to implement a phase (standalone - usually use /gsd:plan-phase instead)
+description: 研究如何实现某个阶段（独立命令，通常仍建议使用 `/gsd:plan-phase`）
 argument-hint: "[phase]"
 allowed-tools:
   - Read
@@ -9,22 +9,22 @@ allowed-tools:
 ---
 
 <objective>
-Research how to implement a phase. Spawns gsd-phase-researcher agent with phase context.
+研究如何实现某个阶段，并基于阶段上下文启动 `gsd-phase-researcher` 代理。
 
-**Note:** This is a standalone research command. For most workflows, use `/gsd:plan-phase` which integrates research automatically.
+**注意：** 这是一个独立研究命令。对大多数流程而言，请优先使用会自动整合研究的 `/gsd:plan-phase`。
 
-**Use this command when:**
+**适合在以下情况使用本命令：**
 - You want to research without planning yet
 - You want to re-research after planning is complete
 - You need to investigate before deciding if a phase is feasible
 
-**Orchestrator role:** Parse phase, validate against roadmap, check existing research, gather context, spawn researcher agent, present results.
+**编排器职责：** 解析阶段、对照路线图校验、检查现有研究、收集上下文、启动研究代理并展示结果。
 
-**Why subagent:** Research burns context fast (WebSearch, Context7 queries, source verification). Fresh 200k context for investigation. Main context stays lean for user interaction.
+**为何使用子代理：** 研究会快速消耗上下文（WebSearch、Context7 查询、来源验证）。调查使用全新的 200k 上下文，主上下文保持精简以便与用户交互。
 </objective>
 
 <context>
-Phase number: $ARGUMENTS (required)
+阶段编号：`$ARGUMENTS`（必填）
 
 Normalize phase input in step 1 before any directory lookups.
 </context>
@@ -179,6 +179,8 @@ Task(
 )
 ```
 
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>
 
 <success_criteria>

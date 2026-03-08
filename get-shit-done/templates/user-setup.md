@@ -1,12 +1,12 @@
-# User Setup Template
+# 用户设置模板
 
-Template for `.planning/phases/XX-name/{phase}-USER-SETUP.md` - human-required configuration that Claude cannot automate.
+`.planning/phases/XX-name/{phase}-USER-SETUP.md` 的模板 - Claude 无法自动化的人工所需配置。
 
-**Purpose:** Document setup tasks that literally require human action - account creation, dashboard configuration, secret retrieval. Claude automates everything possible; this file captures only what remains.
+**目的：** 实际上需要人工操作的文档设置任务 - 帐户创建、仪表板配置、秘密检索。 Claude 自动化一切可能；该文件仅捕获剩余的内容。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Phase {X}: User Setup Required
@@ -46,7 +46,7 @@ Complete these items for the integration to function. Claude automated everythin
 After completing setup, verify with:
 
 ```bash
-# [Verification commands]
+#[Verification commands]
 ```
 
 Expected results:
@@ -59,21 +59,21 @@ Expected results:
 
 ---
 
-## When to Generate
+## 何时生成
 
-Generate `{phase}-USER-SETUP.md` when plan frontmatter contains `user_setup` field.
+当计划 frontmatter 包含 `user_setup` 字段时生成 `{phase}-USER-SETUP.md`。
 
-**Trigger:** `user_setup` exists in PLAN.md frontmatter and has items.
+**触发器：** `user_setup` 存在于 PLAN.md frontmatter 中并且有项目。
 
-**Location:** Same directory as PLAN.md and SUMMARY.md.
+**位置：** 与 PLAN.md 和 SUMMARY.md 相同的目录。
 
-**Timing:** Generated during execute-plan.md after tasks complete, before SUMMARY.md creation.
+**时间：** 在任务完成后、SUMMARY.md 创建之前的 execute-plan.md 期间生成。
 
 ---
 
-## Frontmatter Schema
+## Frontmatter 架构
 
-In PLAN.md, `user_setup` declares human-required configuration:
+在PLAN.md、`user_setup`中声明了人类所需的配置：
 
 ```yaml
 user_setup:
@@ -95,26 +95,26 @@ user_setup:
 
 ---
 
-## The Automation-First Rule
+## 自动化优先规则
 
-**USER-SETUP.md contains ONLY what Claude literally cannot do.**
+**USER-SETUP.md 仅包含 Claude 字面上无法做到的事情。**
 
-| Claude CAN Do (not in USER-SETUP) | Claude CANNOT Do (→ USER-SETUP) |
-|-----------------------------------|--------------------------------|
-| `npm install stripe` | Create Stripe account |
-| Write webhook handler code | Get API keys from dashboard |
-| Create `.env.local` file structure | Copy actual secret values |
-| Run `stripe listen` | Authenticate Stripe CLI (browser OAuth) |
-| Configure package.json | Access external service dashboards |
-| Write any code | Retrieve secrets from third-party systems |
+| Claude 可以（不在用户设置中） | Claude 无法执行（→ 用户设置）|
+|------------------------------------------------|--------------------------------|
+| `npm install stripe` |创建 Stripe 帐户 |
+| Write webhook 处理程序代码 |从仪表板获取 API 密钥 |
+|创建`.env.local`文件结构|复制实际的秘密值 |
+|运行`stripe listen` |验证 Stripe CLI（浏览器 OAuth）|
+|配置package.json |访问外部服务仪表板 |
+| Write 任意码 |从第三方系统检索机密 |
 
-**The test:** "Does this require a human in a browser, accessing an account Claude doesn't have credentials for?"
-- Yes → USER-SETUP.md
-- No → Claude does it automatically
+**测试：**“这是否需要人在浏览器中访问 Claude 没有凭据的帐户？”
+- 是 → USER-SETUP.md
+- 否 → Claude 自动执行
 
 ---
 
-## Service-Specific Examples
+## 特定于服务的示例
 
 <stripe_example>
 ```markdown
@@ -162,7 +162,7 @@ Complete these items for Stripe integration to function.
 
 For local webhook testing:
 ```bash
-stripe listen --forward-to localhost:3000/api/webhooks/stripe
+stripe 监听 --forward-to localhost:3000/api/webhooks/stripe
 ```
 Use the webhook signing secret from CLI output (starts with `whsec_`).
 
@@ -171,15 +171,15 @@ Use the webhook signing secret from CLI output (starts with `whsec_`).
 After completing setup:
 
 ```bash
-# Check env vars are set
-grep STRIPE .env.local
+# 检查环境变量是否设置
+grep 条纹 .env.local
 
-# Verify build passes
-npm run build
+# 验证构建过程
+npm 运行构建
 
-# Test webhook endpoint (should return 400 bad signature, not 500 crash)
-curl -X POST http://localhost:3000/api/webhooks/stripe \
-  -H "Content-Type: application/json" \
+# 测试 webhook 端点（应该返回 400 错误签名，而不是 500 崩溃）
+卷曲 -X POST http://localhost:3000/api/webhooks/stripe \
+  -H“内容类型：application/json”\
   -d '{}'
 ```
 
@@ -232,11 +232,11 @@ Complete these items for Supabase Auth to function.
 After completing setup:
 
 ```bash
-# Check env vars
+# 检查环境变量
 grep SUPABASE .env.local
 
-# Verify connection (run in project directory)
-npx supabase status
+# 验证连接（在项目目录中运行）
+npx supabase 状态
 ```
 
 ---
@@ -285,12 +285,12 @@ Complete these items for SendGrid email to function.
 After completing setup:
 
 ```bash
-# Check env var
+# 检查环境变量
 grep SENDGRID .env.local
 
-# Test email sending (replace with your test email)
-curl -X POST http://localhost:3000/api/test-email \
-  -H "Content-Type: application/json" \
+# 测试电子邮件发送（替换为您的测试电子邮件）
+卷曲 -X POST http://localhost:3000/api/test-email \
+  -H“内容类型：application/json”\
   -d '{"to": "your@email.com"}'
 ```
 
@@ -302,10 +302,10 @@ curl -X POST http://localhost:3000/api/test-email \
 
 ---
 
-## Guidelines
+## 指南
 
-**Never include:** Actual secret values. Steps Claude can automate (package installs, code changes).
+**绝不包括：** 实际秘密值。 Claude 可以自动化的步骤（软件包安装、代码更改）。
 
-**Naming:** `{phase}-USER-SETUP.md` matches the phase number pattern.
-**Status tracking:** User marks checkboxes and updates status line when complete.
-**Searchability:** `grep -r "USER-SETUP" .planning/` finds all phases with user requirements.
+**命名：** `{phase}-USER-SETUP.md` 与相号模式匹配。
+**状态跟踪：** 用户标记复选框并在完成后更新状态行。
+**可搜索性：** `grep -r "USER-SETUP" .planning/` 查找具有用户需求的所有阶段。

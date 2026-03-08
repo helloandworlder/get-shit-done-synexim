@@ -29,7 +29,7 @@ If `found` is false: Error and exit.
 ls .planning/phases/${PHASE}-*/RESEARCH.md 2>/dev/null
 ```
 
-If exists: Offer update/view/skip options.
+若已存在：提供“更新 / 查看 / 跳过”选项。
 
 ## Step 3: Gather Phase Context
 
@@ -67,8 +67,8 @@ Write to: .planning/phases/${PHASE}-{slug}/${PHASE}-RESEARCH.md
 
 ## Step 5: Handle Return
 
-- `## RESEARCH COMPLETE` — Display summary, offer: Plan/Dig deeper/Review/Done
-- `## CHECKPOINT REACHED` — Present to user, spawn continuation
+- `## RESEARCH COMPLETE` — 显示摘要，并提供：规划阶段 / 深挖研究 / 查看全文 / 完成
+- `## CHECKPOINT REACHED` — 展示给用户，并启动续跑代理
 - `## RESEARCH INCONCLUSIVE` — Show attempts, offer: Add context/Try different mode/Manual
 
 </process>

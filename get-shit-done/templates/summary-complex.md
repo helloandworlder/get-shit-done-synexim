@@ -23,37 +23,49 @@ duration: Xmin
 completed: YYYY-MM-DD
 ---
 
-# Phase [X]: [Name] Summary (Complex)
+# [X] 阶段：[Name] 摘要（复杂）
 
-**[Substantive one-liner describing outcome]**
+**[用一句中文说明本次交付了什么，避免空泛表述]**
 
-## Performance
-- **Duration:** [time]
-- **Tasks:** [count completed]
-- **Files modified:** [count]
+## 性能
+- **持续时间：** [time]
+- **任务：** [count completed]
+- **修改文件：** [count]
 
-## Accomplishments
-- [Key outcome 1]
-- [Key outcome 2]
+## 成就
+- [关键成果 1]
+- [关键成果 2]
 
-## Task Commits
-1. **Task 1: [task name]** - `hash`
-2. **Task 2: [task name]** - `hash`
-3. **Task 3: [task name]** - `hash`
+## 任务提交
+1. **任务1：[task name]** - `hash`
+2. **任务2：[task name]** - `hash`
+3. **任务3：[task name]** - `hash`
 
-## Files Created/Modified
-- `path/to/file.ts` - What it does
-- `path/to/another.ts` - What it does
+## 创建/修改的文件
+- `path/to/file.ts` - 它的作用
+- `path/to/another.ts` - 它的作用
 
-## Decisions Made
-[Key decisions with brief rationale]
+## 做出的决策
+[关键决策及简短理由]
 
-## Deviations from Plan (Auto-fixed)
-[Detailed auto-fix records per GSD deviation rules]
+## 与计划的偏差（自动修复）
+[按 GSD 偏差规则记录自动修复详情]
 
-## Issues Encountered
-[Problems during planned work and resolutions]
+## 进度卡
+```text
+┌─ 本次更新 ───────────────────────────────┐
+│ 文档: {phase}-{plan}-SUMMARY.md          │
+│ 模块: ...                                │
+│ 做了什么: ...                            │
+│ 为什么: ...                              │
+│ 下一步: ...                              │
+│ 进度: ...                                │
+└─────────────────────────────────────────┘
+```
 
-## Next Phase Readiness
-[What's ready for next phase]
-[Blockers or concerns]
+## 遇到的问题
+[计划内问题及解决方式]
+
+## 下一阶段准备情况
+[下一阶段已准备好的内容]
+[阻塞项或关注点]

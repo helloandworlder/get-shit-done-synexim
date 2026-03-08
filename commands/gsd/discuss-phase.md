@@ -34,7 +34,7 @@ Extract implementation decisions that downstream agents need — researcher and 
 </execution_context>
 
 <context>
-Phase number: $ARGUMENTS (required)
+阶段编号：`$ARGUMENTS`（必填）
 
 Context files are resolved in-workflow using `init phase-op` and roadmap/state tool calls.
 </context>
@@ -77,6 +77,8 @@ Generate 3-4 **phase-specific** gray areas, not generic categories.
 - Architecture choices
 - Performance concerns
 - Scope expansion
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>
 
 <success_criteria>

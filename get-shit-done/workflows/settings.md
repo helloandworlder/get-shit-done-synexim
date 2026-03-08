@@ -40,13 +40,13 @@ Use AskUserQuestion with current values pre-selected:
 ```
 AskUserQuestion([
   {
-    question: "Which model profile for agents?",
+    question: "Which GPT-5.4 profile should GSD use?",
     header: "Model",
     multiSelect: false,
     options: [
-      { label: "Quality", description: "Opus everywhere except verification (highest cost)" },
-      { label: "Balanced (Recommended)", description: "Opus for planning, Sonnet for execution/verification" },
-      { label: "Budget", description: "Sonnet for writing, Haiku for research/verification (lowest cost)" }
+      { label: "Quality (Recommended)", description: "OpenAI GPT-5.4 xhigh for roadmap/phase planning, GPT-5.4 high for implementation" },
+      { label: "Balanced", description: "OpenAI GPT-5.4 high for planning and implementation" },
+      { label: "Budget", description: "OpenAI GPT-5.4 high, but reduce optional auxiliary work when possible" }
     ]
   },
   {
@@ -194,6 +194,11 @@ Display:
 | Saved as Defaults    | {Yes/No} |
 
 These settings apply to future /gsd:plan-phase and /gsd:execute-phase runs.
+
+Synexim model policy:
+- Planning and roadmap shaping use OpenAI GPT-5.4 with xhigh/high effort
+- Implementation uses OpenAI GPT-5.4 with high effort
+- GPT-5.4 must not perform front-end design during project initialization; it may only verify prototype readiness
 
 Quick commands:
 - /gsd:set-profile <profile> — switch model profile

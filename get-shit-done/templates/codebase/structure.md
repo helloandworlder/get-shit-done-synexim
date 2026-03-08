@@ -1,12 +1,12 @@
-# Structure Template
+# 结构模板
 
-Template for `.planning/codebase/STRUCTURE.md` - captures physical file organization.
+`.planning/codebase/STRUCTURE.md` 模板 - 捕获物理文件组织。
 
-**Purpose:** Document where things physically live in the codebase. Answers "where do I put X?"
+**目的：** 记录代码库中事物的实际位置。回答“我把 X 放在哪里？”
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Codebase Structure
@@ -19,10 +19,10 @@ Template for `.planning/codebase/STRUCTURE.md` - captures physical file organiza
 
 ```
 [project-root]/
-├── [dir]/          # [Purpose]
-├── [dir]/          # [Purpose]
-├── [dir]/          # [Purpose]
-└── [file]          # [Purpose]
+├── [dir]/#[Purpose]
+├── [dir]/#[Purpose]
+├── [dir]/#[Purpose]
+└── [file] # [Purpose]
 ```
 
 ## Directory Purposes
@@ -123,18 +123,18 @@ Template for `.planning/codebase/STRUCTURE.md` - captures physical file organiza
 ## Directory Layout
 
 ```
-get-shit-done/
-├── bin/                # Executable entry points
-├── commands/           # Slash command definitions
-│   └── gsd/           # GSD-specific commands
-├── get-shit-done/     # Skill resources
-│   ├── references/    # Principle documents
-│   ├── templates/     # File templates
-│   └── workflows/     # Multi-step procedures
-├── src/               # Source code (if applicable)
-├── tests/             # Test files
-├── package.json       # Project manifest
-└── README.md          # User documentation
+搞定了/
+├── bin/ # 可执行入口点
+├── 命令/ # 斜杠命令定义
+│ └── gsd/ # GSD 专用命令
+├── get-shit-done/ # 技能资源
+│ ├── 参考文献/ # 原理文档
+│ ├── templates/ # 文件模板
+│ └── 工作流程/ # 多步骤程序
+├── src/ # 源代码（如果适用）
+├──测试/#测试文件
+├── package.json # 项目清单
+└── README.md # 用户文档
 ```
 
 ## Directory Purposes
@@ -246,28 +246,28 @@ get-shit-done/
 </good_examples>
 
 <guidelines>
-**What belongs in STRUCTURE.md:**
-- Directory layout (ASCII box-drawing tree for structure visualization)
-- Purpose of each directory
-- Key file locations (entry points, configs, core logic)
-- Naming conventions
-- Where to add new code (by type)
-- Special/generated directories
+**STRUCTURE.md 属于什么：**
+- 目录布局（用于结构可视化的 ASCII 框绘图树）
+- 每个目录的用途
+- 关键文件位置（入口点、配置、核心逻辑）
+- 命名约定
+- 在哪里添加新代码（按类型）
+- 特殊/生成的目录
 
-**What does NOT belong here:**
-- Conceptual architecture (that's ARCHITECTURE.md)
-- Technology stack (that's STACK.md)
-- Code implementation details (defer to code reading)
-- Every single file (focus on directories and key files)
+**什么不属于这里：**
+- 概念架构（即ARCHITECTURE.md）
+- 技术堆栈（即STACK.md）
+- 代码实现细节（参考代码阅读）
+- 每个文件（重点关注目录和关键文件）
 
-**When filling this template:**
-- Use `tree -L 2` or similar to visualize structure
-- Identify top-level directories and their purposes
-- Note naming patterns by observing existing files
-- Locate entry points, configs, and main logic areas
-- Keep directory tree concise (max 2-3 levels)
+**填写此模板时：**
+- 使用 `tree -L 2` 或类似工具可视化结构
+- 确定顶级目录及其用途
+- 通过观察现有文件来记录命名模式
+- 找到入口点、配置和主要逻辑区域
+- 保持目录树简洁（最多 2-3 层）
 
-**Tree format (ASCII box-drawing characters for structure only):**
+**树格式（仅用于结构的 ASCII 方框图字符）：**
 ```
 root/
 ├── dir1/           # Purpose
@@ -277,9 +277,9 @@ root/
 └── file.ts        # Purpose
 ```
 
-**Useful for phase planning when:**
-- Adding new features (where should files go?)
-- Understanding project organization
-- Finding where specific logic lives
-- Following existing conventions
+**在以下情况下对于阶段规划很有用：**
+- 添加新功能（文件应该去哪里？）
+- 了解项目组织
+- 查找特定逻辑所在的位置
+- 遵循现有惯例
 </guidelines>

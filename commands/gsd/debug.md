@@ -1,6 +1,6 @@
 ---
 name: gsd:debug
-description: Systematic debugging with persistent state across context resets
+description: 通过持久状态进行系统化调试，支持跨上下文重置续接
 argument-hint: [issue description]
 allowed-tools:
   - Read
@@ -10,11 +10,11 @@ allowed-tools:
 ---
 
 <objective>
-Debug issues using scientific method with subagent isolation.
+使用科学方法与子代理隔离来调试问题。
 
-**Orchestrator role:** Gather symptoms, spawn gsd-debugger agent, handle checkpoints, spawn continuations.
+**编排器职责：** 收集症状、启动 `gsd-debugger` 代理、处理检查点并拉起续跑代理。
 
-**Why subagent:** Investigation burns context fast (reading files, forming hypotheses, testing). Fresh 200k context per investigation. Main context stays lean for user interaction.
+**为何使用子代理：** 调查会快速消耗上下文（读文件、提出假设、验证测试）。每次调查都使用全新的 200k 上下文，主上下文保持精简以便与用户交互。
 </objective>
 
 <context>
@@ -157,6 +157,8 @@ Task(
 )
 ```
 
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>
 
 <success_criteria>

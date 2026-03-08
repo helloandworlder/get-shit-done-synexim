@@ -1,12 +1,12 @@
-# External Integrations Template
+# 外部集成模板
 
-Template for `.planning/codebase/INTEGRATIONS.md` - captures external service dependencies.
+`.planning/codebase/INTEGRATIONS.md` 模板 - 捕获外部服务依赖性。
 
-**Purpose:** Document what external systems this codebase communicates with. Focused on "what lives outside our code that we depend on."
+**目的：** 记录此代码库与哪些外部系统通信。专注于“我们所依赖的代码之外的东西”。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # External Integrations
@@ -242,39 +242,39 @@ Template for `.planning/codebase/INTEGRATIONS.md` - captures external service de
 </good_examples>
 
 <guidelines>
-**What belongs in INTEGRATIONS.md:**
-- External services the code communicates with
-- Authentication patterns (where secrets live, not the secrets themselves)
-- SDKs and client libraries used
-- Environment variable names (not values)
-- Webhook endpoints and verification methods
-- Database connection patterns
-- File storage locations
-- Monitoring and logging services
+**INTEGRATIONS.md 属于什么：**
+- 代码与之通信的外部服务
+- 身份验证模式（秘密存在的地方，而不是秘密本身）
+- 使用的 SDK 和客户端库
+- 环境变量名称（不是值）
+- Webhook端点和验证方法
+- 数据库连接模式
+- 文件存储位置
+- 监控和记录服务
 
-**What does NOT belong here:**
-- Actual API keys or secrets (NEVER write these)
-- Internal architecture (that's ARCHITECTURE.md)
-- Code patterns (that's PATTERNS.md)
-- Technology choices (that's STACK.md)
-- Performance issues (that's CONCERNS.md)
+**什么不属于这里：**
+- 实际的 API 密钥或秘密（切勿写入这些）
+- 内部架构（即ARCHITECTURE.md）
+- 代码模式（即 PATTERNS.md）
+- 技术选择（即STACK.md）
+- 性能问题（即CONCERNS.md）
 
-**When filling this template:**
-- Check .env.example or .env.template for required env vars
-- Look for SDK imports (stripe, @sendgrid/mail, etc.)
-- Check for webhook handlers in routes/endpoints
-- Note where secrets are managed (not the secrets)
-- Document environment-specific differences (dev/staging/prod)
-- Include auth patterns for each service
+**填写此模板时：**
+- 检查 .env.example 或 .env.template 所需的环境变量
+- 查找 SDK 导入（stripe、@sendgrid/mail 等）
+- 检查路由/端点中的 webhook 处理程序
+- 注意秘密的管理位置（不是秘密）
+- 记录特定于环境的差异（dev/staging/prod）
+- 包括每个服务的身份验证模式
 
-**Useful for phase planning when:**
-- Adding new external service integrations
-- Debugging authentication issues
-- Understanding data flow outside the application
-- Setting up new environments
-- Auditing third-party dependencies
-- Planning for service outages or migrations
+**在以下情况下对于阶段规划很有用：**
+- 添加新的外部服务集成
+- 调试身份验证问题
+- 了解应用程序外部的数据流
+- 设置新环境
+- 审核第三方依赖项
+- 规划服务中断或迁移
 
-**Security note:**
-Document WHERE secrets live (env vars, Vercel dashboard, 1Password), never WHAT the secrets are.
+**安全说明：**
+记录秘密所在的位置（环境变量、Vercel 仪表板、1Password），而不记录秘密是什么。
 </guidelines>

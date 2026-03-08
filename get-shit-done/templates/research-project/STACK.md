@@ -1,6 +1,6 @@
-# Stack Research Template
+# 堆栈研究模板
 
-Template for `.planning/research/STACK.md` — recommended technologies for the project domain.
+`.planning/research/STACK.md` 模板 — 项目领域的推荐技术。
 
 <template>
 
@@ -39,14 +39,14 @@ Template for `.planning/research/STACK.md` — recommended technologies for the 
 ## Installation
 
 ```bash
-# Core
-npm install [packages]
+# 核心
+npm 安装 [packages]
 
-# Supporting
-npm install [packages]
+# 支持
+npm 安装 [packages]
 
-# Dev dependencies
-npm install -D [packages]
+# 开发依赖
+npm安装-D [packages]
 ```
 
 ## Alternatives Considered
@@ -94,27 +94,27 @@ npm install -D [packages]
 
 <guidelines>
 
-**Core Technologies:**
-- Include specific version numbers
-- Explain why this is the standard choice, not just what it does
-- Focus on technologies that affect architecture decisions
+**核心技术：**
+- 包括特定版本号
+- 解释为什么这是 standard 选择，而不仅仅是它的用途
+- 关注影响架构决策的技术
 
-**Supporting Libraries:**
-- Include libraries commonly needed for this domain
-- Note when each is needed (not all projects need all libraries)
+**支持库：**
+- 包括该领域常用的库
+- 注意何时需要每个库（并非所有项目都需要所有库）
 
-**Alternatives:**
-- Don't just dismiss alternatives
-- Explain when alternatives make sense
-- Helps user make informed decisions if they disagree
+**替代方案：**
+- 不要只是放弃替代方案
+- 解释替代方案何时有意义
+- 如果用户不同意，帮助他们做出明智的决定
 
-**What NOT to Use:**
-- Actively warn against outdated or problematic choices
-- Explain the specific problem, not just "it's old"
-- Provide the recommended alternative
+**不应该使用什么：**
+- 主动警告过时或有问题的选择
+- 解释具体问题，而不仅仅是“它是旧的”
+- 提供推荐的替代方案
 
-**Version Compatibility:**
-- Note any known compatibility issues
-- Critical for avoiding debugging time later
+**版本兼容性：**
+- 注意任何已知的兼容性问题
+- 对于避免以后的调试时间至关重要
 
 </guidelines>

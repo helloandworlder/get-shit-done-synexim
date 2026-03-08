@@ -1,6 +1,6 @@
 ---
 name: gsd:new-milestone
-description: Start a new milestone cycle — update PROJECT.md and route to requirements
+description: 开启新的里程碑周期——更新 `PROJECT.md` 并进入需求流程
 argument-hint: "[milestone name, e.g., 'v1.1 Notifications']"
 allowed-tools:
   - Read
@@ -10,18 +10,18 @@ allowed-tools:
   - AskUserQuestion
 ---
 <objective>
-Start a new milestone: questioning → research (optional) → requirements → roadmap.
+开启新的里程碑：提问澄清 → 研究（可选）→ 需求定义 → 路线图。
 
-Brownfield equivalent of new-project. Project exists, PROJECT.md has history. Gathers "what's next", updates PROJECT.md, then runs requirements → roadmap cycle.
+它是 `new-project` 在存量项目中的对应流程。项目已存在，`PROJECT.md` 保留历史；该命令会收集“下一步做什么”，更新 `PROJECT.md`，然后继续执行需求与路线图流程。
 
-**Creates/Updates:**
+**会创建/更新：**
 - `.planning/PROJECT.md` — updated with new milestone goals
 - `.planning/research/` — domain research (optional, NEW features only)
 - `.planning/REQUIREMENTS.md` — scoped requirements for this milestone
 - `.planning/ROADMAP.md` — phase structure (continues numbering)
 - `.planning/STATE.md` — reset for new milestone
 
-**After:** `/gsd:plan-phase [N]` to start execution.
+**完成后：** 运行 `/gsd:plan-phase [N]` 开始执行。
 </objective>
 
 <execution_context>
@@ -33,12 +33,14 @@ Brownfield equivalent of new-project. Project exists, PROJECT.md has history. Ga
 </execution_context>
 
 <context>
-Milestone name: $ARGUMENTS (optional - will prompt if not provided)
+里程碑名称：`$ARGUMENTS`（可选；如未提供会继续询问）
 
-Project and milestone context files are resolved inside the workflow (`init new-milestone`) and delegated via `<files_to_read>` blocks where subagents are used.
+项目与里程碑上下文文件会在工作流内部通过 `init new-milestone` 解析，并在使用子代理时通过 `<files_to_read>` 区块传递。
 </context>
 
 <process>
-Execute the new-milestone workflow from @~/.claude/get-shit-done/workflows/new-milestone.md end-to-end.
-Preserve all workflow gates (validation, questioning, research, requirements, roadmap approval, commits).
+端到端执行 `@~/.claude/get-shit-done/workflows/new-milestone.md` 中的 `new-milestone` 工作流。
+保留全部工作流关卡（校验、提问、研究、需求、路线图确认、提交）。
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>

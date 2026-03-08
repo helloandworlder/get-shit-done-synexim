@@ -1,6 +1,6 @@
 ---
 name: gsd:settings
-description: Configure GSD workflow toggles and model profile
+description: 配置 GSD 工作流开关与模型档位
 allowed-tools:
   - Read
   - Write
@@ -9,9 +9,9 @@ allowed-tools:
 ---
 
 <objective>
-Interactive configuration of GSD workflow agents and model profile via multi-question prompt.
+通过多轮提问交互式配置 GSD 工作流代理与模型档位。
 
-Routes to the settings workflow which handles:
+转交给 `settings` 工作流处理，负责：
 - Config existence ensuring
 - Current settings reading and parsing
 - Interactive 5-question prompt (model, research, plan_check, verifier, branching)
@@ -24,7 +24,7 @@ Routes to the settings workflow which handles:
 </execution_context>
 
 <process>
-**Follow the settings workflow** from `@~/.claude/get-shit-done/workflows/settings.md`.
+**按照** `@~/.claude/get-shit-done/workflows/settings.md` **中的 `settings` 工作流执行。**
 
 The workflow handles all logic including:
 1. Config file creation with defaults if missing
@@ -33,4 +33,6 @@ The workflow handles all logic including:
 4. Answer parsing and config merging
 5. File writing
 6. Confirmation display
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>

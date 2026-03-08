@@ -536,13 +536,17 @@ GSD stores project settings in `.planning/config.json`. Configure during `/gsd:n
 
 ### Model Profiles
 
-Control which Claude model each agent uses. Balance quality vs token spend.
+Control how Synexim applies `OpenAI GPT-5.4` across planning and implementation.
 
 | Profile | Planning | Execution | Verification |
 |---------|----------|-----------|--------------|
-| `quality` | Opus | Opus | Sonnet |
-| `balanced` (default) | Opus | Sonnet | Sonnet |
-| `budget` | Sonnet | Sonnet | Haiku |
+| `quality` | GPT-5.4 `xhigh` | GPT-5.4 `high` | GPT-5.4 `high` |
+| `balanced` (default) | GPT-5.4 `high` | GPT-5.4 `high` | GPT-5.4 `high` |
+| `budget` | GPT-5.4 `high` | GPT-5.4 `high` | GPT-5.4 `high` |
+
+Rules:
+- Project initialization must NOT use GPT-5.4 to design front-end UI directly.
+- Front-end implementation starts only after a complete Gemini AI Studio MVP prototype exists and matches requirements.
 
 Switch profiles:
 ```

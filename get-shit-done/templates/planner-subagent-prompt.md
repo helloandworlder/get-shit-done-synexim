@@ -1,10 +1,10 @@
-# Planner Subagent Prompt Template
+# Planner 子代理提示模板
 
-Template for spawning gsd-planner agent. The agent contains all planning expertise - this template provides planning context only.
+用于生成 gsd-planner 代理的模板。该代理包含所有规划专业知识 - 此模板仅提供规划上下文。
 
 ---
 
-## Template
+## 模板
 
 ```markdown
 <planning_context>
@@ -17,6 +17,11 @@ Template for spawning gsd-planner agent. The agent contains all planning experti
 
 **Roadmap:**
 @.planning/ROADMAP.md
+
+**Model policy:**
+- Planning/roadmapping must use OpenAI GPT-5.4 with `xhigh` or `high` effort
+- Coding/execution later uses OpenAI GPT-5.4 with `high` effort
+- Front-end design is blocked during project initialization; only prototype alignment is allowed
 
 **Requirements (if exists):**
 @.planning/REQUIREMENTS.md
@@ -55,20 +60,20 @@ Before returning PLANNING COMPLETE:
 
 ---
 
-## Placeholders
+## 占位符
 
-| Placeholder | Source | Example |
+|占位符|来源|示例|
 |-------------|--------|---------|
-| `{phase_number}` | From roadmap/arguments | `5` or `2.1` |
-| `{phase_dir}` | Phase directory name | `05-user-profiles` |
-| `{phase}` | Phase prefix | `05` |
-| `{standard \| gap_closure}` | Mode flag | `standard` |
+| `{phase_number}` |来自路线图/论点| `5` 或 `2.1` |
+| `{phase_dir}` |阶段目录名称 | `05-user-profiles` |
+| `{phase}` | 相出口 | `05` |
+| `{standard \| gap_closure}` |模式标志| `standard` |
 
 ---
 
-## Usage
+## 用法
 
-**From /gsd:plan-phase (standard mode):**
+**来自/gsd:plan-phase（标准模式）：**
 ```python
 Task(
   prompt=filled_template,
@@ -77,7 +82,7 @@ Task(
 )
 ```
 
-**From /gsd:plan-phase --gaps (gap closure mode):**
+**来自/gsd:plan-phase --gaps（间隙模式）：**
 ```python
 Task(
   prompt=filled_template,  # with mode: gap_closure
@@ -88,9 +93,9 @@ Task(
 
 ---
 
-## Continuation
+## 继续
 
-For checkpoints, spawn fresh agent with:
+对于检查点，使用以下命令生成新代理：
 
 ```markdown
 <objective>
@@ -114,4 +119,4 @@ Continue: {standard | gap_closure}
 
 ---
 
-**Note:** Planning methodology, task breakdown, dependency analysis, wave assignment, TDD detection, and goal-backward derivation are baked into the gsd-planner agent. This template only passes context.
+**注意：** 规划方法、任务拆分、依赖分析、波次分配、TDD 检测和目标后推规则都已内置在 `gsd-planner` 代理中。该模板只负责传递上下文。

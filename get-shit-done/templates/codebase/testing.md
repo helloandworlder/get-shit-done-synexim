@@ -1,12 +1,12 @@
-# Testing Patterns Template
+# 测试模式模板
 
-Template for `.planning/codebase/TESTING.md` - captures test framework and patterns.
+`.planning/codebase/TESTING.md` 模板 - 捕获测试框架和模式。
 
-**Purpose:** Document how tests are written and run. Guide for adding tests that match existing patterns.
+**目的：** 记录测试是如何编写和运行的。添加与现有模式匹配的测试的指南。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Testing Patterns
@@ -25,10 +25,10 @@ Template for `.planning/codebase/TESTING.md` - captures test framework and patte
 
 **Run Commands:**
 ```bash
-[e.g., "npm test" or "npm run test"]              # Run all tests
-[e.g., "npm test -- --watch"]                     # Watch mode
-[e.g., "npm test -- path/to/file.test.ts"]       # Single file
-[e.g., "npm run test:coverage"]                   # Coverage report
+[e.g., "npm test" or "npm run test"] # 运行所有测试
+[e.g., "npm test -- --watch"] # 观看模式
+[e.g., "npm test -- path/to/file.test.ts"] # 单文件
+[e.g., "npm run test:coverage"] # 覆盖率报告
 ```
 
 ## Test File Organization
@@ -58,20 +58,14 @@ src/
 ## Test Structure
 
 **Suite Organization:**
-```typescript
+```打字稿
 [Show actual pattern used, e.g.:
 
 describe('ModuleName', () => {
   describe('functionName', () => {
-    it('should handle success case', () => {
-      // arrange
-      // act
-      // assert
-    });
+    it('should handle success case', () => { expect(result).toEqual(expected); });
 
-    it('should handle error case', () => {
-      // test code
-    });
+    it('should handle error case', () => { expect(() => runWithInvalidInput()).toThrow(); });
   });
 });
 ]
@@ -89,17 +83,15 @@ describe('ModuleName', () => {
 - [Import mocking: e.g., "vi.mock() at top of file"]
 
 **Patterns:**
-```typescript
+```打字稿
 [Show actual mocking pattern, e.g.:
 
 // Mock external dependency
-vi.mock('./external-service', () => ({
-  fetchData: vi.fn()
-}));
+vi.mock('./external-service', () => ({ fetchData: vi.fn() }));
 
 // Mock in test
 const mockFetch = vi.mocked(fetchData);
-mockFetch.mockResolvedValue({ data: 'test' });
+mockFetch.mockResolvedValue({ data: 'ok' });
 ]
 ```
 
@@ -115,22 +107,22 @@ mockFetch.mockResolvedValue({ data: 'test' });
 ## Fixtures and Factories
 
 **Test Data:**
-```typescript
-[Show pattern for creating test data, e.g.:
+```打字稿
+[显示创建测试数据的模式，e.g.：
 
-// Factory pattern
-function createTestUser(overrides?: Partial<User>): User {
-  return {
+// 工厂模式
+函数createTestUser（覆盖？：Partial<User>）：用户{
+  返回{
     id: 'test-id',
     name: 'Test User',
     email: 'test@example.com',
     ...overrides
-  };
+  }；
 }
 
-// Fixture file
+// 夹具文件
 // tests/fixtures/users.ts
-export const mockUsers = [/* ... */];
+导出常量模拟用户= [/* ... */];
 ]
 ```
 
@@ -174,28 +166,21 @@ export const mockUsers = [/* ... */];
 ## Common Patterns
 
 **Async Testing:**
-```typescript
+```打字稿
 [Show pattern, e.g.:
 
-it('should handle async operation', async () => {
-  const result = await asyncFunction();
-  expect(result).toBe('expected');
-});
+it('should handle async operation', async () => { await expect(runTask()).resolves.toEqual(expected); });
 ]
 ```
 
 **Error Testing:**
-```typescript
+```打字稿
 [Show pattern, e.g.:
 
-it('should throw on invalid input', () => {
-  expect(() => functionCall()).toThrow('error message');
-});
+it('should throw on invalid input', () => { expect(() => parseInput(null)).toThrow(); });
 
 // Async error
-it('should reject on failure', async () => {
-  await expect(asyncCall()).rejects.toThrow('error message');
-});
+it('should reject on failure', async () => { await expect(runTask()).rejects.toThrow('failure'); });
 ]
 ```
 
@@ -227,10 +212,10 @@ it('should reject on failure', async () => {
 
 **Run Commands:**
 ```bash
-npm test                              # Run all tests
-npm test -- --watch                   # Watch mode
-npm test -- path/to/file.test.ts     # Single file
-npm run test:coverage                 # Coverage report
+npm test # 运行所有测试
+npm测试 -- --watch # 观看模式
+npm 测试 -- path/to/file.test.ts # 单文件
+npm run test:coverage # 覆盖率报告
 ```
 
 ## Test File Organization
@@ -245,31 +230,31 @@ npm run test:coverage                 # Coverage report
 
 **Structure:**
 ```
-src/
-  lib/
+源代码/
+  库/
     parser.ts
     parser.test.ts
-  services/
+  服务/
     install-service.ts
     install-service.test.ts
-  bin/
+  垃圾箱/
     install.ts
-    (no test - integration tested via CLI)
+    （无测试 - 通过 CLI 进行集成测试）
 ```
 
 ## Test Structure
 
 **Suite Organization:**
-```typescript
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+```打字稿
+从 'vitest' 导入 { describe, it, expect, beforeEach, afterEach, vi }；
 
-describe('ModuleName', () => {
-  describe('functionName', () => {
+描述('模块名称', () => {
+  描述('函数名', () => {
     beforeEach(() => {
       // reset state
     });
 
-    it('should handle valid input', () => {
+    it('应该处理有效的输入', () => {
       // arrange
       const input = createTestInput();
 
@@ -280,7 +265,7 @@ describe('ModuleName', () => {
       expect(result).toEqual(expectedOutput);
     });
 
-    it('should throw on invalid input', () => {
+    it('应该抛出无效输入', () => {
       expect(() => functionName(null)).toThrow('Invalid input');
     });
   });
@@ -300,17 +285,17 @@ describe('ModuleName', () => {
 - Module mocking via vi.mock() at top of test file
 
 **Patterns:**
-```typescript
-import { vi } from 'vitest';
-import { externalFunction } from './external';
+```打字稿
+从 'vitest' 导入 { vi }；
+从'./external'导入{ externalFunction }；
 
-// Mock module
-vi.mock('./external', () => ({
+// 模拟模块
+vi.mock('./外部', () => ({
   externalFunction: vi.fn()
 }));
 
-describe('test suite', () => {
-  it('mocks function', () => {
+描述（'测试套件'，（）=> {
+  it('模拟函数', () => {
     const mockFn = vi.mocked(externalFunction);
     mockFn.mockReturnValue('mocked result');
 
@@ -335,19 +320,19 @@ describe('test suite', () => {
 ## Fixtures and Factories
 
 **Test Data:**
-```typescript
-// Factory functions in test file
-function createTestConfig(overrides?: Partial<Config>): Config {
-  return {
+```打字稿
+// 测试文件中的工厂函数
+函数createTestConfig（覆盖？：Partial<Config>）：配置{
+  返回{
     targetDir: '/tmp/test',
     global: false,
     ...overrides
-  };
+  }；
 }
 
-// Shared fixtures in tests/fixtures/
+// 在tests/fixtures/中共享fixtures
 // tests/fixtures/sample-command.md
-export const sampleCommand = `---
+导出常量样本命令 = `---
 description: Test command
 ---
 Content here`;
@@ -371,8 +356,8 @@ Content here`;
 
 **View Coverage:**
 ```bash
-npm run test:coverage
-open coverage/index.html
+npm运行测试：覆盖率
+打开coverage/index.html
 ```
 
 ## Test Types
@@ -395,33 +380,33 @@ open coverage/index.html
 ## Common Patterns
 
 **Async Testing:**
-```typescript
-it('should handle async operation', async () => {
+```打字稿
+it('应该处理异步操作', async () => {
   const result = await asyncFunction();
   expect(result).toBe('expected');
 });
 ```
 
 **Error Testing:**
-```typescript
-it('should throw on invalid input', () => {
+```打字稿
+it('应该抛出无效输入', () => {
   expect(() => parse(null)).toThrow('Cannot parse null');
 });
 
-// Async error
-it('should reject on file not found', async () => {
+// 异步错误
+it('应该拒绝找不到文件', async () => {
   await expect(readConfig('invalid.txt')).rejects.toThrow('ENOENT');
 });
 ```
 
 **File System Mocking:**
-```typescript
-import { vi } from 'vitest';
-import * as fs from 'fs-extra';
+```打字稿
+从 'vitest' 导入 { vi }；
+从“fs-extra”导入*作为fs；
 
 vi.mock('fs-extra');
 
-it('mocks file system', () => {
+it('模拟文件系统', () => {
   vi.mocked(fs.readFile).mockResolvedValue('file content');
   // test code
 });
@@ -439,42 +424,41 @@ it('mocks file system', () => {
 </good_examples>
 
 <guidelines>
-**What belongs in TESTING.md:**
-- Test framework and runner configuration
-- Test file location and naming patterns
-- Test structure (describe/it, beforeEach patterns)
-- Mocking approach and examples
-- Fixture/factory patterns
-- Coverage requirements
-- How to run tests (commands)
-- Common testing patterns in actual code
+**TESTING.md 属于什么：**
+- 测试框架和运行器配置
+- 测试文件位置和命名模式
+- 测试结构（describe/it、beforeEach 模式）
+- 模拟方法和示例
+- 固定装置/工厂模式
+- 覆盖范围要求
+- 如何运行测试（命令）
+- 实际代码中的常见测试模式
 
-**What does NOT belong here:**
-- Specific test cases (defer to actual test files)
-- Technology choices (that's STACK.md)
-- CI/CD setup (that's deployment docs)
+**什么不属于这里：**
+- 具体测试用例（以实际测试文件为准）
+- 技术选择（即STACK.md）
+- CI/CD 设置（即部署文档）
 
-**When filling this template:**
-- Check package.json scripts for test commands
-- Find test config file (jest.config.js, vitest.config.ts)
-- Read 3-5 existing test files to identify patterns
-- Look for test utilities in tests/ or test-utils/
-- Check for coverage configuration
-- Document actual patterns used, not ideal patterns
+**填写此模板时：**
+- 检查 package.json 脚本的测试命令
+- 查找测试配置文件（jest.config.js、vitest.config.ts）
+- Read 3-5个现有测试文件来识别模式
+- 在tests/或test-utils/中查找测试实用程序
+- 检查覆盖配置
+- 记录实际使用的模式，而不是理想的模式
 
-**Useful for phase planning when:**
-- Adding new features (write matching tests)
-- Refactoring (maintain test patterns)
-- Fixing bugs (add regression tests)
-- Understanding verification approach
-- Setting up test infrastructure
+**在以下情况下对于阶段规划很有用：**- 添加新功能（编写匹配测试）
+- 重构（维护测试模式）
+- 修复错误（添加回归测试）
+- 了解验证方法
+- 建立测试基础设施
 
-**Analysis approach:**
-- Check package.json for test framework and scripts
-- Read test config file for coverage, setup
-- Examine test file organization (collocated vs separate)
-- Review 5 test files for patterns (mocking, structure, assertions)
-- Look for test utilities, fixtures, factories
-- Note any test types (unit, integration, e2e)
-- Document commands for running tests
+**分析方法：**
+- 检查 package.json 的测试框架和脚本
+- Read 测试覆盖范围、设置的配置文件
+- 检查测试文件组织（并置与单独）
+- 查看 5 个测试文件的模式（模拟、结构、断言）
+- 寻找测试设施、固定装置、工厂
+- 记下任何测试类型（单元、集成、e2e）
+- 记录运行测试的命令
 </guidelines>

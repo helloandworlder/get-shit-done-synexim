@@ -1,14 +1,14 @@
-# Discovery Template
+# 发现模板
 
-Template for `.planning/phases/XX-name/DISCOVERY.md` - shallow research for library/option decisions.
+`.planning/phases/XX-name/DISCOVERY.md` 模板 - 库/选项决策的浅层研究。
 
-**Purpose:** Answer "which library/option should we use" questions during mandatory discovery in plan-phase.
+**目的：** 在计划阶段的强制发现过程中回答“我们应该使用哪个库/选项”的问题。
 
-For deep ecosystem research ("how do experts build this"), use `/gsd:research-phase` which produces RESEARCH.md.
+对于深入的生态系统研究（“专家如何构建这个”），请使用生成 RESEARCH.md 的 `/gsd:research-phase`。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 ---
@@ -73,19 +73,19 @@ Before completing discovery, verify:
 <output_structure>
 Create `.planning/phases/XX-name/DISCOVERY.md`:
 
-```markdown
-# [Topic] Discovery
+```降价
+# [Topic] 发现
 
-## Summary
+## 总结
 [2-3 paragraph executive summary - what was researched, what was found, what's recommended]
 
-## Primary Recommendation
+## 主要推荐
 [What to do and why - be specific and actionable]
 
-## Alternatives Considered
+## 考虑的替代方案
 [What else was evaluated and why not chosen]
 
-## Key Findings
+## 主要发现
 
 ### [Category 1]
 - [Finding with source URL and relevance to our case]
@@ -93,10 +93,10 @@ Create `.planning/phases/XX-name/DISCOVERY.md`:
 ### [Category 2]
 - [Finding with source URL and relevance]
 
-## Code Examples
+## 代码示例
 [Relevant implementation patterns, if applicable]
 
-## Metadata
+## 元数据
 
 <metadata>
 <confidence level="high|medium|low">
@@ -142,5 +142,5 @@ Create `.planning/phases/XX-name/DISCOVERY.md`:
 - Niche/complex domains (3D, games, audio, shaders)
 - Need ecosystem knowledge, not just library choice
 - "How do experts build this" questions
-- Use `/gsd:research-phase` for these
+- Use `/gsd:research-phase` 对于这些
 </guidelines>

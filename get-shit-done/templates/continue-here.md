@@ -1,6 +1,6 @@
-# Continue-Here Template
+# 继续-此处模板
 
-Copy and fill this structure for `.planning/phases/XX-name/.continue-here.md`:
+复制并填充 `.planning/phases/XX-name/.continue-here.md` 的结构：
 
 ```yaml
 ---
@@ -61,18 +61,18 @@ Start with: [specific action]
 ```
 
 <yaml_fields>
-Required YAML frontmatter:
+所需的 YAML frontmatter：
 
-- `phase`: Directory name (e.g., `02-authentication`)
-- `task`: Current task number
-- `total_tasks`: How many tasks in phase
-- `status`: `in_progress`, `blocked`, `almost_done`
-- `last_updated`: ISO timestamp
+- `phase`：目录名称（e.g.、`02-authentication`）
+- `task`：当前任务编号
+- `total_tasks`：阶段中有多少任务
+- `status`：`in_progress`、`blocked`、`almost_done`
+- `last_updated`：ISO时间戳
 </yaml_fields>
 
 <guidelines>
-- Be specific enough that a fresh Claude instance understands immediately
-- Include WHY decisions were made, not just what
-- The `<next_action>` should be actionable without reading anything else
-- This file gets DELETED after resume - it's not permanent storage
+- 足够具体，以便新的 Claude 实例立即理解
+- 包括为什么做出决定，而不仅仅是做什么
+- `<next_action>` 应该无需阅读任何其他内容即可操作
+- 该文件在恢复后被删除 - 它不是永久存储
 </guidelines>

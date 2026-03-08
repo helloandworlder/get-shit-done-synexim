@@ -148,7 +148,7 @@ describe('resolveModelInternal', () => {
     test('all known agents resolve to a valid string for each profile', () => {
       const knownAgents = ['gsd-planner', 'gsd-executor', 'gsd-phase-researcher', 'gsd-codebase-mapper'];
       const profiles = ['quality', 'balanced', 'budget'];
-      const validValues = ['inherit', 'sonnet', 'haiku', 'opus'];
+      const validValues = ['inherit', 'sonnet', 'haiku', 'opus', 'openai/gpt-5.4'];
 
       for (const profile of profiles) {
         writeConfig({ model_profile: profile });
@@ -184,21 +184,21 @@ describe('resolveModelInternal', () => {
         model_profile: 'quality',
         model_overrides: { 'gsd-executor': 'haiku' },
       });
-      // gsd-planner not overridden, should use quality profile -> opus -> inherit
-      assert.strictEqual(resolveModelInternal(tmpDir, 'gsd-planner'), 'inherit');
+      // gsd-planner not overridden, should use the Synexim default planning model
+      assert.strictEqual(resolveModelInternal(tmpDir, 'gsd-planner'), 'openai/gpt-5.4');
     });
   });
 
   describe('edge cases', () => {
-    test('returns sonnet for unknown agent type', () => {
+    test('returns GPT-5.4 for unknown agent type', () => {
       writeConfig({ model_profile: 'balanced' });
-      assert.strictEqual(resolveModelInternal(tmpDir, 'gsd-nonexistent'), 'sonnet');
+      assert.strictEqual(resolveModelInternal(tmpDir, 'gsd-nonexistent'), 'openai/gpt-5.4');
     });
 
     test('defaults to balanced profile when model_profile missing', () => {
       writeConfig({});
-      // balanced profile, gsd-planner -> opus -> inherit
-      assert.strictEqual(resolveModelInternal(tmpDir, 'gsd-planner'), 'inherit');
+      // balanced profile defaults to the Synexim planning model
+      assert.strictEqual(resolveModelInternal(tmpDir, 'gsd-planner'), 'openai/gpt-5.4');
     });
   });
 });

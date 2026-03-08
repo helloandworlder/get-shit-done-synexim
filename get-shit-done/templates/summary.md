@@ -1,10 +1,14 @@
-# Summary Template
+# 摘要模板
 
-Template for `.planning/phases/XX-name/{phase}-{plan}-SUMMARY.md` - phase completion documentation.
+`.planning/phases/XX-name/{phase}-{plan}-SUMMARY.md` 模板 - 阶段完成文档。
+
+- 面向用户的总结、决策说明、问题记录和下一步建议默认使用中文。
+- 若阶段规模较小，可压缩内容；若阶段规模较大，优先写清依赖、偏差与下一步接力信息。
+- 输出结尾应附带一个中文进度卡，概括本次成果、涉及模块、原因、下一步和里程碑进度。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 ---
@@ -130,38 +134,38 @@ None - no external service configuration required.
 ```
 
 <frontmatter_guidance>
-**Purpose:** Enable automatic context assembly via dependency graph. Frontmatter makes summary metadata machine-readable so plan-phase can scan all summaries quickly and select relevant ones based on dependencies.
+**目的：**通过图实现自动上下文构建。 Frontmatter 使摘要元数据成为机器依赖的，因此计划阶段可以扫描所有摘要并根据依赖关系选择相关摘要。
 
-**Fast scanning:** Frontmatter is first ~25 lines, cheap to scan across all summaries without reading full content.
+**快速扫描：** Frontmatter 来源约25行，阅读完完整内容即可扫描所有摘要，成本高昂。
 
-**Dependency graph:** `requires`/`provides`/`affects` create explicit links between phases, enabling transitive closure for context selection.
+**依赖图：** `requires`/`provides`/`affects` 在阶段关系之间创建显着式链接，从而实现上下文选择的传递闭包。
 
-**Subsystem:** Primary categorization (auth, payments, ui, api, database, infra, testing) for detecting related phases.
+**子系统：**用于检测相关阶段的主要分类（身份验证、支付、ui、api、数据库、基础设施、测试）。
 
-**Tags:** Searchable technical keywords (libraries, frameworks, tools) for tech stack awareness.
+**标签：**可搜索的技术关键字（库、框架、工具），用于技术认知堆栈。
 
-**Key-files:** Important files for @context references in PLAN.md.
+**关键文件：** PLAN.md 中 @context 引用的重要文件。
 
-**Patterns:** Established conventions future phases should maintain.
+**模式：**未来阶段应维持既定状态。
 
-**Population:** Frontmatter is populated during summary creation in execute-plan.md. See `<step name="create_summary">` for field-by-field guidance.
+**填充：** Frontmatter 在 execute-plan.md 中创建摘要期间填充。请参阅 `<step name="create_summary">` 了解逐个字段的指导。
 </frontmatter_guidance>
 
 <one_liner_rules>
-The one-liner MUST be substantive:
+一句台词一定是合适的：
 
-**Good:**
-- "JWT auth with refresh rotation using jose library"
-- "Prisma schema with User, Session, and Product models"
-- "Dashboard with real-time metrics via Server-Sent Events"
+**好的：**
+- “使用jose库进行刷新轮换的JWT身份验证”
+- “Prisma模式与用户、会话和产品模型”
+- “通过服务器发送的事件提供仪表板的实时指标”
 
-**Bad:**
-- "Phase complete"
-- "Authentication implemented"
-- "Foundation finished"
-- "All tasks done"
+**坏的：**
+- “阶段性完成”
+- “已实施身份验证”
+- “基础完成”
+- “所有任务已完成”
 
-The one-liner should tell someone what actually shipped.
+一句台词应该告诉别人实际付款的是什么。
 </one_liner_rules>
 
 <example>
@@ -235,14 +239,14 @@ The one-liner should tell someone what actually shipped.
 </example>
 
 <guidelines>
-**Frontmatter:** MANDATORY - complete all fields. Enables automatic context assembly for future planning.
+**Frontmatter：** 强制 - 填写所有字段。实现自动构建以进行未来规划。
 
-**One-liner:** Must be substantive. "JWT auth with refresh rotation using jose library" not "Authentication implemented".
+**一行：** 必须是的。“使用 jose 库进行刷新轮换的 JWT 身份验证”而不是“已实施身份验证”。
 
-**Decisions section:**
-- Key decisions made during execution with rationale
-- Extracted to STATE.md accumulated context
-- Use "None - followed plan as specified" if no deviations
+**决策部分：**
+- 执行过程中做出关键决策并有理由
+- 提取到STATE.md积累上下文
+- 如果没有偏差，则使用“无 - 遵循指定的计划”
 
-**After creation:** STATE.md updated with position, decisions, issues.
+**创建后：** STATE.md 更新了分析、决定和问题。
 </guidelines>

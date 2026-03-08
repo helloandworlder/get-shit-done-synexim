@@ -52,7 +52,7 @@ All subsequent commits go to this branch. User handles merging.
 <step name="validate_phase">
 From init JSON: `phase_dir`, `plan_count`, `incomplete_count`.
 
-Report: "Found {plan_count} plans in {phase_dir} ({incomplete_count} incomplete)"
+报告：`在 {phase_dir} 中发现 {plan_count} 个计划（其中 {incomplete_count} 个未完成）`
 </step>
 
 <step name="discover_and_group_plans">
@@ -64,7 +64,7 @@ PLAN_INDEX=$(node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" phase-plan-ind
 
 Parse JSON for: `phase`, `plans[]` (each with `id`, `wave`, `autonomous`, `objective`, `files_modified`, `task_count`, `has_summary`), `waves` (map of wave number → plan IDs), `incomplete`, `has_checkpoints`.
 
-**Filtering:** Skip plans where `has_summary: true`. If `--gaps-only`: also skip non-gap_closure plans. If all filtered: "No matching incomplete plans" → exit.
+**Filtering:** Skip plans where `has_summary: true`. If `--gaps-only`: also skip non-gap_closure plans. 如果过滤后为空：输出“没有匹配的未完成计划”并退出。
 
 Report:
 ```
@@ -153,7 +153,7 @@ Execute each wave in sequence. Within a wave: parallel if `PARALLELIZATION=true`
    - Check `git log --oneline --all --grep="{phase}-{plan}"` returns ≥1 commit
    - Check for `## Self-Check: FAILED` marker
 
-   If ANY spot-check fails: report which plan failed, route to failure handler — ask "Retry plan?" or "Continue with remaining waves?"
+   If ANY spot-check fails: report which plan failed, route to failure handler — 询问“重试该计划？”或“继续执行剩余波次？”
 
    If pass:
    ```
@@ -175,7 +175,7 @@ Execute each wave in sequence. Within a wave: parallel if `PARALLELIZATION=true`
 
    **Known Claude Code bug (classifyHandoffIfNeeded):** If an agent reports "failed" with error containing `classifyHandoffIfNeeded is not defined`, this is a Claude Code runtime bug — not a GSD or agent issue. The error fires in the completion handler AFTER all tool calls finish. In this case: run the same spot-checks as step 4 (SUMMARY.md exists, git commits present, no Self-Check: FAILED). If spot-checks PASS → treat as **successful**. If spot-checks FAIL → treat as real failure below.
 
-   For real failures: report which plan failed → ask "Continue?" or "Stop?" → if continue, dependent plans may also fail. If stop, partial completion report.
+   For real failures: report which plan failed → 询问“继续？”或“停止？” → if continue, dependent plans may also fail. If stop, partial completion report.
 
 6. **Execute checkpoint plans between waves** — see `<checkpoint_handling>`.
 
@@ -231,7 +231,7 @@ When executor returns a checkpoint AND (`AUTO_CHAIN` is `"true"` OR `AUTO_CFG` i
 After all waves:
 
 ```markdown
-## Phase {X}: {Name} Execution Complete
+## 阶段 {X}：{Name} 执行完成
 
 **Waves:** {N} | **Plans:** {M}/{total} complete
 
@@ -330,27 +330,27 @@ grep "^status:" "$PHASE_DIR"/*-VERIFICATION.md | cut -d: -f2 | tr -d ' '
 
 **If human_needed:**
 ```
-## ✓ Phase {X}: {Name} — Human Verification Required
+## ✓ 阶段 {X}：{Name} —— 需要人工验证
 
-All automated checks passed. {N} items need human testing:
+所有自动检查已通过。仍有 {N} 项需要人工测试：
 
 {From VERIFICATION.md human_verification section}
 
-"approved" → continue | Report issues → gap closure
+`approved` → 继续 | 报告问题 → 进入补缺流程
 ```
 
 **If gaps_found:**
 ```
-## ⚠ Phase {X}: {Name} — Gaps Found
+## ⚠ 阶段 {X}：{Name} —— 发现缺口
 
 **Score:** {N}/{M} must-haves verified
 **Report:** {phase_dir}/{phase_num}-VERIFICATION.md
 
-### What's Missing
+### 缺失内容
 {Gap summaries from VERIFICATION.md}
 
 ---
-## ▶ Next Up
+## ▶ 下一步
 
 `/gsd:plan-phase {X} --gaps`
 
@@ -402,12 +402,18 @@ After verification passes and roadmap is updated, return completion status to pa
 
 Phase: ${PHASE_NUMBER} - ${PHASE_NAME}
 Plans: ${completed_count}/${total_count}
-Verification: {Passed | Gaps Found}
+验证结果：{Passed | Gaps Found}
 
 [Include aggregate_results output]
 ```
 
 STOP. Do not proceed to auto-advance or transition.
+
+Human-driven progressive alignment override:
+- A phase is not considered ready for transition until the user has been invited to test it.
+- Start the project or the relevant service when feasible.
+- Tell the user: access URL, login method, test account or seed data (if available), new capabilities in this phase, and the exact flows that need testing.
+- Ask the user for feedback and stop here. Do NOT auto-advance to the next phase before the user responds.
 
 **If `--no-transition` flag is NOT present:**
 
@@ -422,10 +428,12 @@ STOP. Do not proceed to auto-advance or transition.
 
 **If `--auto` flag present OR `AUTO_CHAIN` is true OR `AUTO_CFG` is true (AND verification passed with no gaps):**
 
+Before any transition logic, apply the human-feedback checkpoint above. Auto-advance is blocked until the user has tested the phase and explicitly asked to continue.
+
 ```
 ╔══════════════════════════════════════════╗
-║  AUTO-ADVANCING → TRANSITION             ║
-║  Phase {X} verified, continuing chain    ║
+║  自动推进 → 切换阶段             ║
+║  阶段 {X} 已验证，通过链式流程继续    ║
 ╚══════════════════════════════════════════╝
 ```
 
@@ -438,6 +446,8 @@ Read and follow `~/.claude/get-shit-done/workflows/transition.md`, passing throu
 The workflow ends. The user runs `/gsd:progress` or invokes the transition workflow manually.
 </step>
 
+
+在完成文档产出或实现步骤后，输出一个中文进度卡式总结，简要说明产物、状态、风险和下一步。
 </process>
 
 <context_efficiency>

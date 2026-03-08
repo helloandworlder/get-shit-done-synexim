@@ -84,6 +84,11 @@ if [[ "$INIT" == @file:* ]]; then INIT=$(cat "${INIT#@file:}"); fi
 
 Extract from init JSON: `researcher_model`, `synthesizer_model`, `roadmapper_model`, `commit_docs`, `research_enabled`, `current_milestone`, `project_exists`, `roadmap_exists`.
 
+Hard rule for this milestone initialization:
+- Roadmap/requirement alignment should assume `OpenAI GPT-5.4 xhigh / high`
+- `GPT-5.4` must not generate new front-end design during milestone initialization
+- If the milestone contains front-end work, first confirm a complete MVP prototype exists and matches milestone scope
+
 ## 8. Research Decision
 
 AskUserQuestion: "Research the domain ecosystem for new features before defining requirements?"
@@ -177,12 +182,12 @@ Commit after writing.
 Display key findings from SUMMARY.md:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► RESEARCH COMPLETE ✓
+ GSD ► 研究完成 ✓
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-**Stack additions:** [from SUMMARY.md]
-**Feature table stakes:** [from SUMMARY.md]
-**Watch Out For:** [from SUMMARY.md]
+**技术栈增量：** [from SUMMARY.md]
+**功能基础必备：** [from SUMMARY.md]
+**注意事项：** [from SUMMARY.md]
 ```
 
 **If "Skip research":** Continue to Step 9.
@@ -191,11 +196,13 @@ Display key findings from SUMMARY.md:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► DEFINING REQUIREMENTS
+ GSD ► 正在定义需求
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 Read PROJECT.md: core value, current milestone goals, validated requirements (what exists).
+
+If this milestone adds front-end work, compare the milestone scope against the existing MVP prototype. If the prototype contains pages or flows missing from `.planning`, or `.planning` contains pages not represented in the MVP prototype, stop and ask the user whether to补全 or移除 the differences before continuing.
 
 **If research exists:** Read FEATURES.md, extract feature categories.
 
@@ -207,7 +214,7 @@ Present features by category:
 **Research notes:** [any relevant notes]
 ```
 
-**If no research:** Gather requirements through conversation. Ask: "What are the main things users need to do with [new features]?" Clarify, probe for related capabilities, group into categories.
+**If no research:** Gather requirements through conversation. 提问：“围绕这些[新功能]，用户最主要需要完成哪些事情？” Clarify, probe for related capabilities, group into categories.
 
 **Scope each category** via AskUserQuestion (multiSelect: true, header max 12 chars):
 - "[Feature 1]" — [brief description]
@@ -239,7 +246,7 @@ Good requirements are:
 Present FULL requirements list for confirmation:
 
 ```
-## Milestone v[X.Y] Requirements
+## 里程碑 v[X.Y] 需求
 
 ### [Category 1]
 - [ ] **CAT1-01**: User can do X
@@ -248,7 +255,7 @@ Present FULL requirements list for confirmation:
 ### [Category 2]
 - [ ] **CAT2-01**: User can do Z
 
-Does this capture what you're building? (yes / adjust)
+这是否准确表达了你要构建的内容？（yes / adjust）
 ```
 
 If "adjust": Return to scoping.
@@ -262,10 +269,10 @@ node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: define milest
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► CREATING ROADMAP
+ GSD ► 正在创建路线图
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Spawning roadmapper...
+◆ 正在启动 roadmapper...
 ```
 
 **Starting phase number:** Read MILESTONES.md for last phase number. Continue from there (v1.0 ended at phase 5 → v1.1 starts at phase 6).
@@ -304,7 +311,7 @@ Write files first, then return.
 **If `## ROADMAP CREATED`:** Read ROADMAP.md, present inline:
 
 ```
-## Proposed Roadmap
+## 建议路线图
 
 **[N] phases** | **[X] requirements mapped** | All covered ✓
 
@@ -339,7 +346,7 @@ node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: create milest
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► MILESTONE INITIALIZED ✓
+ GSD ► 里程碑初始化完成 ✓
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 **Milestone v[X.Y]: [Name]**
@@ -351,9 +358,9 @@ node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: create milest
 | Requirements   | `.planning/REQUIREMENTS.md` |
 | Roadmap        | `.planning/ROADMAP.md`      |
 
-**[N] phases** | **[X] requirements** | Ready to build ✓
+**[N] phases** | **[X] requirements** | 已准备好开始构建 ✓
 
-## ▶ Next Up
+## ▶ 下一步
 
 **Phase [N]: [Phase Name]** — [Goal]
 
@@ -364,6 +371,8 @@ node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" commit "docs: create milest
 Also: `/gsd:plan-phase [N]` — skip discussion, plan directly
 ```
 
+
+在完成文档产出或实现步骤后，输出一个中文进度卡式总结，简要说明产物、状态、风险和下一步。
 </process>
 
 <success_criteria>

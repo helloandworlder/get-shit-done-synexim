@@ -1,10 +1,10 @@
-# UAT Template
+# UAT 模板
 
-Template for `.planning/phases/XX-name/{phase_num}-UAT.md` — persistent UAT session tracking.
+`.planning/phases/XX-name/{phase_num}-UAT.md` 模板 — 持久 UAT 会话跟踪。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 ---
@@ -73,48 +73,48 @@ skipped: [N]
 
 <section_rules>
 
-**Frontmatter:**
-- `status`: OVERWRITE - "testing" or "complete"
-- `phase`: IMMUTABLE - set on creation
-- `source`: IMMUTABLE - SUMMARY files being tested
-- `started`: IMMUTABLE - set on creation
-- `updated`: OVERWRITE - update on every change
+**前线：**
+- `status`：覆盖 - “测试”或“完成”
+- `phase`：不可变 - 创建时设置
+- `source`：不可变 - 正在测试摘要文件
+- `started`：不可变 - 创建时设置
+- `updated`：覆盖 - 每次更改都会更新
 
-**Current Test:**
-- OVERWRITE entirely on each test transition
-- Shows which test is active and what's awaited
-- On completion: "[testing complete]"
+**当前测试：**
+- 在每次测试转换时完全覆盖
+- 显示哪个测试处于活动状态以及正在等待什么
+- 完成后：“[testing complete]”
 
-**Tests:**
-- Each test: OVERWRITE result field when user responds
-- `result` values: [pending], pass, issue, skipped
-- If issue: add `reported` (verbatim) and `severity` (inferred)
-- If skipped: add `reason` if provided
+**测试：**
+- 每个测试：当用户响应时覆盖结果字段
+- `result` 值：[pending]、通过、发出、跳过
+- 如果出现问题：添加 `reported`（逐字）和 `severity`（推断）
+- 如果跳过：添加 `reason`（如果提供）
 
-**Summary:**
-- OVERWRITE counts after each response
-- Tracks: total, passed, issues, pending, skipped
+**总结：**
+- 每次响应后覆盖计数
+- 曲目：总计、通过、问题、待定、跳过
 
-**Gaps:**
-- APPEND only when issue found (YAML format)
-- After diagnosis: fill `root_cause`, `artifacts`, `missing`, `debug_session`
-- This section feeds directly into /gsd:plan-phase --gaps
+**差距：**
+- 仅在发现问题时追加（YAML 格式）
+- 诊断后：填写`root_cause`、`artifacts`、`missing`、`debug_session`
+- 此部分直接输入 /gsd:plan-phase --gaps
 
 </section_rules>
 
 <diagnosis_lifecycle>
 
-**After testing complete (status: complete), if gaps exist:**
+**测试完成后（状态：完成），如果存在差距：**
 
-1. User runs diagnosis (from verify-work offer or manually)
-2. diagnose-issues workflow spawns parallel debug agents
-3. Each agent investigates one gap, returns root cause
-4. UAT.md Gaps section updated with diagnosis:
-   - Each gap gets `root_cause`, `artifacts`, `missing`, `debug_session` filled
-5. status → "diagnosed"
-6. Ready for /gsd:plan-phase --gaps with root causes
+1. 用户运行诊断（从验证工作报价或手动）
+2. 诊断问题工作流程产生并行调试代理
+3. 每个代理调查一个差距，返回根本原因
+4. UAT.md 间隙部分更新了诊断：
+   - 每个缺口都被 `root_cause`、`artifacts`、`missing`、`debug_session` 填充
+5.状态→“确诊”
+6. 为/gsd:plan-phase做好准备——根本原因的差距
 
-**After diagnosis:**
+**诊断后：**
 ```yaml
 ## Gaps
 
@@ -136,46 +136,46 @@ skipped: [N]
 
 <lifecycle>
 
-**Creation:** When /gsd:verify-work starts new session
-- Extract tests from SUMMARY.md files
-- Set status to "testing"
-- Current Test points to test 1
-- All tests have result: [pending]
+**创建：**当/gsd:verify-work开始新会话时
+- 从 SUMMARY.md 文件中提取测试
+- 将状态设置为“测试”
+- 当前要测试 1 的测试点
+- 所有测试都有结果：[pending]
 
-**During testing:**
-- Present test from Current Test section
-- User responds with pass confirmation or issue description
-- Update test result (pass/issue/skipped)
-- Update Summary counts
-- If issue: append to Gaps section (YAML format), infer severity
-- Move Current Test to next pending test
+**测试期间：**
+- 当前测试部分的当前测试
+- 用户回复通过确认或问题描述
+- 更新测试结果（通过/发出/跳过）
+- 更新摘要计数
+- 如果出现问题：附加到差距部分（YAML 格式），推断严重性
+- 将当前测试移至下一个待处理测试
 
-**On completion:**
-- status → "complete"
-- Current Test → "[testing complete]"
-- Commit file
-- Present summary with next steps
+**完成后：**
+- 状态→“完成”
+- 当前测试→“[testing complete]”
+- 提交文件
+- 提出总结以及后续步骤
 
-**Resume after /clear:**
-1. Read frontmatter → know phase and status
-2. Read Current Test → know where we are
-3. Find first [pending] result → continue from there
-4. Summary shows progress so far
+**/clear 之后恢复：**
+1. Read前置→了解相位和状态
+2. Read电流测试→知道我们在哪里
+3. 找到第一个 [pending] 结果 → 从那里继续
+4. 总结显示迄今为止的进展
 
 </lifecycle>
 
 <severity_guide>
 
-Severity is INFERRED from user's natural language, never asked.
+严重性是根据用户的自然语言推断出来的，从未被询问过。
 
-| User describes | Infer |
-|----------------|-------|
-| Crash, error, exception, fails completely, unusable | blocker |
-| Doesn't work, nothing happens, wrong behavior, missing | major |
-| Works but..., slow, weird, minor, small issue | minor |
-| Color, font, spacing, alignment, visual, looks off | cosmetic |
+|用户描述 |推断|
+|----------------|--------------------|
+|崩溃、错误、异常、完全失败、无法使用 |拦截器|
+|不起作用、没有任何反应、行为错误、失踪 |专业|
+|可以工作，但是......，缓慢，奇怪，小问题|次要|
+|颜色、字体、间距、对齐、视觉、外观 |化妆品 |
 
-Default: **major** (safe default, user can clarify if wrong)
+默认值：**major**（安全默认值，如果错误用户可以澄清）
 
 </severity_guide>
 

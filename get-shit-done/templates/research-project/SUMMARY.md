@@ -1,6 +1,6 @@
-# Research Summary Template
+# 研究摘要模板
 
-Template for `.planning/research/SUMMARY.md` — executive summary of project research with roadmap implications.
+`.planning/research/SUMMARY.md` 模板 — 具有路线图含义的项目研究执行摘要。
 
 <template>
 
@@ -139,32 +139,32 @@ Phases with standard patterns (skip research-phase):
 
 <guidelines>
 
-**Executive Summary:**
-- Write for someone who will only read this section
-- Include the key recommendation and main risk
-- 2-3 paragraphs maximum
+**执行摘要：**
+- Write 适合只会阅读本节的人
+- 包括关键建议和主要风险
+- 最多 2-3 段
 
-**Key Findings:**
-- Summarize, don't duplicate full documents
-- Link to detailed docs (STACK.md, FEATURES.md, etc.)
-- Focus on what matters for roadmap decisions
+**主要发现：**
+- 总结，不要重复完整的文档
+- 详细文档链接（STACK.md、FEATURES.md 等）
+- 关注对路线图决策重要的事情
 
-**Implications for Roadmap:**
-- This is the most important section
-- Directly informs roadmap creation
-- Be explicit about phase suggestions and rationale
-- Include research flags for each suggested phase
+**对路线图的影响：**
+- 这是最重要的部分
+- 直接通知路线图创建
+- 明确阶段建议和理由
+- 包括每个建议阶段的研究标志
 
-**Confidence Assessment:**
-- Be honest about uncertainty
-- Note gaps that need resolution during planning
-- HIGH = verified with official sources
-- MEDIUM = community consensus, multiple sources agree
-- LOW = single source or inference
+**信心评估：**
+- 对不确定性保持诚实
+- 注意规划过程中需要解决的差距
+- 高 = 经官方来源验证
+- MEDIUM = 社区共识，多个来源一致同意
+- 低 = 单一来源或推断
 
-**Integration with roadmap creation:**
-- This file is loaded as context during roadmap creation
-- Phase suggestions here become starting point for roadmap
-- Research flags inform phase planning
+**与路线图创建集成：**
+- 该文件在路线图创建期间作为上下文加载
+- 此处的阶段建议成为路线图的起点
+- 研究标志告知阶段规划
 
 </guidelines>

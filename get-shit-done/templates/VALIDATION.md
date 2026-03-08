@@ -7,70 +7,70 @@ wave_0_complete: false
 created: {date}
 ---
 
-# Phase {N} — Validation Strategy
+# 阶段 {N} — 验证策略
 
-> Per-phase validation contract for feedback sampling during execution.
-
----
-
-## Test Infrastructure
-
-| Property | Value |
-|----------|-------|
-| **Framework** | {pytest 7.x / jest 29.x / vitest / go test / other} |
-| **Config file** | {path or "none — Wave 0 installs"} |
-| **Quick run command** | `{quick command}` |
-| **Full suite command** | `{full command}` |
-| **Estimated runtime** | ~{N} seconds |
+> 执行期间反馈采样的每阶段验证合同。
 
 ---
 
-## Sampling Rate
+## 测试基础设施
 
-- **After every task commit:** Run `{quick run command}`
-- **After every plan wave:** Run `{full suite command}`
-- **Before `/gsd:verify-work`:** Full suite must be green
-- **Max feedback latency:** {N} seconds
-
----
-
-## Per-Task Verification Map
-
-| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| {N}-01-01 | 01 | 1 | REQ-{XX} | unit | `{command}` | ✅ / ❌ W0 | ⬜ pending |
-
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+|物业 |价值|
+|----------|--------|
+| **框架** | {pytest 7.x / jest 29.x / vitest / go test / other} |
+| **配置文件** | {path or "none — Wave 0 installs"} |
+| **快速运行命令** | `{quick command}` |
+| **全套命令** | `{full command}` |
+| **预计运行时间** | ~{N} 秒 |
 
 ---
 
-## Wave 0 Requirements
+## 采样率
 
-- [ ] `{tests/test_file.py}` — stubs for REQ-{XX}
-- [ ] `{tests/conftest.py}` — shared fixtures
-- [ ] `{framework install}` — if no framework detected
-
-*If none: "Existing infrastructure covers all phase requirements."*
-
----
-
-## Manual-Only Verifications
-
-| Behavior | Requirement | Why Manual | Test Instructions |
-|----------|-------------|------------|-------------------|
-| {behavior} | REQ-{XX} | {reason} | {steps} |
-
-*If none: "All phase behaviors have automated verification."*
+- **每次任务提交后：** 运行 `{quick run command}`
+- **每次计划波后：** 运行 `{full suite command}`
+- **`/gsd:verify-work`之前：**全套必须是绿色的
+- **最大反馈延迟：** {N} 秒
 
 ---
 
-## Validation Sign-Off
+## 每任务验证图
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < {N}s
-- [ ] `nyquist_compliant: true` set in frontmatter
+|任务 ID |计划|波|要求|测试类型|自动化命令|文件存在 |状态 |
+|--------|------|------|-------------|------------|--------------------|-------------|--------|
+| {N}-01-01 | 01 | 1 |请求-{XX} |单位| `{command}` | ✅ / ❌ W0 | ⬜ 待定 |
 
-**Approval:** {pending / approved YYYY-MM-DD}
+*状态：⬜待处理·✅绿色·❌红色·⚠️片状*
+
+---
+
+## 第 0 波要求
+
+- [ ] `{tests/test_file.py}` — REQ-{XX} 的存根
+- [ ] `{tests/conftest.py}` — 共享灯具
+- [ ] `{framework install}` — 如果未检测到框架
+
+*如果没有：“现有基础设施满足所有阶段要求。”*
+
+---
+
+## 仅手动验证
+
+|行为 |要求 |为什么手动 |测试说明|
+|----------|-------------|------------|--------------------|
+| {behavior} |请求-{XX} | {reason} | {steps} |
+
+*如果没有：“所有阶段行为都有自动验证。”*
+
+---
+
+## 验证签核
+
+- [ ] 所有任务都有 `<automated>` 验证或 Wave 0 依赖项
+- [ ] 采样连续性：没有自动验证的连续 3 个任务
+- [ ] Wave 0 涵盖所有缺失的参考文献
+- [ ] 无监视模式标志
+- [ ] 反馈延迟 < {N}s
+- [ ] `nyquist_compliant: true` 设置在 frontmatter 中
+
+**批准：** {pending / approved YYYY-MM-DD}

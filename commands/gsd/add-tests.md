@@ -17,11 +17,11 @@ argument-instructions: |
   Example: /gsd:add-tests 12 focus on edge cases in the pricing module
 ---
 <objective>
-Generate unit and E2E tests for a completed phase, using its SUMMARY.md, CONTEXT.md, and VERIFICATION.md as specifications.
+基于已完成阶段的 `SUMMARY.md`、`CONTEXT.md` 与 `VERIFICATION.md` 作为规格，为其生成单元测试和 E2E 测试。
 
-Analyzes implementation files, classifies them into TDD (unit), E2E (browser), or Skip categories, presents a test plan for user approval, then generates tests following RED-GREEN conventions.
+分析实现文件，将其归类为 TDD（单元）、E2E（浏览器）或 Skip，先向用户展示测试计划并获得确认，再按 RED-GREEN 约定生成测试。
 
-Output: Test files committed with message `test(phase-{N}): add unit and E2E tests from add-tests command`
+输出：测试文件会以提交信息 `test(phase-{N}): add unit and E2E tests from add-tests command` 提交。
 </objective>
 
 <execution_context>
@@ -29,13 +29,15 @@ Output: Test files committed with message `test(phase-{N}): add unit and E2E tes
 </execution_context>
 
 <context>
-Phase: $ARGUMENTS
+阶段：`$ARGUMENTS`
 
 @.planning/STATE.md
 @.planning/ROADMAP.md
 </context>
 
 <process>
-Execute the add-tests workflow from @~/.claude/get-shit-done/workflows/add-tests.md end-to-end.
-Preserve all workflow gates (classification approval, test plan approval, RED-GREEN verification, gap reporting).
+端到端执行 `@~/.claude/get-shit-done/workflows/add-tests.md` 中的 `add-tests` 工作流。
+保留全部工作流关卡（分类确认、测试计划确认、RED-GREEN 验证、缺口报告）。
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>

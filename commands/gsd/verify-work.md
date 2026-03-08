@@ -1,6 +1,6 @@
 ---
 name: gsd:verify-work
-description: Validate built features through conversational UAT
+description: 通过对话式 UAT 验证已构建功能
 argument-hint: "[phase number, e.g., '4']"
 allowed-tools:
   - Read
@@ -12,11 +12,11 @@ allowed-tools:
   - Task
 ---
 <objective>
-Validate built features through conversational testing with persistent state.
+通过带持久状态的对话式测试来验证已构建功能。
 
-Purpose: Confirm what Claude built actually works from user's perspective. One test at a time, plain text responses, no interrogation. When issues are found, automatically diagnose, plan fixes, and prepare for execution.
+目的：从用户视角确认 Claude 构建的内容是否真的可用。一次只测一个点，使用纯文本回复，不做审问式互动。发现问题时，会自动诊断、规划修复并为执行做好准备。
 
-Output: {phase_num}-UAT.md tracking all test results. If issues found: diagnosed gaps, verified fix plans ready for /gsd:execute-phase
+输出：使用 `{phase_num}-UAT.md` 跟踪全部测试结果。若发现问题：会产出已诊断缺口与可直接供 `/gsd:execute-phase` 使用的修复计划。
 </objective>
 
 <execution_context>
@@ -25,14 +25,16 @@ Output: {phase_num}-UAT.md tracking all test results. If issues found: diagnosed
 </execution_context>
 
 <context>
-Phase: $ARGUMENTS (optional)
-- If provided: Test specific phase (e.g., "4")
-- If not provided: Check for active sessions or prompt for phase
+阶段：`$ARGUMENTS` (optional)
+- 若提供：测试指定阶段（例如 `4`）
+- 若未提供：先检查是否有活动会话，或继续询问阶段
 
-Context files are resolved inside the workflow (`init verify-work`) and delegated via `<files_to_read>` blocks.
+上下文文件会在工作流内部通过 `init verify-work` 解析，并通过 `<files_to_read>` 区块传递。
 </context>
 
 <process>
-Execute the verify-work workflow from @~/.claude/get-shit-done/workflows/verify-work.md end-to-end.
-Preserve all workflow gates (session management, test presentation, diagnosis, fix planning, routing).
+端到端执行 `@~/.claude/get-shit-done/workflows/verify-work.md` 中的 `verify-work` 工作流。
+保留全部工作流关卡（会话管理、测试展示、诊断、修复规划、路由）。
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>

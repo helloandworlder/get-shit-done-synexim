@@ -110,6 +110,8 @@ Output: Milestone archived (roadmap + requirements), PROJECT.md evolved, git tag
 8. **Offer next steps:**
    - `/gsd:new-milestone` — start next milestone (questioning → research → requirements → roadmap)
 
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>
 
 <success_criteria>

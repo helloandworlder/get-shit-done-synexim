@@ -316,22 +316,26 @@ Disable these to speed up phases in familiar domains or when conserving tokens.
 
 | Agent | `quality` | `balanced` | `budget` |
 |-------|-----------|------------|----------|
-| gsd-planner | Opus | Opus | Sonnet |
-| gsd-roadmapper | Opus | Sonnet | Sonnet |
-| gsd-executor | Opus | Sonnet | Sonnet |
-| gsd-phase-researcher | Opus | Sonnet | Haiku |
-| gsd-project-researcher | Opus | Sonnet | Haiku |
-| gsd-research-synthesizer | Sonnet | Sonnet | Haiku |
-| gsd-debugger | Opus | Sonnet | Sonnet |
-| gsd-codebase-mapper | Sonnet | Haiku | Haiku |
-| gsd-verifier | Sonnet | Sonnet | Haiku |
-| gsd-plan-checker | Sonnet | Sonnet | Haiku |
-| gsd-integration-checker | Sonnet | Sonnet | Haiku |
+| gsd-planner | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-roadmapper | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-executor | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-phase-researcher | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-project-researcher | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-research-synthesizer | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-debugger | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-codebase-mapper | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-verifier | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-plan-checker | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-integration-checker | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
 
 **Profile philosophy:**
-- **quality** -- Opus for all decision-making agents, Sonnet for read-only verification. Use when quota is available and the work is critical.
-- **balanced** -- Opus only for planning (where architecture decisions happen), Sonnet for everything else. The default for good reason.
-- **budget** -- Sonnet for anything that writes code, Haiku for research and verification. Use for high-volume work or less critical phases.
+- **quality** -- Use GPT-5.4 `xhigh` for roadmap/phase planning, GPT-5.4 `high` for execution and verification.
+- **balanced** -- Use GPT-5.4 `high` for planning, execution, and verification. This is the default.
+- **budget** -- Still use GPT-5.4 `high`, but reduce optional auxiliary work when possible.
+
+Front-end rule:
+- GPT-5.4 must not generate front-end design during project initialization.
+- Before implementing front-end work, confirm a complete Gemini AI Studio MVP prototype exists and matches the milestone scope.
 
 ---
 

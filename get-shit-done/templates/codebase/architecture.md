@@ -1,12 +1,12 @@
-# Architecture Template
+# 架构模板
 
-Template for `.planning/codebase/ARCHITECTURE.md` - captures conceptual code organization.
+`.planning/codebase/ARCHITECTURE.md` 模板 - 捕获概念性代码组织。
 
-**Purpose:** Document how the code is organized at a conceptual level. Complements STRUCTURE.md (which shows physical file locations).
+**目的：** 记录代码如何在概念层面上组织。补充 STRUCTURE.md（显示物理文件位置）。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Architecture
@@ -222,34 +222,34 @@ Template for `.planning/codebase/ARCHITECTURE.md` - captures conceptual code org
 </good_examples>
 
 <guidelines>
-**What belongs in ARCHITECTURE.md:**
-- Overall architectural pattern (monolith, microservices, layered, etc.)
-- Conceptual layers and their relationships
-- Data flow / request lifecycle
-- Key abstractions and patterns
-- Entry points
-- Error handling strategy
-- Cross-cutting concerns (logging, auth, validation)
+**ARCHITECTURE.md 属于什么：**
+- 整体架构模式（单体、微服务、分层等）
+- 概念层及其关系
+- 数据流/请求生命周期
+- 关键抽象和模式
+- 切入点
+- 错误处理策略
+- 横切 concerns（日志记录、身份验证、验证）
 
-**What does NOT belong here:**
-- Exhaustive file listings (that's STRUCTURE.md)
-- Technology choices (that's STACK.md)
-- Line-by-line code walkthrough (defer to code reading)
-- Implementation details of specific features
+**什么不属于这里：**
+- 详尽的文件列表（即 STRUCTURE.md）
+- 技术选择（即STACK.md）
+- 逐行代码演练（参考代码阅读）
+- 具体功能的实现细节
 
-**File paths ARE welcome:**
-Include file paths as concrete examples of abstractions. Use backtick formatting: `src/services/user.ts`. This makes the architecture document actionable for Claude when planning.
+**欢迎使用文件路径：**
+包括文件路径作为抽象的具体示例。使用反引号格式：`src/services/user.ts`。这使得架构文档在规划时可用于 Claude。
 
-**When filling this template:**
-- Read main entry points (index, server, main)
-- Identify layers by reading imports/dependencies
-- Trace a typical request/command execution
-- Note recurring patterns (services, controllers, repositories)
-- Keep descriptions conceptual, not mechanical
+**填写此模板时：**
+- Read 主要入口点（索引、服务器、主）
+- 通过读取导入/依赖关系来识别层
+- 跟踪典型的请求/命令执行
+- 注意重复出现的模式（服务、控制器、存储库）
+- 保持描述的概念性，而不是机械性
 
-**Useful for phase planning when:**
-- Adding new features (where does it fit in the layers?)
-- Refactoring (understanding current patterns)
-- Identifying where to add code (which layer handles X?)
-- Understanding dependencies between components
+**在以下情况下对于阶段规划很有用：**
+- 添加新功能（它适合在层中的什么位置？）
+- 重构（了解当前模式）
+- 确定在哪里添加代码（哪一层处理 X？）
+- 了解组件之间的依赖关系
 </guidelines>

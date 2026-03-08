@@ -1,6 +1,6 @@
 ---
 name: gsd:quick
-description: Execute a quick task with GSD guarantees (atomic commits, state tracking) but skip optional agents
+description: 在保留 GSD 保障的前提下执行快速任务，并跳过可选代理
 argument-hint: "[--full] [--discuss]"
 allowed-tools:
   - Read
@@ -13,20 +13,20 @@ allowed-tools:
   - AskUserQuestion
 ---
 <objective>
-Execute small, ad-hoc tasks with GSD guarantees (atomic commits, STATE.md tracking).
+在保留 GSD 保障（原子提交、`STATE.md` 跟踪）的前提下执行小型临时任务。
 
-Quick mode is the same system with a shorter path:
+Quick 模式沿用同一套系统，但路径更短：
 - Spawns gsd-planner (quick mode) + gsd-executor(s)
 - Quick tasks live in `.planning/quick/` separate from planned phases
 - Updates STATE.md "Quick Tasks Completed" table (NOT ROADMAP.md)
 
-**Default:** Skips research, discussion, plan-checker, verifier. Use when you know exactly what to do.
+**默认：** 跳过研究、讨论、计划检查器和验证器。适合你已经清楚知道该做什么的场景。
 
-**`--discuss` flag:** Lightweight discussion phase before planning. Surfaces assumptions, clarifies gray areas, captures decisions in CONTEXT.md. Use when the task has ambiguity worth resolving upfront.
+**`--discuss` 标志：** 在规划前增加轻量讨论阶段，暴露假设、澄清灰区，并把决策记录到 `CONTEXT.md`。适合任务存在值得提前消解的歧义时使用。
 
-**`--full` flag:** Enables plan-checking (max 2 iterations) and post-execution verification. Use when you want quality guarantees without full milestone ceremony.
+**`--full` 标志：** 开启计划检查（最多 2 次迭代）与执行后验证。适合想要质量保障、但又不想走完整里程碑流程时使用。
 
-Flags are composable: `--discuss --full` gives discussion + plan-checking + verification.
+标志可以组合：`--discuss --full` 表示讨论 + 计划检查 + 验证。
 </objective>
 
 <execution_context>
@@ -36,10 +36,12 @@ Flags are composable: `--discuss --full` gives discussion + plan-checking + veri
 <context>
 $ARGUMENTS
 
-Context files are resolved inside the workflow (`init quick`) and delegated via `<files_to_read>` blocks.
+上下文文件会在工作流内部通过 `init quick` 解析，并通过 `<files_to_read>` 区块传递。
 </context>
 
 <process>
-Execute the quick workflow from @~/.claude/get-shit-done/workflows/quick.md end-to-end.
-Preserve all workflow gates (validation, task description, planning, execution, state updates, commits).
+端到端执行 `@~/.claude/get-shit-done/workflows/quick.md` 中的 `quick` 工作流。
+保留全部工作流关卡（校验、任务描述、规划、执行、状态更新、提交）。
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>

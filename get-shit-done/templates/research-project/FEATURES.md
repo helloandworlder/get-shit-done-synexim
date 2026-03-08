@@ -1,6 +1,6 @@
-# Features Research Template
+# 特征研究模板
 
-Template for `.planning/research/FEATURES.md` — feature landscape for the project domain.
+`.planning/research/FEATURES.md` 模板 — 项目域的功能景观。
 
 <template>
 
@@ -46,12 +46,12 @@ Features that seem good but create problems.
 
 ```
 [Feature A]
-    └──requires──> [Feature B]
-                       └──requires──> [Feature C]
+    └──需要──> [Feature B]
+                       └──需要──> [Feature C]
 
-[Feature D] ──enhances──> [Feature A]
+[Feature D] ──增强──> [Feature A]
 
-[Feature E] ──conflicts──> [Feature F]
+[Feature E]──冲突──> [Feature F]
 ```
 
 ### Dependency Notes
@@ -119,29 +119,29 @@ Features to defer until product-market fit is established.
 
 <guidelines>
 
-**Table Stakes:**
-- These are non-negotiable for launch
-- Users don't give credit for having them, but penalize for missing them
-- Example: A community platform without user profiles is broken
+**赌桌赌注：**
+- 这些对于发布来说是不可协商的
+- 用户不会因为拥有它们而给予赞扬，而是因为错过它们而受到惩罚
+- 示例：没有用户配置文件的社区平台已损坏
 
-**Differentiators:**
-- These are where you compete
-- Should align with the Core Value from PROJECT.md
-- Don't try to differentiate on everything
+**差异化因素：**
+- 这些是你竞争的地方
+- 应与 PROJECT.md 的核心价值保持一致
+- 不要试图在所有事情上都与众不同
 
-**Anti-Features:**
-- Prevent scope creep by documenting what seems good but isn't
-- Include the alternative approach
-- Example: "Real-time everything" often creates complexity without value
+**反特征：**
+- 通过记录看似不错但实际并不好的内容来防止范围蔓延
+- 包括替代方法
+- 示例：“实时一切”通常会带来没有价值的复杂性
 
-**Feature Dependencies:**
-- Critical for roadmap phase ordering
-- If A requires B, B must be in an earlier phase
-- Conflicts inform what NOT to combine in same phase
+**功能依赖性：**
+- 对于路线图阶段排序至关重要
+- 如果A需要B，B必须处于较早阶段
+- 冲突告诉我们哪些内容不能在同一阶段结合
 
-**MVP Definition:**
-- Be ruthless about what's truly minimum
-- "Nice to have" is not MVP
-- Launch with less, validate, then expand
+**MVP 定义：**
+- 对真正最低限度的事情要毫不留情
+- “很高兴拥有”不是 MVP
+- 以更少的资源启动，验证，然后扩展
 
 </guidelines>

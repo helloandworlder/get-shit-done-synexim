@@ -1,6 +1,6 @@
-# PROJECT.md Template
+# PROJECT.md 模板
 
-Template for `.planning/PROJECT.md` — the living project context document.
+`.planning/PROJECT.md` 的模板 — 实时项目上下文文档。
 
 <template>
 
@@ -71,104 +71,104 @@ Common types: Tech stack, Timeline, Budget, Dependencies, Compatibility, Perform
 
 <guidelines>
 
-**What This Is:**
-- Current accurate description of the product
-- 2-3 sentences capturing what it does and who it's for
-- Use the user's words and framing
-- Update when the product evolves beyond this description
+**这是什么：**
+- 产品的当前准确描述
+- 用 2-3 句话描述它的用途和用途
+- 使用用户的话语和框架
+- 当产品发展超出此描述时进行更新
 
-**Core Value:**
-- The single most important thing
-- Everything else can fail; this cannot
-- Drives prioritization when tradeoffs arise
-- Rarely changes; if it does, it's a significant pivot
+**核心价值：**
+- 最重要的事情
+- 其他一切都可能失败；这不能
+- 当出现权衡时推动优先级
+- 很少改变；如果确实如此，这将是一个重要的转折点
 
-**Requirements — Validated:**
-- Requirements that shipped and proved valuable
-- Format: `- ✓ [Requirement] — [version/phase]`
-- These are locked — changing them requires explicit discussion
+**要求 - 已验证：**
+- 已交付并证明有价值的需求
+- 格式：`- ✓ [Requirement] — [version/phase]`
+- 这些已锁定 - 更改它们需要明确的讨论
 
-**Requirements — Active:**
-- Current scope being built toward
-- These are hypotheses until shipped and validated
-- Move to Validated when shipped, Out of Scope if invalidated
+**要求 - 活跃：**
+- 当前范围正在构建
+- 在发货和验证之前，这些都是假设
+- 发货时移至“已验证”，如果无效则超出范围
 
-**Requirements — Out of Scope:**
-- Explicit boundaries on what we're not building
-- Always include reasoning (prevents re-adding later)
-- Includes: considered and rejected, deferred to future, explicitly excluded
+**要求 - 超出范围：**
+- 对我们不构建的内容有明确的界限
+- 始终包含推理（防止以后重新添加）
+- 包括：考虑并拒绝、推迟到未来、明确排除
 
-**Context:**
-- Background that informs implementation decisions
-- Technical environment, prior work, user feedback
-- Known issues or technical debt to address
-- Update as new context emerges
+**上下文：**
+- 为实施决策提供信息的背景
+- 技术环境、前期工作、用户反馈
+- 需要解决的已知问题或技术债务
+- 随着新环境的出现而更新
 
-**Constraints:**
-- Hard limits on implementation choices
-- Tech stack, timeline, budget, compatibility, dependencies
-- Include the "why" — constraints without rationale get questioned
+**限制：**
+- 对实施选择的硬性限制
+- 技术堆栈、时间表、预算、兼容性、依赖性
+- 包括“为什么”——没有理由的约束会受到质疑
 
-**Key Decisions:**
-- Significant choices that affect future work
-- Add decisions as they're made throughout the project
-- Track outcome when known:
-  - ✓ Good — decision proved correct
-  - ⚠️ Revisit — decision may need reconsideration
-  - — Pending — too early to evaluate
+**关键决策：**
+- 影响未来工作的重大选择
+- 添加在整个项目中做出的决策
+- 已知情况下跟踪结果：
+  - ✓ 好 — decision 被证明是正确的
+  - ⚠️ 重新访问 — decision 可能需要重新考虑
+  - - 待定 - 评估还为时过早
 
-**Last Updated:**
-- Always note when and why the document was updated
-- Format: `after Phase 2` or `after v1.0 milestone`
-- Triggers review of whether content is still accurate
+**最后更新：**
+- 始终注意文档更新的时间和原因
+- 格式：`after Phase 2` 或 `after v1.0 milestone`
+- 触发内容是否仍然准确的审查
 
 </guidelines>
 
 <evolution>
 
-PROJECT.md evolves throughout the project lifecycle.
+PROJECT.md 在整个项目生命周期中不断发展。
 
-**After each phase transition:**
-1. Requirements invalidated? → Move to Out of Scope with reason
-2. Requirements validated? → Move to Validated with phase reference
-3. New requirements emerged? → Add to Active
-4. Decisions to log? → Add to Key Decisions
-5. "What This Is" still accurate? → Update if drifted
+**每次相变后：**
+1. 要求无效？ → 有理由移至范围之外
+2. 要求已验证？ → 移至使用相位参考进行验证
+3、新的需求出现了？ → 添加到活动
+4. 记录的决定？ → 添加到关键决策
+5.“这是什么”仍然准确吗？ → 如果有偏差则更新
 
-**After each milestone:**
-1. Full review of all sections
-2. Core Value check — still the right priority?
-3. Audit Out of Scope — reasons still valid?
-4. Update Context with current state (users, feedback, metrics)
+**每个里程碑之后：**
+1. 全面审查所有部分
+2. 核心价值检查——仍然是正确的优先事项吗？
+3. 审计超出范围——原因仍然有效吗？
+4. 使用当前状态更新上下文（用户、反馈、指标）
 
 </evolution>
 
 <brownfield>
 
-For existing codebases:
+对于现有的代码库：
 
-1. **Map codebase first** via `/gsd:map-codebase`
+1. **首先通过 `/gsd:map-codebase` 映射代码库**
 
-2. **Infer Validated requirements** from existing code:
-   - What does the codebase actually do?
-   - What patterns are established?
-   - What's clearly working and relied upon?
+2. **从现有代码推断已验证的要求**：
+   - 代码库实际上是做什么的？
+   - 建立了哪些模式？
+   - 什么是明显有效且依赖​​的？
 
-3. **Gather Active requirements** from user:
-   - Present inferred current state
-   - Ask what they want to build next
+3. **从用户那里收集主动需求**：
+   - 当前推断的当前状态
+   - 询问他们下一步想要构建什么
 
-4. **Initialize:**
-   - Validated = inferred from existing code
-   - Active = user's goals for this work
-   - Out of Scope = boundaries user specifies
-   - Context = includes current codebase state
+4. **初始化：**
+   - 已验证 = 从现有代码推断
+   - Active = 用户对此工作的目标
+   - 超出范围 = 用户指定的边界
+   - 上下文 = 包括当前代码库状态
 
 </brownfield>
 
 <state_reference>
 
-STATE.md references PROJECT.md:
+STATE.md参考PROJECT.md：
 
 ```markdown
 ## Project Reference
@@ -179,6 +179,6 @@ See: .planning/PROJECT.md (updated [date])
 **Current focus:** [Current phase name]
 ```
 
-This ensures Claude reads current PROJECT.md context.
+这确保 Claude 读取当前的 PROJECT.md 上下文。
 
 </state_reference>

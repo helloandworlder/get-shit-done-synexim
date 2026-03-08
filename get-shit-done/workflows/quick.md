@@ -32,35 +32,35 @@ AskUserQuestion(
 
 Store response as `$DESCRIPTION`.
 
-If still empty, re-prompt: "Please provide a task description."
+如果仍为空，则重新提示：“请提供任务描述。”
 
 Display banner based on active flags:
 
 If `$DISCUSS_MODE` and `$FULL_MODE`:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► QUICK TASK (DISCUSS + FULL)
+ GSD ► 快速任务（讨论 + 完整模式）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Discussion + plan checking + verification enabled
+◆ 已启用讨论、计划检查与验证
 ```
 
 If `$DISCUSS_MODE` only:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► QUICK TASK (DISCUSS)
+ GSD ► 快速任务（讨论模式）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Discussion phase enabled — surfacing gray areas before planning
+◆ 已启用讨论阶段——在规划前暴露灰区
 ```
 
 If `$FULL_MODE` only:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► QUICK TASK (FULL MODE)
+ GSD ► 快速任务（完整模式）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Plan checking + verification enabled
+◆ 已启用计划检查与验证
 ```
 
 ---
@@ -99,7 +99,7 @@ mkdir -p "$QUICK_DIR"
 
 Report to user:
 ```
-Creating quick task ${next_num}: ${DESCRIPTION}
+正在创建快速任务 ${next_num}：${DESCRIPTION}
 Directory: ${QUICK_DIR}
 ```
 
@@ -114,10 +114,10 @@ Skip this step entirely if NOT `$DISCUSS_MODE`.
 Display banner:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► DISCUSSING QUICK TASK
+ GSD ► 正在讨论快速任务
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Surfacing gray areas for: ${DESCRIPTION}
+◆ 正在为以下任务暴露灰区：${DESCRIPTION}
 ```
 
 **4.5a. Identify gray areas**
@@ -137,13 +137,13 @@ Each gray area should be a concrete decision point, not a vague category. Exampl
 
 ```
 AskUserQuestion(
-  header: "Gray Areas",
-  question: "Which areas need clarification before planning?",
+  header: "灰区",
+  question: "在开始规划前，哪些方面需要先澄清？",
   options: [
     { label: "${area_1}", description: "${why_it_matters_1}" },
     { label: "${area_2}", description: "${why_it_matters_2}" },
     { label: "${area_3}", description: "${why_it_matters_3}" },
-    { label: "All clear", description: "Skip discussion — I know what I want" }
+    { label: "已清楚", description: "跳过讨论——我已经知道自己想要什么" }
   ],
   multiSelect: true
 )
@@ -163,7 +163,7 @@ AskUserQuestion(
     { label: "${concrete_choice_1}", description: "${what_this_means}" },
     { label: "${concrete_choice_2}", description: "${what_this_means}" },
     { label: "${concrete_choice_3}", description: "${what_this_means}" },
-    { label: "You decide", description: "Claude's discretion" }
+    { label: "你决定", description: "交由 Claude 自主判断" }
   ],
   multiSelect: false
 )
@@ -183,7 +183,7 @@ Collect all decisions into `$DECISIONS`.
 Write `${QUICK_DIR}/${next_num}-CONTEXT.md` using the standard context template structure:
 
 ```markdown
-# Quick Task ${next_num}: ${DESCRIPTION} - Context
+# 快速任务 ${next_num}：${DESCRIPTION} - Context
 
 **Gathered:** ${date}
 **Status:** Ready for planning
@@ -221,7 +221,7 @@ ${any_specific_references_or_examples_from_discussion}
 
 Note: Quick task CONTEXT.md omits `<code_context>` and `<deferred>` sections (no codebase scouting, no phase scope to defer to). Keep it lean.
 
-Report: `Context captured: ${QUICK_DIR}/${next_num}-CONTEXT.md`
+报告：`已记录上下文：${QUICK_DIR}/${next_num}-CONTEXT.md`
 
 ---
 
@@ -261,7 +261,7 @@ ${FULL_MODE ? '- Each task MUST have `files`, `action`, `verify`, `done` fields'
 
 <output>
 Write plan to: ${QUICK_DIR}/${next_num}-PLAN.md
-Return: ## PLANNING COMPLETE with plan path
+Return: ## 规划完成，并附上计划路径
 </output>
 ",
   subagent_type="gsd-planner",
@@ -273,7 +273,7 @@ Return: ## PLANNING COMPLETE with plan path
 After planner returns:
 1. Verify plan exists at `${QUICK_DIR}/${next_num}-PLAN.md`
 2. Extract plan count (typically 1 for quick tasks)
-3. Report: "Plan created: ${QUICK_DIR}/${next_num}-PLAN.md"
+3. 报告：`计划已创建：${QUICK_DIR}/${next_num}-PLAN.md`
 
 If plan not found, error: "Planner failed to create ${next_num}-PLAN.md"
 
@@ -286,10 +286,10 @@ Skip this step entirely if NOT `$FULL_MODE`.
 Display banner:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► CHECKING PLAN
+ GSD ► 正在检查计划
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Spawning plan checker...
+◆ 正在启动计划检查器...
 ```
 
 Checker prompt:
@@ -318,8 +318,8 @@ ${DISCUSS_MODE ? '- Context compliance: Does the plan honor locked decisions fro
 </check_dimensions>
 
 <expected_output>
-- ## VERIFICATION PASSED — all checks pass
-- ## ISSUES FOUND — structured issue list
+- ## 验证通过 —— 所有检查均已通过
+- ## 发现问题 —— 输出结构化问题列表
 </expected_output>
 ```
 
@@ -334,8 +334,8 @@ Task(
 
 **Handle checker return:**
 
-- **`## VERIFICATION PASSED`:** Display confirmation, proceed to step 6.
-- **`## ISSUES FOUND`:** Display issues, check iteration count, enter revision loop.
+- **`## VERIFICATION PASSED`：** 显示确认信息，并进入步骤 6。
+- **`## ISSUES FOUND`：** 展示问题，检查迭代次数，并进入修订循环。
 
 **Revision loop (max 2 iterations):**
 
@@ -343,7 +343,7 @@ Track `iteration_count` (starts at 1 after initial plan + check).
 
 **If iteration_count < 2:**
 
-Display: `Sending back to planner for revision... (iteration ${N}/2)`
+显示：`正回传给 planner 进行修订...（第 ${N}/2 轮）`
 
 Revision prompt:
 
@@ -379,9 +379,9 @@ After planner returns → spawn checker again, increment iteration_count.
 
 **If iteration_count >= 2:**
 
-Display: `Max iterations reached. ${N} issues remain:` + issue list
+显示：`已达到最大迭代次数。仍有 ${N} 个问题：` + 问题列表
 
-Offer: 1) Force proceed, 2) Abort
+提供选项：1）强制继续，2）终止
 
 ---
 
@@ -421,7 +421,7 @@ After executor returns:
 
 **Known Claude Code bug (classifyHandoffIfNeeded):** If executor reports "failed" with error `classifyHandoffIfNeeded is not defined`, this is a Claude Code runtime bug — not a real failure. Check if summary file exists and git log shows commits. If so, treat as successful.
 
-If summary not found, error: "Executor failed to create ${next_num}-SUMMARY.md"
+If summary not found, error: "执行器未能创建 `${next_num}-SUMMARY.md`"
 
 Note: For quick tasks producing multiple plans (rare), spawn executors in parallel waves per execute-phase patterns.
 
@@ -434,10 +434,10 @@ Skip this step entirely if NOT `$FULL_MODE`.
 Display banner:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► VERIFYING RESULTS
+ GSD ► 正在验证结果
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-◆ Spawning verifier...
+◆ 正在启动验证器...
 ```
 
 ```
@@ -467,8 +467,8 @@ Store as `$VERIFICATION_STATUS`.
 | Status | Action |
 |--------|--------|
 | `passed` | Store `$VERIFICATION_STATUS = "Verified"`, continue to step 7 |
-| `human_needed` | Display items needing manual check, store `$VERIFICATION_STATUS = "Needs Review"`, continue |
-| `gaps_found` | Display gap summary, offer: 1) Re-run executor to fix gaps, 2) Accept as-is. Store `$VERIFICATION_STATUS = "Gaps"` |
+| `human_needed` | 展示需要人工检查的项目，记录 `$VERIFICATION_STATUS = "Needs Review"`，然后继续 |
+| `gaps_found` | 展示缺口摘要，并提供：1）重新运行执行器修复缺口，2）按现状接受。记录 `$VERIFICATION_STATUS = "Gaps"` |
 
 ---
 
@@ -547,41 +547,43 @@ Get final commit hash:
 commit_hash=$(git rev-parse --short HEAD)
 ```
 
-Display completion output:
+显示完成输出：
 
 **If `$FULL_MODE`:**
 ```
 ---
 
-GSD > QUICK TASK COMPLETE (FULL MODE)
+GSD > 快速任务完成（完整模式）
 
-Quick Task ${next_num}: ${DESCRIPTION}
+快速任务 ${next_num}：${DESCRIPTION}
 
-Summary: ${QUICK_DIR}/${next_num}-SUMMARY.md
-Verification: ${QUICK_DIR}/${next_num}-VERIFICATION.md (${VERIFICATION_STATUS})
+摘要：${QUICK_DIR}/${next_num}-SUMMARY.md
+验证：${QUICK_DIR}/${next_num}-VERIFICATION.md（${VERIFICATION_STATUS}）
 Commit: ${commit_hash}
 
 ---
 
-Ready for next task: /gsd:quick
+可继续执行下一个任务：`/gsd:quick`
 ```
 
 **If NOT `$FULL_MODE`:**
 ```
 ---
 
-GSD > QUICK TASK COMPLETE
+GSD > 快速任务完成
 
-Quick Task ${next_num}: ${DESCRIPTION}
+快速任务 ${next_num}：${DESCRIPTION}
 
-Summary: ${QUICK_DIR}/${next_num}-SUMMARY.md
+摘要：${QUICK_DIR}/${next_num}-SUMMARY.md
 Commit: ${commit_hash}
 
 ---
 
-Ready for next task: /gsd:quick
+可继续执行下一个任务：`/gsd:quick`
 ```
 
+
+在完成文档产出或实现步骤后，输出一个中文进度卡式总结，简要说明产物、状态、风险和下一步。
 </process>
 
 <success_criteria>

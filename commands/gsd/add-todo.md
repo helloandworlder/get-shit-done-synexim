@@ -1,6 +1,6 @@
 ---
 name: gsd:add-todo
-description: Capture idea or task as todo from current conversation context
+description: 从当前对话上下文中捕获想法或任务并记为 todo
 argument-hint: [optional description]
 allowed-tools:
   - Read
@@ -10,9 +10,9 @@ allowed-tools:
 ---
 
 <objective>
-Capture an idea, task, or issue that surfaces during a GSD session as a structured todo for later work.
+把 GSD 会话中出现的想法、任务或问题记录成结构化 todo，供后续处理。
 
-Routes to the add-todo workflow which handles:
+转交给 `add-todo` 工作流处理，负责：
 - Directory structure creation
 - Content extraction from arguments or conversation
 - Area inference from file paths
@@ -27,13 +27,13 @@ Routes to the add-todo workflow which handles:
 </execution_context>
 
 <context>
-Arguments: $ARGUMENTS (optional todo description)
+参数：`$ARGUMENTS`（可选的 todo 描述）
 
-State is resolved in-workflow via `init todos` and targeted reads.
+状态会在工作流内部通过 `init todos` 和定向读取解析。
 </context>
 
 <process>
-**Follow the add-todo workflow** from `@~/.claude/get-shit-done/workflows/add-todo.md`.
+**按照** `@~/.claude/get-shit-done/workflows/add-todo.md` **中的 `add-todo` 工作流执行。**
 
 The workflow handles all logic including:
 1. Directory ensuring
@@ -44,4 +44,6 @@ The workflow handles all logic including:
 6. File creation with slug generation
 7. STATE.md updates
 8. Git commits
+
+完成任何文档编写或实现步骤后，补充输出一个中文进度卡式总结（聚焦产物、状态、下一步）。
 </process>

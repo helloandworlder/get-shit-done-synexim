@@ -1,5 +1,5 @@
 <purpose>
-Switch the model profile used by GSD agents. Controls which Claude model each agent uses, balancing quality vs token spend.
+Switch the model profile used by GSD agents. In Synexim mode this controls how OpenAI GPT-5.4 is applied: planning uses `xhigh/high`, implementation uses `high`.
 </purpose>
 
 <required_reading>
@@ -45,7 +45,7 @@ Write updated config back to `.planning/config.json`.
 </step>
 
 <step name="confirm">
-Display confirmation with model table for selected profile:
+Display confirmation with model table for selected profile and explain the effort policy:
 
 ```
 ✓ Model profile set to: $ARGUMENTS.profile
@@ -57,18 +57,18 @@ Agents will now use:
 Example:
 | Agent | Model |
 |-------|-------|
-| gsd-planner | opus |
-| gsd-executor | sonnet |
-| gsd-verifier | haiku |
+| gsd-planner | openai/gpt-5.4 |
+| gsd-executor | openai/gpt-5.4 |
+| gsd-verifier | openai/gpt-5.4 |
 | ... | ... |
 
 Next spawned agents will use the new profile.
 ```
 
 Map profile names:
-- quality: use "quality" column from MODEL_PROFILES
-- balanced: use "balanced" column from MODEL_PROFILES
-- budget: use "budget" column from MODEL_PROFILES
+- quality: GPT-5.4 xhigh for roadmap/phase planning, GPT-5.4 high for implementation
+- balanced: GPT-5.4 high for planning and implementation
+- budget: GPT-5.4 high, but with fewer auxiliary agents/checks when reasonable
 </step>
 
 </process>

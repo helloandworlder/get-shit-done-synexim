@@ -1,12 +1,12 @@
-# Research Template
+# 研究模板
 
-Template for `.planning/phases/XX-name/{phase_num}-RESEARCH.md` - comprehensive ecosystem research before planning.
+`.planning/phases/XX-name/{phase_num}-RESEARCH.md` 模板 - 规划前的全面生态系统研究。
 
-**Purpose:** Document what Claude needs to know to implement a phase well - not just "which library" but "how do experts build this."
+**目的：** 记录 Claude 需要了解什么才能很好地实现一个阶段 - 不仅仅是“哪个库”，而是“专家如何构建这个库”。
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Phase [X]: [Name] - Research
@@ -73,9 +73,9 @@ The established libraries/tools for this domain:
 
 **Installation:**
 ```bash
-npm install [packages]
-# or
-yarn add [packages]
+npm 安装 [packages]
+# 或
+纱线添加[packages]
 ```
 </standard_stack>
 
@@ -84,17 +84,17 @@ yarn add [packages]
 
 ### Recommended Project Structure
 ```
-src/
-├── [folder]/        # [purpose]
-├── [folder]/        # [purpose]
-└── [folder]/        # [purpose]
+源代码/
+├── [folder]/#[purpose]
+├── [folder]/#[purpose]
+└── [folder]/#[purpose]
 ```
 
 ### Pattern 1: [Pattern Name]
 **What:** [description]
 **When to use:** [conditions]
 **Example:**
-```typescript
+```打字稿
 // [code example from Context7/official docs]
 ```
 
@@ -102,7 +102,7 @@ src/
 **What:** [description]
 **When to use:** [conditions]
 **Example:**
-```typescript
+```打字稿
 // [code example]
 ```
 
@@ -153,20 +153,20 @@ Problems that look simple but have existing solutions:
 Verified patterns from official sources:
 
 ### [Common Operation 1]
-```typescript
-// Source: [Context7/official docs URL]
+```打字稿
+// 来源：[Context7/official docs URL]
 [code]
 ```
 
 ### [Common Operation 2]
-```typescript
-// Source: [Context7/official docs URL]
+```打字稿
+// 来源：[Context7/official docs URL]
 [code]
 ```
 
 ### [Common Operation 3]
-```typescript
-// Source: [Context7/official docs URL]
+```打字稿
+// 来源：[Context7/official docs URL]
 [code]
 ```
 </code_examples>
@@ -246,7 +246,7 @@ Things that couldn't be fully resolved:
 
 ---
 
-## Good Example
+## 好例子
 
 ```markdown
 # Phase 3: 3D City Driving - Research
@@ -293,7 +293,7 @@ Key finding: Don't hand-roll physics or collision detection. Rapier (via @react-
 
 **Installation:**
 ```bash
-npm install three @react-three/fiber @react-three/drei @react-three/rapier zustand
+npm 安装三个 @react-三/fibre @react-三/drei @react-三/rapier zustand
 ```
 </standard_stack>
 
@@ -302,47 +302,47 @@ npm install three @react-three/fiber @react-three/drei @react-three/rapier zusta
 
 ### Recommended Project Structure
 ```
-src/
-├── components/
-│   ├── Vehicle/          # Player car with physics
-│   ├── City/             # City generation and buildings
-│   ├── Road/             # Road network
-│   └── Environment/      # Sky, lighting, fog
-├── hooks/
-│   ├── useVehicleControls.ts
-│   └── useGameState.ts
-├── stores/
-│   └── gameStore.ts      # Zustand state
-└── utils/
-    └── cityGenerator.ts  # Procedural generation helpers
+源代码/
+├── 组件/
+│ ├── 车辆/ # 具有物理功能的玩家汽车
+│ ├── 城市/ # 城市生成与建筑
+│ ├── 道路/ # 道路网络
+│ └── 环境/ # 天空、灯光、雾
+├── 挂钩/
+│ ├── useVehicleControls.ts
+│ └── useGameState.ts
+├── 店铺/
+│ └── gameStore.ts # Zustand状态
+└── 实用程序/
+    └── cityGenerator.ts # 程序生成助手
 ```
 
 ### Pattern 1: Vehicle with Rapier Physics
 **What:** Use RigidBody with vehicle-specific settings, not custom physics
 **When to use:** Any ground vehicle
 **Example:**
-```typescript
-// Source: @react-three/rapier docs
-import { RigidBody, useRapier } from '@react-three/rapier'
+```打字稿
+// 来源：@react- Three/rapier 文档
+从“@react-三/剑杆”导入 { RigidBody, useRapier }
 
-function Vehicle() {
-  const rigidBody = useRef()
+函数车辆（）{
+  const 刚体 = useRef()
 
-  return (
+  返回（
     <RigidBody
-      ref={rigidBody}
+      ref={body}
       type="dynamic"
       colliders="hull"
-      mass={1500}
-      linearDamping={0.5}
-      angularDamping={0.5}
+      mass={1200}
+      linearDamping={0.4}
+      angularDamping={0.8}
     >
       <mesh>
         <boxGeometry args={[2, 1, 4]} />
         <meshStandardMaterial />
       </mesh>
     </RigidBody>
-  )
+  ）
 }
 ```
 
@@ -350,20 +350,20 @@ function Vehicle() {
 **What:** Use InstancedMesh for repeated objects (buildings, trees, props)
 **When to use:** >100 similar objects
 **Example:**
-```typescript
-// Source: drei docs
-import { Instances, Instance } from '@react-three/drei'
+```打字稿
+// 来源：drei 文档
+从“@react-三/drei”导入 { Instances, Instance }
 
-function Buildings({ positions }) {
-  return (
+功能建筑物({ positions }) {
+  返回（
     <Instances limit={1000}>
       <boxGeometry />
       <meshStandardMaterial />
       {positions.map((pos, i) => (
-        <Instance key={i} position={pos} scale={[1, Math.random() * 5 + 1, 1]} />
+        <Instance key={i} position={pos} scale={[1, 1, 1]} />
       ))}
     </Instances>
-  )
+  ）
 }
 ```
 
@@ -413,13 +413,13 @@ function Buildings({ positions }) {
 ## Code Examples
 
 ### Basic R3F + Rapier Setup
-```typescript
-// Source: @react-three/rapier getting started
-import { Canvas } from '@react-three/fiber'
-import { Physics } from '@react-three/rapier'
+```打字稿
+// 来源：@react- Three/rapier 入门
+从“@react-三/纤维”导入 { Canvas }
+从“@react-三/剑杆”导入 { Physics }
 
-function Game() {
-  return (
+函数游戏（）{
+  返回（
     <Canvas>
       <Physics gravity={[0, -9.81, 0]}>
         <Vehicle />
@@ -427,32 +427,32 @@ function Game() {
         <Ground />
       </Physics>
     </Canvas>
-  )
+  ）
 }
 ```
 
 ### Vehicle Controls Hook
-```typescript
-// Source: Community pattern, verified with drei docs
-import { useFrame } from '@react-three/fiber'
-import { useKeyboardControls } from '@react-three/drei'
+```打字稿
+// 来源：社区模式，经 drei 文档验证
+从“@react-三/纤维”导入 { useFrame }
+从“@react-三/drei”导入 { useKeyboardControls }
 
-function useVehicleControls(rigidBodyRef) {
+函数 useVehicleControls(rigidBodyRef) {
   const [, getKeys] = useKeyboardControls()
 
   useFrame(() => {
-    const { forward, back, left, right } = getKeys()
-    const body = rigidBodyRef.current
-    if (!body) return
+    常量 { forward, back, left, right } = getKeys()
+    常量主体 = rigidBodyRef.current
+    if (!body) 返回
 
-    const impulse = { x: 0, y: 0, z: 0 }
-    if (forward) impulse.z -= 10
-    if (back) impulse.z += 5
+    常量脉冲 = { x: 0, y: 0, z: 0 }
+    如果（转发）impulse.z -= 10
+    如果（返回）impulse.z += 5
 
-    body.applyImpulse(impulse, true)
+    body.applyImpulse(脉冲、真实)
 
-    if (left) body.applyTorqueImpulse({ x: 0, y: 2, z: 0 }, true)
-    if (right) body.applyTorqueImpulse({ x: 0, y: -2, z: 0 }, true)
+    如果（左）body.applyTorqueImpulse（{ x: 0, y: 2, z: 0 }，真）
+    如果（右）body.applyTorqueImpulse（{ x: 0, y: -2, z: 0 }，真）
   })
 }
 ```
@@ -520,33 +520,32 @@ function useVehicleControls(rigidBodyRef) {
 
 ---
 
-## Guidelines
+## 指南
 
-**When to create:**
-- Before planning phases in niche/complex domains
-- When Claude's training data is likely stale or sparse
-- When "how do experts do this" matters more than "which library"
+**何时创建：**
+- 在利基/复杂领域的规划阶段之前
+- 当 Claude 的训练数据可能陈旧或稀疏时
+- 当“专家如何做到这一点”比“哪个图书馆”更重要时
 
-**Structure:**
-- Use XML tags for section markers (matches GSD templates)
-- Seven core sections: summary, standard_stack, architecture_patterns, dont_hand_roll, common_pitfalls, code_examples, sources
-- All sections required (drives comprehensive research)
+**结构：**
+- 使用 XML 标签作为部分标记（与 GSD 模板匹配）
+- 七个核心部分：summary、standard_stack、architecture_patterns、dont_hand_roll、common_pitfalls、code_examples、sources
+- 所需的所有部分（推动全面研究）
 
-**Content quality:**
-- Standard stack: Specific versions, not just names
-- Architecture: Include actual code examples from authoritative sources
-- Don't hand-roll: Be explicit about what problems to NOT solve yourself
-- Pitfalls: Include warning signs, not just "don't do this"
-- Sources: Mark confidence levels honestly
+**内容quality：**
+- 标准堆栈：特定版本，而不仅仅是名称
+- 架构：包括来自权威来源的实际代码示例
+- 不要手卷：明确哪些问题不能自己解决- 陷阱：包括警告标志，而不仅仅是“不要这样做”
+- 来源：诚实地标记置信水平
 
-**Integration with planning:**
-- RESEARCH.md loaded as @context reference in PLAN.md
-- Standard stack informs library choices
-- Don't hand-roll prevents custom solutions
-- Pitfalls inform verification criteria
-- Code examples can be referenced in task actions
+**与规划整合：**
+- RESEARCH.md 在 PLAN.md 中作为 @context 引用加载
+- 标准堆栈告知库选择
+- 不要手卷防止定制解决方案
+- 陷阱告知验证标准
+- 任务操作中可以引用代码示例
 
-**After creation:**
-- File lives in phase directory: `.planning/phases/XX-name/{phase_num}-RESEARCH.md`
-- Referenced during planning workflow
-- plan-phase loads it automatically when present
+**创建后：**
+- 文件位于阶段目录：`.planning/phases/XX-name/{phase_num}-RESEARCH.md`
+- 在规划工作流程期间参考
+- 计划阶段在存在时自动加载它

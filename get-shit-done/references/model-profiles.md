@@ -1,41 +1,44 @@
 # Model Profiles
 
-Model profiles control which Claude model each GSD agent uses. This allows balancing quality vs token spend.
+Model profiles control how Synexim applies `OpenAI GPT-5.4` across planning and implementation. The model stays the same; the effort level and amount of auxiliary work change by profile.
 
 ## Profile Definitions
 
 | Agent | `quality` | `balanced` | `budget` |
 |-------|-----------|------------|----------|
-| gsd-planner | opus | opus | sonnet |
-| gsd-roadmapper | opus | sonnet | sonnet |
-| gsd-executor | opus | sonnet | sonnet |
-| gsd-phase-researcher | opus | sonnet | haiku |
-| gsd-project-researcher | opus | sonnet | haiku |
-| gsd-research-synthesizer | sonnet | sonnet | haiku |
-| gsd-debugger | opus | sonnet | sonnet |
-| gsd-codebase-mapper | sonnet | haiku | haiku |
-| gsd-verifier | sonnet | sonnet | haiku |
-| gsd-plan-checker | sonnet | sonnet | haiku |
-| gsd-integration-checker | sonnet | sonnet | haiku |
-| gsd-nyquist-auditor | sonnet | sonnet | haiku |
+| gsd-planner | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-roadmapper | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-executor | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-phase-researcher | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-project-researcher | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-research-synthesizer | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-debugger | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-codebase-mapper | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-verifier | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-plan-checker | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-integration-checker | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
+| gsd-nyquist-auditor | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
 
 ## Profile Philosophy
 
-**quality** - Maximum reasoning power
-- Opus for all decision-making agents
-- Sonnet for read-only verification
-- Use when: quota available, critical architecture work
+**quality** - Maximum planning depth
+- GPT-5.4 with `xhigh` effort for roadmap, research synthesis, and phase planning
+- GPT-5.4 with `high` effort for execution and verification
+- Use when: critical architecture work, complex milestone slicing, high-risk planning
 
-**balanced** (default) - Smart allocation
-- Opus only for planning (where architecture decisions happen)
-- Sonnet for execution and research (follows explicit instructions)
-- Sonnet for verification (needs reasoning, not just pattern matching)
-- Use when: normal development, good balance of quality and cost
+**balanced** (default) - Practical default
+- GPT-5.4 with `high` effort for planning, execution, and verification
+- Use when: normal development, most milestones, everyday delivery
 
-**budget** - Minimal Opus usage
-- Sonnet for anything that writes code
-- Haiku for research and verification
-- Use when: conserving quota, high-volume work, less critical phases
+**budget** - Same model, less optional work
+- GPT-5.4 with `high` effort, but reduce optional auxiliary agents/checks when appropriate
+- Use when: conserving tokens by workflow shape rather than by downgrading the base model
+
+## Front-end Design Rule
+
+- GPT-5.4 must not perform front-end design during project initialization.
+- If a project or milestone contains front-end implementation, first confirm a complete Gemini AI Studio MVP prototype exists.
+- If the prototype and `.planning` disagree, list the differences and ask the user whether to补全 or移除 them before continuing.
 
 ## Resolution Logic
 
@@ -62,7 +65,7 @@ Override specific agents without changing the entire profile:
 }
 ```
 
-Overrides take precedence over the profile. Valid values: `opus`, `sonnet`, `haiku`.
+Overrides take precedence over the profile. Valid values are runtime-supported model identifiers such as `openai/gpt-5.4`.
 
 ## Switching Profiles
 
@@ -77,17 +80,11 @@ Per-project default: Set in `.planning/config.json`:
 
 ## Design Rationale
 
-**Why Opus for gsd-planner?**
-Planning involves architecture decisions, goal decomposition, and task design. This is where model quality has the highest impact.
+**Why GPT-5.4 for planning?**
+Planning sets the structure for the entire milestone. Stronger reasoning here reduces document drift and over-planning.
 
-**Why Sonnet for gsd-executor?**
-Executors follow explicit PLAN.md instructions. The plan already contains the reasoning; execution is implementation.
+**Why GPT-5.4 high for execution?**
+Execution still needs enough reasoning to adapt plans safely, but should avoid the slower exploratory depth reserved for roadmap/phase planning.
 
-**Why Sonnet (not Haiku) for verifiers in balanced?**
-Verification requires goal-backward reasoning - checking if code *delivers* what the phase promised, not just pattern matching. Sonnet handles this well; Haiku may miss subtle gaps.
-
-**Why Haiku for gsd-codebase-mapper?**
-Read-only exploration and pattern extraction. No reasoning required, just structured output from file contents.
-
-**Why `inherit` instead of passing `opus` directly?**
-Claude Code's `"opus"` alias maps to a specific model version. Organizations may block older opus versions while allowing newer ones. GSD returns `"inherit"` for opus-tier agents, causing them to use whatever opus version the user has configured in their session. This avoids version conflicts and silent fallbacks to Sonnet.
+**Why block GPT-5.4 from front-end design during initialization?**
+Initialization should align requirements and verify prototype readiness, not invent UI. Design should come from a human-reviewed Gemini AI Studio MVP prototype first.

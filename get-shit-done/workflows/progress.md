@@ -100,31 +100,31 @@ Present:
 **Progress:** {PROGRESS_BAR}
 **Profile:** [quality/balanced/budget]
 
-## Recent Work
+## 最近完成
 - [Phase X, Plan Y]: [what was accomplished - 1 line from summary-extract]
 - [Phase X, Plan Z]: [what was accomplished - 1 line from summary-extract]
 
-## Current Position
+## 当前进度位置
 Phase [N] of [total]: [phase-name]
 Plan [M] of [phase-total]: [status]
 CONTEXT: [✓ if has_context | - if not]
 
-## Key Decisions Made
+## 关键决策
 - [extract from $STATE.decisions[]]
 - [e.g. jq -r '.decisions[].decision' from state-snapshot]
 
-## Blockers/Concerns
+## 阻塞项 / 风险点
 - [extract from $STATE.blockers[]]
 - [e.g. jq -r '.blockers[].text' from state-snapshot]
 
-## Pending Todos
+## 待处理 Todos
 - [count] pending — /gsd:check-todos to review
 
-## Active Debug Sessions
+## 活跃调试会话
 - [count] active — /gsd:debug to continue
 (Only show this section if count > 0)
 
-## What's Next
+## 下一步
 [Next phase/plan objective from roadmap analyze]
 ```
 
@@ -176,7 +176,7 @@ Read its `<objective>` section.
 ```
 ---
 
-## ▶ Next Up
+## ▶ 下一步
 
 **{phase}-{plan}: [Plan Name]** — [objective summary from PLAN.md]
 
@@ -198,7 +198,7 @@ Check if `{phase_num}-CONTEXT.md` exists in phase directory.
 ```
 ---
 
-## ▶ Next Up
+## ▶ 下一步
 
 **Phase {N}: {Name}** — {Goal from ROADMAP.md}
 <sub>✓ Context gathered, ready to plan</sub>
@@ -215,7 +215,7 @@ Check if `{phase_num}-CONTEXT.md` exists in phase directory.
 ```
 ---
 
-## ▶ Next Up
+## ▶ 下一步
 
 **Phase {N}: {Name}** — {Goal from ROADMAP.md}
 
@@ -241,7 +241,7 @@ UAT.md exists with gaps (diagnosed issues). User needs to plan fixes.
 ```
 ---
 
-## ⚠ UAT Gaps Found
+## ⚠ 发现 UAT 缺口
 
 **{phase_num}-UAT.md** has {N} gaps requiring fixes.
 
@@ -286,9 +286,9 @@ Read ROADMAP.md to get the next phase's name and goal.
 ```
 ---
 
-## ✓ Phase {Z} Complete
+## ✓ 阶段 {Z} 已完成
 
-## ▶ Next Up
+## ▶ 下一步
 
 **Phase {Z+1}: {Name}** — {Goal from ROADMAP.md}
 
@@ -312,13 +312,13 @@ Read ROADMAP.md to get the next phase's name and goal.
 ```
 ---
 
-## 🎉 Milestone Complete
+## 🎉 里程碑已完成
 
 All {N} phases finished!
 
-## ▶ Next Up
+## ▶ 下一步
 
-**Complete Milestone** — archive and prepare for next
+**完成里程碑** —— 归档并准备下一个里程碑
 
 `/gsd:complete-milestone`
 
@@ -336,20 +336,20 @@ All {N} phases finished!
 
 **Route F: Between milestones (ROADMAP.md missing, PROJECT.md exists)**
 
-A milestone was completed and archived. Ready to start the next milestone cycle.
+A milestone was completed and archived. 已可开始下一轮里程碑周期。
 
 Read MILESTONES.md to find the last completed milestone version.
 
 ```
 ---
 
-## ✓ Milestone v{X.Y} Complete
+## ✓ 里程碑 v{X.Y} 已完成
 
 Ready to plan the next milestone.
 
-## ▶ Next Up
+## ▶ 下一步
 
-**Start Next Milestone** — questioning → research → requirements → roadmap
+**开启下一里程碑** —— 提问澄清 → 研究 → 需求 → 路线图
 
 `/gsd:new-milestone`
 

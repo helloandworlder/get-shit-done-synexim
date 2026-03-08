@@ -1,10 +1,10 @@
-# Debug Subagent Prompt Template
+# 调试子代理提示模板
 
-Template for spawning gsd-debugger agent. The agent contains all debugging expertise - this template provides problem context only.
+用于生成 gsd 调试器代理的模板。该代理包含所有调试专业知识 - 该模板仅提供问题上下文。
 
 ---
 
-## Template
+## 模板
 
 ```markdown
 <objective>
@@ -33,25 +33,25 @@ Create: .planning/debug/{slug}.md
 
 ---
 
-## Placeholders
+## 占位符
 
-| Placeholder | Source | Example |
+|占位符 |来源 |示例|
 |-------------|--------|---------|
-| `{issue_id}` | Orchestrator-assigned | `auth-screen-dark` |
-| `{issue_summary}` | User description | `Auth screen is too dark` |
-| `{expected}` | From symptoms | `See logo clearly` |
-| `{actual}` | From symptoms | `Screen is dark` |
-| `{errors}` | From symptoms | `None in console` |
-| `{reproduction}` | From symptoms | `Open /auth page` |
-| `{timeline}` | From symptoms | `After recent deploy` |
-| `{goal}` | Orchestrator sets | `find_and_fix` |
-| `{slug}` | Generated | `auth-screen-dark` |
+| `{issue_id}` |协调员分配 | `auth-screen-dark` |
+| `{issue_summary}` |用户描述 | `Auth screen is too dark` |
+| `{expected}` |从症状来看| `See logo clearly` |
+| `{actual}` |从症状来看| `Screen is dark` |
+| `{errors}` |从症状来看| `None in console` |
+| `{reproduction}` |从症状来看| `Open /auth page` |
+| `{timeline}` |从症状来看| `After recent deploy` |
+| `{goal}` |编排器套装 | `find_and_fix` |
+| `{slug}` |生成 | `auth-screen-dark` |
 
 ---
 
-## Usage
+## 用法
 
-**From /gsd:debug:**
+**来自/gsd:debug:**
 ```python
 Task(
   prompt=filled_template,
@@ -60,16 +60,16 @@ Task(
 )
 ```
 
-**From diagnose-issues (UAT):**
+**来自诊断问题 (UAT)：**
 ```python
 Task(prompt=template, subagent_type="gsd-debugger", description="Debug UAT-001")
 ```
 
 ---
 
-## Continuation
+## 继续
 
-For checkpoints, spawn fresh agent with:
+对于检查点，使用以下命令生成新代理：
 
 ```markdown
 <objective>

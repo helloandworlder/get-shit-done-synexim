@@ -38,13 +38,19 @@
   "engines": {
     "node": ">=16.7.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "c8": "^11.0.0",
     "esbuild": "^0.24.0"
   },
   "scripts": {
     "build:hooks": "node scripts/build-hooks.js",
+    "pack:dry-run": "npm pack --dry-run",
     "prepublishOnly": "npm run build:hooks",
+    "publish:dry-run": "npm publish --dry-run --access public",
+    "release:check": "npm test && npm run pack:dry-run && npm run publish:dry-run",
     "test": "node scripts/run-tests.cjs",
     "test:coverage": "c8 --check-coverage --lines 70 --reporter text --include 'get-shit-done/bin/lib/*.cjs' --exclude 'tests/**' --all node scripts/run-tests.cjs"
   }

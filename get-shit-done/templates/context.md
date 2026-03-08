@@ -1,18 +1,18 @@
-# Phase Context Template
+# 阶段上下文模板
 
-Template for `.planning/phases/XX-name/{phase_num}-CONTEXT.md` - captures implementation decisions for a phase.
+`.planning/phases/XX-name/{phase_num}-CONTEXT.md` 模板 - 捕获某个阶段的实施决策。
 
-**Purpose:** Document decisions that downstream agents need. Researcher uses this to know WHAT to investigate. Planner uses this to know WHAT choices are locked vs flexible.
+**目的：** 记录下游代理所需的决策。研究人员用它来知道要调查什么。 Planner 使用它来了解哪些选择是锁定的，哪些是灵活的。
 
-**Key principle:** Categories are NOT predefined. They emerge from what was actually discussed for THIS phase. A CLI phase has CLI-relevant sections, a UI phase has UI-relevant sections.
+**关键原则：** 类别不是预定义的。它们是从本阶段实际讨论的内容中产生的。 CLI 阶段具有 CLI 相关部分，UI 阶段具有 UI 相关部分。
 
-**Downstream consumers:**
-- `gsd-phase-researcher` — Reads decisions to focus research (e.g., "card layout" → research card component patterns)
-- `gsd-planner` — Reads decisions to create specific tasks (e.g., "infinite scroll" → task includes virtualization)
+**下游消费者：**
+- `gsd-phase-researcher` — 阅读决策以重点研究（e.g.，“卡片布局”→ 研究卡片组件模式）
+- `gsd-planner` — 读取创建特定任务的决策（e.g.，“无限滚动”→ 任务包括虚拟化）
 
 ---
 
-## File Template
+## 文件模板
 
 ```markdown
 # Phase [X]: [Name] - Context
@@ -85,7 +85,7 @@ Template for `.planning/phases/XX-name/{phase_num}-CONTEXT.md` - captures implem
 
 <good_examples>
 
-**Example 1: Visual feature (Post Feed)**
+**示例 1：视觉特征（Post Feed）**
 
 ```markdown
 # Phase 3: Post Feed - Context
@@ -146,7 +146,7 @@ Display posts from followed users in a scrollable feed. Users can view posts and
 *Context gathered: 2025-01-20*
 ```
 
-**Example 2: CLI tool (Database backup)**
+**示例2：CLI工具（数据库备份）**
 
 ```markdown
 # Phase 2: Backup Command - Context
@@ -208,7 +208,7 @@ CLI command to backup database to local file or S3. Supports full and incrementa
 *Context gathered: 2025-01-20*
 ```
 
-**Example 3: Organization task (Photo library)**
+**示例3：组织任务（照片库）**
 
 ```markdown
 # Phase 1: Photo Organization - Context
@@ -273,25 +273,25 @@ Organize existing photo library into structured folders. Handle duplicates and a
 </good_examples>
 
 <guidelines>
-**This template captures DECISIONS for downstream agents.**
+**此模板为下游代理捕获决策。**
 
-The output should answer: "What does the researcher need to investigate? What choices are locked for the planner?"
+输出应该回答：“研究人员需要调查什么？规划者有哪些选择？”
 
-**Good content (concrete decisions):**
-- "Card-based layout, not timeline"
-- "Retry 3 times on network failure, then fail"
-- "Group by year, then by month"
-- "JSON for programmatic use, table for humans"
+**好的内容（具体的决定）：**
+- “基于卡片的布局，而不是时间线”
+- “网络故障重试3次，然后失败”
+- “按年分组，然后按月分组”
+- “JSON 用于编程使用，供人类使用的表格”
 
-**Bad content (too vague):**
-- "Should feel modern and clean"
-- "Good user experience"
-- "Fast and responsive"
-- "Easy to use"
+**不良内容（太模糊）：**
+- “应该感觉现代和干净”
+- “良好的用户体验”
+- “快速且反应灵敏”
+- “易于使用”
 
-**After creation:**
-- File lives in phase directory: `.planning/phases/XX-name/{phase_num}-CONTEXT.md`
-- `gsd-phase-researcher` uses decisions to focus investigation
-- `gsd-planner` uses decisions + research to create executable tasks
-- Downstream agents should NOT need to ask the user again about captured decisions
+**创建后：**
+- 文件位于阶段目录：`.planning/phases/XX-name/{phase_num}-CONTEXT.md`
+- `gsd-phase-researcher` 使用决策来集中调查
+- `gsd-planner` 使用决策+研究来创建可执行任务
+- 下游代理不需要再次询问用户有关捕获的决策
 </guidelines>
