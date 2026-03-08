@@ -752,6 +752,10 @@ describe('cmdInitNewProject', () => {
     assert.strictEqual(output.has_package_file, false);
     assert.strictEqual(output.is_brownfield, false);
     assert.strictEqual(output.needs_codebase_map, false);
+    assert.strictEqual(output.language, 'zh-CN');
+    assert.strictEqual(output.project_scale, 'adaptive');
+    assert.strictEqual(output.recommended_scale, 'micro');
+    assert.strictEqual(output.recommended_workflow, 'quick-or-single-phase');
   });
 
   test('brownfield with package.json detected', () => {
@@ -764,6 +768,7 @@ describe('cmdInitNewProject', () => {
     assert.strictEqual(output.has_package_file, true);
     assert.strictEqual(output.is_brownfield, true);
     assert.strictEqual(output.needs_codebase_map, true);
+    assert.ok(['standard', 'large'].includes(output.recommended_scale));
   });
 
   test('brownfield with codebase map does not need map', () => {
@@ -784,6 +789,23 @@ describe('cmdInitNewProject', () => {
 
     const output = JSON.parse(result.output);
     assert.strictEqual(output.planning_exists, true);
+  });
+
+  test('large repository footprint recommends large scale', () => {
+    fs.writeFileSync(path.join(tmpDir, 'package.json'), '{"name":"test"}');
+    for (let i = 0; i < 45; i++) {
+      const dir = path.join(tmpDir, 'src', `module-${Math.floor(i / 6)}`);
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(path.join(dir, `file-${i}.ts`), `export const value${i} = ${i};\n`);
+    }
+
+    const result = runGsdTools('init new-project', tmpDir);
+    assert.ok(result.success, `Command failed: ${result.error}`);
+
+    const output = JSON.parse(result.output);
+    assert.strictEqual(output.recommended_scale, 'large');
+    assert.strictEqual(output.recommended_workflow, 'milestone-phase-plan-task');
+    assert.ok(output.code_file_count >= 45);
   });
 });
 
@@ -846,4 +868,3 @@ describe('cmdInitNewMilestone', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 // roadmap analyze command
 // ─────────────────────────────────────────────────────────────────────────────
-

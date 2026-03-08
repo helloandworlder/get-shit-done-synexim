@@ -18,7 +18,7 @@ Display the complete GSD command reference. Output ONLY the reference content. D
 GSD evolves fast. Update periodically:
 
 ```bash
-npx get-shit-done-cc@latest
+npx get-shit-done-synexim@latest
 ```
 
 ## Core Workflow
@@ -28,6 +28,16 @@ npx get-shit-done-cc@latest
 ```
 
 ### Project Initialization
+
+**`/gsd:init`**
+Bootstrap GSD Synexim into the current repository.
+
+- Creates `.planning/config.json` if missing
+- Creates or patches `AGENTS.md` with Chinese-first Synexim rules
+- Enables adaptive project scale defaults for micro / standard / large work
+- Adds the front-end prototype gate for Gemini AI Studio driven flows
+
+Usage: `/gsd:init`
 
 **`/gsd:new-project`**
 Initialize new project through unified flow.
@@ -327,6 +337,15 @@ Usage: `/gsd:cleanup`
 **`/gsd:help`**
 Show this command reference.
 
+**`/gsd:patch-agents`**
+Inject or refresh the GSD Synexim managed block in `AGENTS.md`.
+
+- Preserves user-authored project rules outside the managed block
+- Reapplies Chinese-first, adaptive-scale, and front-end prototype requirements
+- Safe to run after manual AGENTS edits or after updating GSD
+
+Usage: `/gsd:patch-agents`
+
 **`/gsd:update`**
 Update GSD to latest version with changelog preview.
 
@@ -334,7 +353,7 @@ Update GSD to latest version with changelog preview.
 - Displays changelog entries for versions you've missed
 - Highlights breaking changes
 - Confirms before running install
-- Better than raw `npx get-shit-done-cc`
+- Better than raw `npx get-shit-done-synexim`
 
 Usage: `/gsd:update`
 

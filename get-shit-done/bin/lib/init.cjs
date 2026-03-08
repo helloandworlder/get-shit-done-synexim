@@ -7,6 +7,75 @@ const path = require('path');
 const { execSync } = require('child_process');
 const { loadConfig, resolveModelInternal, findPhaseInternal, getRoadmapPhaseInternal, pathExistsInternal, generateSlugInternal, getMilestoneInfo, normalizePhaseName, toPosixPath, output, error } = require('./core.cjs');
 
+const CODE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.py', '.go', '.rs', '.swift', '.java', '.kt', '.rb']);
+const IGNORED_SCAN_DIRS = new Set(['.git', '.planning', 'node_modules', 'dist', 'build', 'coverage', '.next', '.nuxt', '.turbo', 'vendor']);
+
+function scanProjectFootprint(cwd, maxDepth = 3) {
+  let codeFileCount = 0;
+  let codeDirectoryCount = 0;
+  const visitedDirs = new Set();
+
+  function walk(currentDir, depth) {
+    let entries = [];
+    try {
+      entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    } catch {
+      return;
+    }
+
+    let hasCodeInCurrentDir = false;
+
+    for (const entry of entries) {
+      const fullPath = path.join(currentDir, entry.name);
+
+      if (entry.isDirectory()) {
+        if (IGNORED_SCAN_DIRS.has(entry.name)) continue;
+        if (entry.name.startsWith('.') && entry.name !== '.github') continue;
+        if (depth < maxDepth) walk(fullPath, depth + 1);
+        continue;
+      }
+
+      if (!entry.isFile()) continue;
+      if (CODE_EXTENSIONS.has(path.extname(entry.name))) {
+        codeFileCount += 1;
+        hasCodeInCurrentDir = true;
+      }
+    }
+
+    if (hasCodeInCurrentDir && !visitedDirs.has(currentDir)) {
+      visitedDirs.add(currentDir);
+      codeDirectoryCount += 1;
+    }
+  }
+
+  walk(cwd, 0);
+  return { code_file_count: codeFileCount, code_directory_count: codeDirectoryCount };
+}
+
+function recommendProjectScale({ hasCode, hasPackageFile, codeFileCount, codeDirectoryCount }) {
+  if (!hasCode && !hasPackageFile && codeFileCount <= 6) {
+    return {
+      recommended_scale: 'micro',
+      scale_reason: 'Greenfield or tiny repository detected. Favor quick execution and minimal planning.',
+      recommended_workflow: 'quick-or-single-phase',
+    };
+  }
+
+  if (codeFileCount >= 40 || codeDirectoryCount >= 8) {
+    return {
+      recommended_scale: 'large',
+      scale_reason: 'Large code surface detected. Keep milestone -> phase -> plan -> task structure.',
+      recommended_workflow: 'milestone-phase-plan-task',
+    };
+  }
+
+  return {
+    recommended_scale: 'standard',
+    scale_reason: 'Moderate project footprint detected. Use phase -> plan -> task by default.',
+    recommended_workflow: 'phase-plan-task',
+  };
+}
+
 function cmdInitExecutePhase(cwd, phase, raw) {
   if (!phase) {
     error('phase required for init execute-phase');
@@ -185,6 +254,14 @@ function cmdInitNewProject(cwd, raw) {
                    pathExistsInternal(cwd, 'go.mod') ||
                    pathExistsInternal(cwd, 'Package.swift');
 
+  const footprint = scanProjectFootprint(cwd);
+  const scale = recommendProjectScale({
+    hasCode,
+    hasPackageFile,
+    codeFileCount: footprint.code_file_count,
+    codeDirectoryCount: footprint.code_directory_count,
+  });
+
   const result = {
     // Models
     researcher_model: resolveModelInternal(cwd, 'gsd-project-researcher'),
@@ -193,6 +270,11 @@ function cmdInitNewProject(cwd, raw) {
 
     // Config
     commit_docs: config.commit_docs,
+    language: config.language,
+    project_scale: config.project_scale,
+    ui_feedback: config.ui_feedback,
+    frontend_prototype_required: config.frontend_prototype_required,
+    frontend_prototype_tool: config.frontend_prototype_tool,
 
     // Existing state
     project_exists: pathExistsInternal(cwd, '.planning/PROJECT.md'),
@@ -204,6 +286,11 @@ function cmdInitNewProject(cwd, raw) {
     has_package_file: hasPackageFile,
     is_brownfield: hasCode || hasPackageFile,
     needs_codebase_map: (hasCode || hasPackageFile) && !pathExistsInternal(cwd, '.planning/codebase'),
+    code_file_count: footprint.code_file_count,
+    code_directory_count: footprint.code_directory_count,
+    recommended_scale: scale.recommended_scale,
+    scale_reason: scale.scale_reason,
+    recommended_workflow: scale.recommended_workflow,
 
     // Git state
     has_git: pathExistsInternal(cwd, '.git'),

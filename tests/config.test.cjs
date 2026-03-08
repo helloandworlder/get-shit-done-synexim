@@ -48,14 +48,20 @@ describe('config-ensure-section command', () => {
 
     const config = readConfig(tmpDir);
     // Verify structure and types — exact values may vary if ~/.gsd/defaults.json exists
-    assert.strictEqual(typeof config.model_profile, 'string');
-    assert.strictEqual(typeof config.commit_docs, 'boolean');
-    assert.strictEqual(typeof config.parallelization, 'boolean');
-    assert.strictEqual(typeof config.branching_strategy, 'string');
-    assert.ok(config.workflow && typeof config.workflow === 'object', 'workflow should be an object');
-    assert.strictEqual(typeof config.workflow.research, 'boolean');
-    assert.strictEqual(typeof config.workflow.plan_check, 'boolean');
-    assert.strictEqual(typeof config.workflow.verifier, 'boolean');
+     assert.strictEqual(typeof config.model_profile, 'string');
+     assert.strictEqual(typeof config.commit_docs, 'boolean');
+      assert.strictEqual(config.language, 'zh-CN');
+      assert.strictEqual(config.project_scale, 'adaptive');
+      assert.strictEqual(config.ui_feedback, 'card');
+      assert.strictEqual(typeof config.parallelization, 'boolean');
+      assert.strictEqual(typeof config.branching_strategy, 'string');
+      assert.ok(config.workflow && typeof config.workflow === 'object', 'workflow should be an object');
+      assert.ok(config.frontend && typeof config.frontend === 'object', 'frontend should be an object');
+      assert.strictEqual(config.frontend.prototype_required, true);
+      assert.strictEqual(config.frontend.prototype_tool, 'Gemini AI Studio');
+      assert.strictEqual(typeof config.workflow.research, 'boolean');
+      assert.strictEqual(typeof config.workflow.plan_check, 'boolean');
+      assert.strictEqual(typeof config.workflow.verifier, 'boolean');
     assert.strictEqual(typeof config.workflow.nyquist_validation, 'boolean');
     // These hardcoded defaults are always present (may be overridden by user defaults)
     assert.ok('model_profile' in config, 'model_profile should exist');

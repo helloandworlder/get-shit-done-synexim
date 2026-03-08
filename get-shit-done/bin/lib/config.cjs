@@ -53,6 +53,9 @@ function cmdConfigEnsureSection(cwd, raw) {
   const hardcoded = {
     model_profile: 'balanced',
     commit_docs: true,
+    language: 'zh-CN',
+    project_scale: 'adaptive',
+    ui_feedback: 'card',
     search_gitignored: false,
     branching_strategy: 'none',
     phase_branch_template: 'gsd/phase-{phase}-{slug}',
@@ -65,11 +68,18 @@ function cmdConfigEnsureSection(cwd, raw) {
     },
     parallelization: true,
     brave_search: hasBraveSearch,
+    frontend: {
+      prototype_required: true,
+      prototype_tool: 'Gemini AI Studio',
+      launch_demo_on_gap: true,
+      require_level1_coverage: true,
+    },
   };
   const defaults = {
     ...hardcoded,
     ...userDefaults,
     workflow: { ...hardcoded.workflow, ...(userDefaults.workflow || {}) },
+    frontend: { ...hardcoded.frontend, ...(userDefaults.frontend || {}) },
   };
 
   try {

@@ -1,9 +1,9 @@
 {
-  "name": "get-shit-done-cc",
+  "name": "get-shit-done-synexim",
   "version": "1.22.4",
-  "description": "A meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini and Codex by TÂCHES.",
+  "description": "A Chinese-first, adaptive GSD fork for Claude Code, OpenCode, Gemini and Codex by Synexim.",
   "bin": {
-    "get-shit-done-cc": "bin/install.js"
+    "get-shit-done-synexim": "bin/install.js"
   },
   "files": [
     "bin",
@@ -25,15 +25,15 @@
     "codex",
     "codex-cli"
   ],
-  "author": "TÂCHES",
+  "author": "Synexim",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glittercowboy/get-shit-done.git"
+    "url": "git+https://github.com/helloandworlder/get-shit-done-synexim.git"
   },
-  "homepage": "https://github.com/glittercowboy/get-shit-done",
+  "homepage": "https://github.com/helloandworlder/get-shit-done-synexim",
   "bugs": {
-    "url": "https://github.com/glittercowboy/get-shit-done/issues"
+    "url": "https://github.com/helloandworlder/get-shit-done-synexim/issues"
   },
   "engines": {
     "node": ">=16.7.0"

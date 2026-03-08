@@ -70,6 +70,9 @@ function loadConfig(cwd) {
   const defaults = {
     model_profile: 'balanced',
     commit_docs: true,
+    language: 'zh-CN',
+    project_scale: 'adaptive',
+    ui_feedback: 'card',
     search_gitignored: false,
     branching_strategy: 'none',
     phase_branch_template: 'gsd/phase-{phase}-{slug}',
@@ -80,6 +83,12 @@ function loadConfig(cwd) {
     nyquist_validation: true,
     parallelization: true,
     brave_search: false,
+    frontend: {
+      prototype_required: true,
+      prototype_tool: 'Gemini AI Studio',
+      launch_demo_on_gap: true,
+      require_level1_coverage: true,
+    },
   };
 
   try {
@@ -112,6 +121,9 @@ function loadConfig(cwd) {
     return {
       model_profile: get('model_profile') ?? defaults.model_profile,
       commit_docs: get('commit_docs', { section: 'planning', field: 'commit_docs' }) ?? defaults.commit_docs,
+      language: get('language', { section: 'output', field: 'language' }) ?? defaults.language,
+      project_scale: get('project_scale', { section: 'planning', field: 'project_scale' }) ?? defaults.project_scale,
+      ui_feedback: get('ui_feedback', { section: 'output', field: 'ui_feedback' }) ?? defaults.ui_feedback,
       search_gitignored: get('search_gitignored', { section: 'planning', field: 'search_gitignored' }) ?? defaults.search_gitignored,
       branching_strategy: get('branching_strategy', { section: 'git', field: 'branching_strategy' }) ?? defaults.branching_strategy,
       phase_branch_template: get('phase_branch_template', { section: 'git', field: 'phase_branch_template' }) ?? defaults.phase_branch_template,
@@ -122,6 +134,10 @@ function loadConfig(cwd) {
       nyquist_validation: get('nyquist_validation', { section: 'workflow', field: 'nyquist_validation' }) ?? defaults.nyquist_validation,
       parallelization,
       brave_search: get('brave_search') ?? defaults.brave_search,
+      frontend_prototype_required: get('frontend_prototype_required', { section: 'frontend', field: 'prototype_required' }) ?? defaults.frontend.prototype_required,
+      frontend_prototype_tool: get('frontend_prototype_tool', { section: 'frontend', field: 'prototype_tool' }) ?? defaults.frontend.prototype_tool,
+      frontend_launch_demo_on_gap: get('frontend_launch_demo_on_gap', { section: 'frontend', field: 'launch_demo_on_gap' }) ?? defaults.frontend.launch_demo_on_gap,
+      frontend_require_level1_coverage: get('frontend_require_level1_coverage', { section: 'frontend', field: 'require_level1_coverage' }) ?? defaults.frontend.require_level1_coverage,
       model_overrides: parsed.model_overrides || null,
     };
   } catch {
