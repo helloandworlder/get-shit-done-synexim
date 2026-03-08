@@ -2,9 +2,9 @@
 
 # GET SHIT DONE
 
-**A light-weight and powerful meta-prompting, context engineering and spec-driven development system for Claude Code, OpenCode, Gemini CLI, and Codex.**
+**Synexim 中文优先版 GSD：面向 Claude Code、OpenCode、Gemini CLI 与 Codex 的上下文工程 + 规格驱动开发系统。**
 
-**Solves context rot — the quality degradation that happens as Claude fills its context window.**
+**解决 context rot：让 AI 在长流程、多阶段、多代理协作里依然稳定输出。**
 
 [![npm version](https://img.shields.io/npm/v/get-shit-done-synexim?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-synexim)
 [![npm downloads](https://img.shields.io/npm/dm/get-shit-done-synexim?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/get-shit-done-synexim)
@@ -21,11 +21,25 @@
 npx get-shit-done-synexim@latest
 ```
 
-**Works on Mac, Windows, and Linux.**
+**Synexim 推荐从这里开始。支持 Mac、Windows、Linux。**
 
 <br>
 
 ![GSD Install](assets/terminal.svg)
+
+<br>
+
+**给中文团队的更清晰默认体验**
+
+中文优先提问、中文优先产出、保留上游 GSD 的核心工作流与安装方式；适合用同一套流程做从前端 MVP 到多阶段工程交付。
+
+**Synexim 版关键差异**
+
+- 中文优先输出：需求澄清、规划文档、执行反馈默认更适合中文读写场景
+- 自适应项目规模：小任务不过度流程化，大项目保留 phase / plan / verify 节奏
+- GPT-5.4 策划与执行策略：在计划、执行、验收阶段强调先规划、再落地、最后验证
+- 前端 MVP 原型闸门：涉及前端时，先把可看的原型与交互方向对齐，再进入大规模实现
+- 人驱动阶段验收：每个 phase 先由人确认方向与结果，再继续推进下一段
 
 <br>
 
@@ -37,13 +51,49 @@ npx get-shit-done-synexim@latest
 
 <br>
 
-**Trusted by engineers at Amazon, Google, Shopify, and Webflow.**
+**Trusted by engineers at Amazon, Google, Shopify, and Webflow. Synexim 版延续上游能力，并针对中文协作场景做了本地化增强。**
 
-[Why I Built This](#why-i-built-this) · [How It Works](#how-it-works) · [Commands](#commands) · [Why It Works](#why-it-works) · [User Guide](docs/USER-GUIDE.md)
+[快速开始](#快速开始--安装) · [Synexim 版差异](#synexim-版差异速览) · [How It Works](#how-it-works) · [Commands](#commands) · [User Guide](docs/USER-GUIDE.md)
 
 </div>
 
 ---
+
+## 快速开始 / 安装
+
+Synexim 版建议直接使用 npm 最新版安装器：
+
+```bash
+npx get-shit-done-synexim@latest
+```
+
+安装器会提示你选择：
+1. **运行时** - Claude Code、OpenCode、Gemini、Codex，或全部安装
+2. **安装位置** - 全局安装（所有项目可用）或当前项目本地安装
+
+安装后验证：
+- Claude Code / Gemini: `/gsd:help`
+- OpenCode: `/gsd-help`
+- Codex: `$gsd-help`
+
+> [!NOTE]
+> Codex 仍采用 skills 安装方式（`skills/gsd-*/SKILL.md`），这是上游工作流的一部分，Synexim 版保持兼容。
+
+## Synexim 版差异速览
+
+与上游 GSD 相比，Synexim 版重点不是改掉工作流，而是让工作流更适合中文团队直接落地：
+
+- **中文优先**：问题澄清、计划拆解、状态反馈、验收表述优先面向中文读者
+- **项目规模自适应**：小需求走轻流程，大需求保留 requirements、roadmap、phase execution 的严谨性
+- **GPT-5.4 策略**：强调规划与执行分离，先明确目标、边界和验收标准，再执行与验证
+- **前端 MVP 闸门**：前端需求先对齐可见原型、页面结构、交互方向，再推进完整开发
+- **人工验收推进**：阶段是否通过由人确认，避免 AI 在错误方向上自动越跑越远
+
+如果你只记一个命令，就是：
+
+```bash
+npx get-shit-done-synexim@latest
+```
 
 ## Why I Built This
 
@@ -74,6 +124,8 @@ People who want to describe what they want and have it built correctly — witho
 ---
 
 ## Getting Started
+
+English-first upstream usage details are preserved below for compatibility.
 
 ```bash
 npx get-shit-done-synexim@latest
