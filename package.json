@@ -1,6 +1,6 @@
 {
   "name": "get-shit-done-synexim",
-  "version": "1.22.4",
+  "version": "1.22.5",
   "description": "A Chinese-first, adaptive GSD fork for Claude Code, OpenCode, Gemini and Codex by Synexim.",
   "bin": {
     "get-shit-done-synexim": "bin/install.js"

@@ -6,12 +6,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+## [1.22.5] - 2026-03-09
+
 ### Added
 - Synexim-branded, Chinese-first README refresh with a clearer homepage/install path while preserving upstream runtime and usage guidance
 
 ### Changed
 - Documentation now highlights Synexim differentiators concisely: Chinese-first outputs, adaptive project scale, GPT-5.4 planning/execution policy, front-end MVP prototype gate, and human-driven phase acceptance
 - npm install guidance now consistently foregrounds `npx get-shit-done-synexim@latest` as the primary entry point for Synexim users
+- Quick-cleaned the most visible remaining English fragments in agent descriptions, model-profile references, questioning guidance, and key workflow headers
 
 ## [1.22.4] - 2026-03-03
 
