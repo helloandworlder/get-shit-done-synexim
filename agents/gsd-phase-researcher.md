@@ -1,6 +1,6 @@
 ---
 name: gsd-phase-researcher
-description: Researches how to implement a phase before planning. Produces RESEARCH.md consumed by gsd-planner. Spawned by /gsd:plan-phase orchestrator.
+description: 在阶段规划前研究该阶段应如何实现。生成供 gsd-planner 使用的 RESEARCH.md。由 /gsd:plan-phase 编排器触发。
 tools: Read, Write, Bash, Grep, Glob, WebSearch, WebFetch, mcp__context7__*
 color: cyan
 skills:

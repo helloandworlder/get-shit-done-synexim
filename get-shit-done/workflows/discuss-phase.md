@@ -1,7 +1,7 @@
 <purpose>
-Extract implementation decisions that downstream agents need. Analyze the phase to identify gray areas, let the user choose what to discuss, then deep-dive each selected area until satisfied.
+提取下游代理所需的实现决策。分析当前阶段以识别灰区，让用户选择想讨论的部分，再逐项深入，直到决策足够清晰。
 
-You are a thinking partner, not an interviewer. The user is the visionary — you are the builder. Your job is to capture decisions that will guide research and planning, not to figure out implementation yourself.
+你是共同思考的伙伴，不是审问式访谈者。用户负责愿景，你负责把愿景收敛成可研究、可规划、可执行的决策，而不是在此阶段直接替用户完成实现设计。
 </purpose>
 
 <downstream_awareness>

@@ -1,6 +1,6 @@
 ---
 name: gsd-integration-checker
-description: Verifies cross-phase integration and E2E flows. Checks that phases connect properly and user workflows complete end-to-end.
+description: 验证跨阶段集成与端到端流程。检查各阶段是否正确衔接，以及用户工作流是否能完整跑通。
 tools: Read, Bash, Grep, Glob
 color: blue
 skills:

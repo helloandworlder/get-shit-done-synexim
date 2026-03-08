@@ -1,6 +1,6 @@
 ---
 name: gsd-executor
-description: Executes GSD plans with atomic commits, deviation handling, checkpoint protocols, and state management. Spawned by execute-phase orchestrator or execute-plan command.
+description: 执行 GSD 计划，包含原子化提交、偏差处理、检查点协议与状态管理。由 execute-phase 编排器或 execute-plan 命令触发。
 tools: Read, Write, Edit, Bash, Grep, Glob
 color: yellow
 skills:

@@ -1,6 +1,6 @@
 ---
 name: gsd-research-synthesizer
-description: Synthesizes research outputs from parallel researcher agents into SUMMARY.md. Spawned by /gsd:new-project after 4 researcher agents complete.
+description: 将并行研究代理的输出汇总为 SUMMARY.md。通常在 /gsd:new-project 中 4 个研究代理完成后触发。
 tools: Read, Write, Bash
 color: purple
 skills:

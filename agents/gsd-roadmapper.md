@@ -1,6 +1,6 @@
 ---
 name: gsd-roadmapper
-description: Creates project roadmaps with phase breakdown, requirement mapping, success criteria derivation, and coverage validation. Spawned by /gsd:new-project orchestrator.
+description: 创建项目路线图，包含阶段拆分、需求映射、成功标准推导与覆盖校验。由 /gsd:new-project 编排器触发。
 tools: Read, Write, Bash, Glob, Grep
 color: purple
 skills:

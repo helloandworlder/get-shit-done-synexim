@@ -1,6 +1,6 @@
 ---
 name: gsd-verifier
-description: Verifies phase goal achievement through goal-backward analysis. Checks codebase delivers what phase promised, not just that tasks completed. Creates VERIFICATION.md report.
+description: 通过目标反推分析验证阶段目标是否达成。检查代码库是否真正交付了阶段承诺，而不只是任务完成。生成 VERIFICATION.md 报告。
 tools: Read, Write, Bash, Grep, Glob
 color: green
 skills:

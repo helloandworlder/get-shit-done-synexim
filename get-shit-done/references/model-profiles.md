@@ -1,8 +1,8 @@
-# Model Profiles
+# 模型配置档
 
-Model profiles control how Synexim applies `OpenAI GPT-5.4` across planning and implementation. The model stays the same; the effort level and amount of auxiliary work change by profile.
+模型配置档用于控制 Synexim 如何在规划与实现阶段使用 `OpenAI GPT-5.4`。基础模型保持一致，变化的是 effort 强度与辅助工作量。
 
-## Profile Definitions
+## 配置档定义
 
 | Agent | `quality` | `balanced` | `budget` |
 |-------|-----------|------------|----------|
@@ -19,30 +19,30 @@ Model profiles control how Synexim applies `OpenAI GPT-5.4` across planning and 
 | gsd-integration-checker | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
 | gsd-nyquist-auditor | openai/gpt-5.4 | openai/gpt-5.4 | openai/gpt-5.4 |
 
-## Profile Philosophy
+## 配置档策略
 
-**quality** - Maximum planning depth
-- GPT-5.4 with `xhigh` effort for roadmap, research synthesis, and phase planning
-- GPT-5.4 with `high` effort for execution and verification
-- Use when: critical architecture work, complex milestone slicing, high-risk planning
+**quality** - 最大化规划深度
+- GPT-5.4 `xhigh` 用于路线图、研究汇总与阶段规划
+- GPT-5.4 `high` 用于执行与验证
+- 适用场景：关键架构工作、复杂里程碑拆分、高风险规划
 
-**balanced** (default) - Practical default
-- GPT-5.4 with `high` effort for planning, execution, and verification
-- Use when: normal development, most milestones, everyday delivery
+**balanced**（默认）- 实用默认档
+- GPT-5.4 `high` 用于规划、执行与验证
+- 适用场景：常规开发、多数里程碑、日常交付
 
-**budget** - Same model, less optional work
-- GPT-5.4 with `high` effort, but reduce optional auxiliary agents/checks when appropriate
-- Use when: conserving tokens by workflow shape rather than by downgrading the base model
+**budget** - 同一模型，减少可选工作
+- GPT-5.4 `high` 保持不变，但在合适时减少可选辅助代理/检查
+- 适用场景：通过工作流收缩来节省 token，而不是降低基础模型
 
-## Front-end Design Rule
+## 前端设计规则
 
-- GPT-5.4 must not perform front-end design during project initialization.
-- If a project or milestone contains front-end implementation, first confirm a complete Gemini AI Studio MVP prototype exists.
-- If the prototype and `.planning` disagree, list the differences and ask the user whether to补全 or移除 them before continuing.
+- GPT-5.4 在项目初始化阶段不得直接承担前端设计工作。
+- 若项目或里程碑涉及前端实现，必须先确认存在完整的 Gemini AI Studio MVP 原型。
+- 若原型与 `.planning` 不一致，必须先列出差异，并询问用户要“补全”还是“移除”，再继续推进。
 
-## Resolution Logic
+## 解析逻辑
 
-Orchestrators resolve model before spawning:
+编排器在启动代理前应先解析模型：
 
 ```
 1. Read .planning/config.json
@@ -51,9 +51,9 @@ Orchestrators resolve model before spawning:
 4. Pass model parameter to Task call
 ```
 
-## Per-Agent Overrides
+## 单代理覆盖
 
-Override specific agents without changing the entire profile:
+如果不想改整个 profile，可单独覆盖某些代理：
 
 ```json
 {
@@ -65,26 +65,26 @@ Override specific agents without changing the entire profile:
 }
 ```
 
-Overrides take precedence over the profile. Valid values are runtime-supported model identifiers such as `openai/gpt-5.4`.
+单代理覆盖优先级高于 profile。有效值应为运行时支持的模型标识，例如 `openai/gpt-5.4`。
 
-## Switching Profiles
+## 切换配置档
 
-Runtime: `/gsd:set-profile <profile>`
+运行时命令：`/gsd:set-profile <profile>`
 
-Per-project default: Set in `.planning/config.json`:
+项目级默认值：在 `.planning/config.json` 中设置：
 ```json
 {
   "model_profile": "balanced"
 }
 ```
 
-## Design Rationale
+## 设计理由
 
-**Why GPT-5.4 for planning?**
-Planning sets the structure for the entire milestone. Stronger reasoning here reduces document drift and over-planning.
+**为什么规划默认用 GPT-5.4？**
+规划决定整个里程碑的结构。这里的推理更强，能减少文档漂移与过度规划。
 
-**Why GPT-5.4 high for execution?**
-Execution still needs enough reasoning to adapt plans safely, but should avoid the slower exploratory depth reserved for roadmap/phase planning.
+**为什么执行阶段用 GPT-5.4 high？**
+执行仍然需要足够的推理能力来安全适配计划，但不应该进入路线图/阶段规划那种更慢、更发散的探索深度。
 
-**Why block GPT-5.4 from front-end design during initialization?**
-Initialization should align requirements and verify prototype readiness, not invent UI. Design should come from a human-reviewed Gemini AI Studio MVP prototype first.
+**为什么要禁止 GPT-5.4 在初始化阶段直接做前端设计？**
+初始化阶段的目标是对齐需求和验证原型是否就绪，而不是临时发明 UI。设计应优先来自经过人工确认的 Gemini AI Studio MVP 原型。

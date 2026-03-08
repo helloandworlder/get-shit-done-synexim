@@ -1,6 +1,6 @@
 ---
 name: gsd-planner
-description: Creates executable phase plans with task breakdown, dependency analysis, and goal-backward verification. Spawned by /gsd:plan-phase orchestrator.
+description: 创建可执行的阶段计划，包含任务拆解、依赖分析与目标反推校验。由 /gsd:plan-phase 编排器触发。
 tools: Read, Write, Bash, Glob, Grep, WebFetch, mcp__context7__*
 color: green
 skills:
